@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`getIdentifier returns the identifier for functions 1`] = `"06fdde03"`;
+
+exports[`getIdentifier returns the identifier for functions 2`] = `"095ea7b3"`;
+
+exports[`getIdentifier returns the identifier for functions 3`] = `"18160ddd"`;
+
+exports[`getIdentifier returns the identifier for functions 4`] = `"23b872dd"`;
+
+exports[`getIdentifier returns the identifier for functions 5`] = `"313ce567"`;
+
+exports[`getIdentifier returns the identifier for functions 6`] = `"70a08231"`;
+
+exports[`getIdentifier returns the identifier for functions 7`] = `"95d89b41"`;
+
+exports[`getIdentifier returns the identifier for functions 8`] = `"a9059cbb"`;
+
+exports[`getIdentifier returns the identifier for functions 9`] = `"dd62ed3e"`;
+
+exports[`getIdentifier returns the identifier for functions 10`] = `"1914238e"`;
