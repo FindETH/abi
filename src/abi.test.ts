@@ -20,13 +20,16 @@ describe('decode', () => {
 
 describe('decodeWithIdentifier', () => {
   it('decodes a token transfer', () => {
-    const buffer = Buffer.from('a9059cbb0000000000000000000000006b175474e89094c44da98b954eedeac495271d0f0000000000000000000000000000000000000000000000000000000000003039', 'hex');
+    const buffer = Buffer.from(
+      'a9059cbb0000000000000000000000006b175474e89094c44da98b954eedeac495271d0f0000000000000000000000000000000000000000000000000000000000003039',
+      'hex'
+    );
     expect(decodeWithIdentifier(erc20Interface, buffer)).toStrictEqual([
       '0x6b175474e89094c44da98b954eedeac495271d0f',
       12345n
     ]);
   });
-})
+});
 
 describe('encode', () => {
   it('encodes a token transfer', () => {

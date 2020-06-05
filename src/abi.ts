@@ -92,12 +92,12 @@ export const decode = (types: ContractInput[], data: Buffer): unknown[] => {
  */
 export const decodeWithIdentifier = (contract: ContractInterface[], data: Buffer): unknown[] | undefined => {
   const identifier = data.subarray(0, 4);
-  const contractFunction = contract
-    .filter(contractFuction => contractFuction?.type !== 'event')
-    .find(contractFunction => getIdentifier(contractFunction as ContractFunction).equals(identifier));
+  const matchedContractFunction = contract
+    .filter((contractFuction) => contractFuction?.type !== 'event')
+    .find((contractFunction) => getIdentifier(contractFunction as ContractFunction).equals(identifier));
 
-  if (contractFunction) {
-    return decode(contractFunction.inputs, data.subarray(4));
+  if (matchedContractFunction) {
+    return decode(matchedContractFunction.inputs, data.subarray(4));
   }
 
   return undefined;
