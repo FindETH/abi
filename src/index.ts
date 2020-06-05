@@ -1,1 +1,1 @@
-export { decode, decodeValue, encode, encodeValue, encodeWithIdentifier } from './abi';
+export { decode, decodeValue, decodeWithIdentifier, encode, encodeValue, encodeWithIdentifier } from './abi';

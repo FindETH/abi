@@ -16,13 +16,13 @@ export const parseType = (input: ContractInput): string => {
 };
 
 /**
- * Get the function identifier of a contract function as `string`.
+ * Get the function identifier of a contract function as `Buffer`.
  *
  * @param {ContractFunction} contractFunction
  * @return {string}
  */
-export const getIdentifier = (contractFunction: ContractFunction): string => {
+export const getIdentifier = (contractFunction: ContractFunction): Buffer => {
   const types = contractFunction.inputs.map(parseType).join(',');
 
-  return keccak256(`${contractFunction.name}(${types})`).slice(0, 8);
+  return keccak256(`${contractFunction.name}(${types})`).slice(0, 4);
 };

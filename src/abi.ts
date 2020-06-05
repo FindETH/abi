@@ -1,4 +1,4 @@
-import { ContractFunction, ContractInput, DecodeFunction, EncodeFunction, Type } from './contract';
+import { ContractFunction, ContractInput, ContractInterface, DecodeFunction, EncodeFunction, Type } from './contract';
 import { getIdentifier } from './identifier';
 import { decodeAddress, encodeAddress } from './parsers/address';
 import { decodeArray, isArray } from './parsers/array';
@@ -83,6 +83,27 @@ export const decode = (types: ContractInput[], data: Buffer): unknown[] => {
 };
 
 /**
+ * Decode an input data `Buffer` with identifier, with a provided contract interface. May return
+ * `undefined` if the corresponding function cannot be found.
+ *
+ * @param {ContractInterface[]} contract
+ * @param {Buffer} data
+ * @return {unknown[] | undefined}
+ */
+export const decodeWithIdentifier = (contract: ContractInterface[], data: Buffer): unknown[] | undefined => {
+  const identifier = data.subarray(0, 4);
+  const contractFunction = contract
+    .filter(contractFuction => contractFuction?.type !== 'event')
+    .find(contractFunction => getIdentifier(contractFunction as ContractFunction).equals(identifier));
+
+  if (contractFunction) {
+    return decode(contractFunction.inputs, data.subarray(4));
+  }
+
+  return undefined;
+};
+
+/**
  * Encode `value` to a Buffer, and return the new full input data `Buffer`.
  *
  * @param {Buffer} target
@@ -125,7 +146,7 @@ export const encode = (types: ContractInput[], data: unknown[]): Buffer => {
  * @return {Buffer}
  */
 export const encodeWithIdentifier = (contractFunction: ContractFunction, data: unknown[]) => {
-  const identifier = Buffer.from(getIdentifier(contractFunction), 'hex');
+  const identifier = getIdentifier(contractFunction);
   const encoded = encode(contractFunction.inputs, data);
 
   return Buffer.concat([identifier, encoded]);
