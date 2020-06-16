@@ -52,7 +52,6 @@
     "prepare": "yarn run build"
   },
   "dependencies": {
-    "bigint-buffer": "^1.1.5",
     "keccak": "^3.0.0"
   },
   "devDependencies": {
