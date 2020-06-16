@@ -73,18 +73,9 @@
 						<section class="tsd-index-section ">
 							<h3>Functions</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-function tsd-parent-kind-module"><a href="_abi_.html#decode" class="tsd-kind-icon">decode</a></li>
-								<li class="tsd-kind-function tsd-parent-kind-module"><a href="_abi_.html#decodevalue" class="tsd-kind-icon">decode<wbr>Value</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter"><a href="_abi_.html#decode" class="tsd-kind-icon">decode</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module"><a href="_abi_.html#encode" class="tsd-kind-icon">encode</a></li>
-								<li class="tsd-kind-function tsd-parent-kind-module"><a href="_abi_.html#encodevalue" class="tsd-kind-icon">encode<wbr>Value</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module"><a href="_abi_.html#encodewithidentifier" class="tsd-kind-icon">encode<wbr>With<wbr>Identifier</a></li>
-								<li class="tsd-kind-function tsd-parent-kind-module"><a href="_abi_.html#iterate" class="tsd-kind-icon">iterate</a></li>
-							</ul>
-						</section>
-						<section class="tsd-index-section ">
-							<h3>Object literals</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-object-literal tsd-parent-kind-module"><a href="_abi_.html#parsers_by_type" class="tsd-kind-icon">PARSERS_<wbr>BY_<wbr>TYPE</a></li>
 							</ul>
 						</section>
 					</div>
@@ -92,68 +83,35 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Functions</h2>
-				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter">
 					<a name="decode" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> decode</h3>
-					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
-						<li class="tsd-signature tsd-kind-icon">decode<span class="tsd-signature-symbol">(</span>types<span class="tsd-signature-symbol">: </span><a href="_contract_.html#contractinput" class="tsd-signature-type">ContractInput</a><span class="tsd-signature-symbol">[]</span>, data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Buffer</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">[]</span></li>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter">
+						<li class="tsd-signature tsd-kind-icon">decode&lt;T&gt;<span class="tsd-signature-symbol">(</span>input<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><a href="../interfaces/_contract_.contractinputregular.html" class="tsd-signature-type">ContractInputRegular</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/_contract_.contractinputtuple.html" class="tsd-signature-type">ContractInputTuple</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">[]</span>, buffer<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Buffer</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/FindETH/abi/blob/e2ed806/src/abi.ts#L72">abi.ts:72</a></li>
+									<li>Defined in <a href="https://github.com/FindETH/abi/blob/3d52f4b/src/abi.ts#L39">abi.ts:39</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Decode an input data <code>Buffer</code> with provided types.</p>
-								</div>
-							</div>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>T<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">[]</span></h4>
+								</li>
+							</ul>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>types: <a href="_contract_.html#contractinput" class="tsd-signature-type">ContractInput</a><span class="tsd-signature-symbol">[]</span></h5>
+									<h5>input: <span class="tsd-signature-symbol">(</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><a href="../interfaces/_contract_.contractinputregular.html" class="tsd-signature-type">ContractInputRegular</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/_contract_.contractinputtuple.html" class="tsd-signature-type">ContractInputTuple</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">[]</span></h5>
 								</li>
 								<li>
-									<h5>data: <span class="tsd-signature-type">Buffer</span></h5>
+									<h5>buffer: <span class="tsd-signature-type">Buffer</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">[]</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
-					<a name="decodevalue" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagConst">Const</span> decode<wbr>Value</h3>
-					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
-						<li class="tsd-signature tsd-kind-icon">decode<wbr>Value<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Buffer</span>, data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Buffer</span>, type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">unknown</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/FindETH/abi/blob/e2ed806/src/abi.ts#L48">abi.ts:48</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Parse a raw value from a <code>Buffer</code>.</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>value: <span class="tsd-signature-type">Buffer</span></h5>
-								</li>
-								<li>
-									<h5>data: <span class="tsd-signature-type">Buffer</span></h5>
-								</li>
-								<li>
-									<h5>type: <span class="tsd-signature-type">string</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">unknown</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -161,13 +119,13 @@
 					<a name="encode" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> encode</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
-						<li class="tsd-signature tsd-kind-icon">encode<span class="tsd-signature-symbol">(</span>types<span class="tsd-signature-symbol">: </span><a href="_contract_.html#contractinput" class="tsd-signature-type">ContractInput</a><span class="tsd-signature-symbol">[]</span>, data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Buffer</span></li>
+						<li class="tsd-signature tsd-kind-icon">encode<span class="tsd-signature-symbol">(</span>input<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><a href="../interfaces/_contract_.contractinputregular.html" class="tsd-signature-type">ContractInputRegular</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/_contract_.contractinputtuple.html" class="tsd-signature-type">ContractInputTuple</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">[]</span>, values<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Buffer</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/FindETH/abi/blob/e2ed806/src/abi.ts#L114">abi.ts:114</a></li>
+									<li>Defined in <a href="https://github.com/FindETH/abi/blob/3d52f4b/src/abi.ts#L13">abi.ts:13</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -178,47 +136,10 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>types: <a href="_contract_.html#contractinput" class="tsd-signature-type">ContractInput</a><span class="tsd-signature-symbol">[]</span></h5>
+									<h5>input: <span class="tsd-signature-symbol">(</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><a href="../interfaces/_contract_.contractinputregular.html" class="tsd-signature-type">ContractInputRegular</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/_contract_.contractinputtuple.html" class="tsd-signature-type">ContractInputTuple</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">[]</span></h5>
 								</li>
 								<li>
-									<h5>data: <span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">[]</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Buffer</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
-					<a name="encodevalue" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagConst">Const</span> encode<wbr>Value</h3>
-					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
-						<li class="tsd-signature tsd-kind-icon">encode<wbr>Value<span class="tsd-signature-symbol">(</span>target<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Buffer</span>, value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">unknown</span>, position<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Buffer</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/FindETH/abi/blob/e2ed806/src/abi.ts#L94">abi.ts:94</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Encode <code>value</code> to a Buffer, and return the new full input data <code>Buffer</code>.</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>target: <span class="tsd-signature-type">Buffer</span></h5>
-								</li>
-								<li>
-									<h5>value: <span class="tsd-signature-type">unknown</span></h5>
-								</li>
-								<li>
-									<h5>position: <span class="tsd-signature-type">number</span></h5>
-								</li>
-								<li>
-									<h5>type: <span class="tsd-signature-type">string</span></h5>
+									<h5>values: <span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">[]</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Buffer</span></h4>
@@ -229,18 +150,18 @@
 					<a name="encodewithidentifier" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> encode<wbr>With<wbr>Identifier</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
-						<li class="tsd-signature tsd-kind-icon">encode<wbr>With<wbr>Identifier<span class="tsd-signature-symbol">(</span>contractFunction<span class="tsd-signature-symbol">: </span><a href="_contract_.html#contractfunction" class="tsd-signature-type">ContractFunction</a>, data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Buffer</span></li>
+						<li class="tsd-signature tsd-kind-icon">encode<wbr>With<wbr>Identifier<span class="tsd-signature-symbol">(</span>contractFunction<span class="tsd-signature-symbol">: </span><a href="_contract_.html#contractfunction" class="tsd-signature-type">ContractFunction</a>, values<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Buffer</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/FindETH/abi/blob/e2ed806/src/abi.ts#L127">abi.ts:127</a></li>
+									<li>Defined in <a href="https://github.com/FindETH/abi/blob/3d52f4b/src/abi.ts#L32">abi.ts:32</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Encode the input data with the provided function, and prepend the function identifier.</p>
+									<p>Encode the input data with the provided types, and prepend the function identifier.</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -249,317 +170,12 @@
 									<h5>contractFunction: <a href="_contract_.html#contractfunction" class="tsd-signature-type">ContractFunction</a></h5>
 								</li>
 								<li>
-									<h5>data: <span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">[]</span></h5>
+									<h5>values: <span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">[]</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Buffer</span></h4>
 						</li>
 					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
-					<a name="iterate" class="tsd-anchor"></a>
-					<h3>iterate</h3>
-					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
-						<li class="tsd-signature tsd-kind-icon">iterate<span class="tsd-signature-symbol">(</span>buffer<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Buffer</span>, chunkSize<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Generator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Buffer</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">Buffer</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/FindETH/abi/blob/e2ed806/src/abi.ts#L32">abi.ts:32</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Iterate over a <code>Buffer</code> with provided <code>chunkSize</code>.</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>buffer: <span class="tsd-signature-type">Buffer</span></h5>
-								</li>
-								<li>
-									<h5>chunkSize: <span class="tsd-signature-type">number</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Generator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Buffer</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">Buffer</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
-						</li>
-					</ul>
-				</section>
-			</section>
-			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Object literals</h2>
-				<section class="tsd-panel tsd-member tsd-kind-object-literal tsd-parent-kind-module">
-					<a name="parsers_by_type" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagConst">Const</span> PARSERS_<wbr>BY_<wbr>TYPE</h3>
-					<div class="tsd-signature tsd-kind-icon">PARSERS_<wbr>BY_<wbr>TYPE<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/FindETH/abi/blob/e2ed806/src/abi.ts#L10">abi.ts:10</a></li>
-						</ul>
-					</aside>
-					<section class="tsd-panel tsd-member tsd-kind-object-literal tsd-parent-kind-object-literal">
-						<a name="parsers_by_type.address" class="tsd-anchor"></a>
-						<h3>address</h3>
-						<div class="tsd-signature tsd-kind-icon">address<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
-						<aside class="tsd-sources">
-							<ul>
-								<li>Defined in <a href="https://github.com/FindETH/abi/blob/e2ed806/src/abi.ts#L11">abi.ts:11</a></li>
-							</ul>
-						</aside>
-						<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
-							<a name="parsers_by_type.address.decode-1" class="tsd-anchor"></a>
-							<h3>decode</h3>
-							<div class="tsd-signature tsd-kind-icon">decode<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Buffer</span>, buffer<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Buffer</span>, type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol"> = decodeAddress</span></div>
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/FindETH/abi/blob/e2ed806/src/abi.ts#L13">abi.ts:13</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-type-declaration">
-								<h4>Type declaration</h4>
-								<ul class="tsd-parameters">
-									<li class="tsd-parameter-signature">
-										<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-variable">
-											<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Buffer</span>, buffer<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Buffer</span>, type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span></li>
-										</ul>
-										<ul class="tsd-descriptions">
-											<li class="tsd-description">
-												<h4 class="tsd-parameters-title">Parameters</h4>
-												<ul class="tsd-parameters">
-													<li>
-														<h5>value: <span class="tsd-signature-type">Buffer</span></h5>
-													</li>
-													<li>
-														<h5>buffer: <span class="tsd-signature-type">Buffer</span></h5>
-													</li>
-													<li>
-														<h5>type: <span class="tsd-signature-type">string</span></h5>
-													</li>
-												</ul>
-												<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span></h4>
-											</li>
-										</ul>
-									</li>
-								</ul>
-							</div>
-						</section>
-						<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
-							<a name="parsers_by_type.address.encode-1" class="tsd-anchor"></a>
-							<h3>encode</h3>
-							<div class="tsd-signature tsd-kind-icon">encode<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>target<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Buffer</span>, data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span>, position<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">Buffer</span><span class="tsd-signature-symbol"> = encodeAddress</span></div>
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/FindETH/abi/blob/e2ed806/src/abi.ts#L12">abi.ts:12</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-type-declaration">
-								<h4>Type declaration</h4>
-								<ul class="tsd-parameters">
-									<li class="tsd-parameter-signature">
-										<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-variable">
-											<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>target<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Buffer</span>, data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span>, position<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Buffer</span></li>
-										</ul>
-										<ul class="tsd-descriptions">
-											<li class="tsd-description">
-												<h4 class="tsd-parameters-title">Parameters</h4>
-												<ul class="tsd-parameters">
-													<li>
-														<h5>target: <span class="tsd-signature-type">Buffer</span></h5>
-													</li>
-													<li>
-														<h5>data: <span class="tsd-signature-type">T</span></h5>
-													</li>
-													<li>
-														<h5>position: <span class="tsd-signature-type">number</span></h5>
-													</li>
-													<li>
-														<h5>type: <span class="tsd-signature-type">string</span></h5>
-													</li>
-												</ul>
-												<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Buffer</span></h4>
-											</li>
-										</ul>
-									</li>
-								</ul>
-							</div>
-						</section>
-					</section>
-					<section class="tsd-panel tsd-member tsd-kind-object-literal tsd-parent-kind-object-literal">
-						<a name="parsers_by_type.bytes" class="tsd-anchor"></a>
-						<h3>bytes</h3>
-						<div class="tsd-signature tsd-kind-icon">bytes<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
-						<aside class="tsd-sources">
-							<ul>
-								<li>Defined in <a href="https://github.com/FindETH/abi/blob/e2ed806/src/abi.ts#L15">abi.ts:15</a></li>
-							</ul>
-						</aside>
-						<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
-							<a name="parsers_by_type.bytes.decode-2" class="tsd-anchor"></a>
-							<h3>decode</h3>
-							<div class="tsd-signature tsd-kind-icon">decode<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Buffer</span>, buffer<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Buffer</span>, type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol"> = decodeBytes</span></div>
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/FindETH/abi/blob/e2ed806/src/abi.ts#L17">abi.ts:17</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-type-declaration">
-								<h4>Type declaration</h4>
-								<ul class="tsd-parameters">
-									<li class="tsd-parameter-signature">
-										<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-variable">
-											<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Buffer</span>, buffer<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Buffer</span>, type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span></li>
-										</ul>
-										<ul class="tsd-descriptions">
-											<li class="tsd-description">
-												<h4 class="tsd-parameters-title">Parameters</h4>
-												<ul class="tsd-parameters">
-													<li>
-														<h5>value: <span class="tsd-signature-type">Buffer</span></h5>
-													</li>
-													<li>
-														<h5>buffer: <span class="tsd-signature-type">Buffer</span></h5>
-													</li>
-													<li>
-														<h5>type: <span class="tsd-signature-type">string</span></h5>
-													</li>
-												</ul>
-												<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span></h4>
-											</li>
-										</ul>
-									</li>
-								</ul>
-							</div>
-						</section>
-						<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
-							<a name="parsers_by_type.bytes.encode-2" class="tsd-anchor"></a>
-							<h3>encode</h3>
-							<div class="tsd-signature tsd-kind-icon">encode<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>target<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Buffer</span>, data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span>, position<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">Buffer</span><span class="tsd-signature-symbol"> = encodeBytes</span></div>
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/FindETH/abi/blob/e2ed806/src/abi.ts#L16">abi.ts:16</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-type-declaration">
-								<h4>Type declaration</h4>
-								<ul class="tsd-parameters">
-									<li class="tsd-parameter-signature">
-										<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-variable">
-											<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>target<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Buffer</span>, data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span>, position<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Buffer</span></li>
-										</ul>
-										<ul class="tsd-descriptions">
-											<li class="tsd-description">
-												<h4 class="tsd-parameters-title">Parameters</h4>
-												<ul class="tsd-parameters">
-													<li>
-														<h5>target: <span class="tsd-signature-type">Buffer</span></h5>
-													</li>
-													<li>
-														<h5>data: <span class="tsd-signature-type">T</span></h5>
-													</li>
-													<li>
-														<h5>position: <span class="tsd-signature-type">number</span></h5>
-													</li>
-													<li>
-														<h5>type: <span class="tsd-signature-type">string</span></h5>
-													</li>
-												</ul>
-												<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Buffer</span></h4>
-											</li>
-										</ul>
-									</li>
-								</ul>
-							</div>
-						</section>
-					</section>
-					<section class="tsd-panel tsd-member tsd-kind-object-literal tsd-parent-kind-object-literal">
-						<a name="parsers_by_type.string" class="tsd-anchor"></a>
-						<h3>string</h3>
-						<div class="tsd-signature tsd-kind-icon">string<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
-						<aside class="tsd-sources">
-							<ul>
-								<li>Defined in <a href="https://github.com/FindETH/abi/blob/e2ed806/src/abi.ts#L19">abi.ts:19</a></li>
-							</ul>
-						</aside>
-						<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
-							<a name="parsers_by_type.string.decode-3" class="tsd-anchor"></a>
-							<h3>decode</h3>
-							<div class="tsd-signature tsd-kind-icon">decode<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Buffer</span>, buffer<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Buffer</span>, type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol"> = decodeString</span></div>
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/FindETH/abi/blob/e2ed806/src/abi.ts#L21">abi.ts:21</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-type-declaration">
-								<h4>Type declaration</h4>
-								<ul class="tsd-parameters">
-									<li class="tsd-parameter-signature">
-										<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-variable">
-											<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Buffer</span>, buffer<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Buffer</span>, type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span></li>
-										</ul>
-										<ul class="tsd-descriptions">
-											<li class="tsd-description">
-												<h4 class="tsd-parameters-title">Parameters</h4>
-												<ul class="tsd-parameters">
-													<li>
-														<h5>value: <span class="tsd-signature-type">Buffer</span></h5>
-													</li>
-													<li>
-														<h5>buffer: <span class="tsd-signature-type">Buffer</span></h5>
-													</li>
-													<li>
-														<h5>type: <span class="tsd-signature-type">string</span></h5>
-													</li>
-												</ul>
-												<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span></h4>
-											</li>
-										</ul>
-									</li>
-								</ul>
-							</div>
-						</section>
-						<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
-							<a name="parsers_by_type.string.encode-3" class="tsd-anchor"></a>
-							<h3>encode</h3>
-							<div class="tsd-signature tsd-kind-icon">encode<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>target<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Buffer</span>, data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span>, position<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">Buffer</span><span class="tsd-signature-symbol"> = encodeString</span></div>
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/FindETH/abi/blob/e2ed806/src/abi.ts#L20">abi.ts:20</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-type-declaration">
-								<h4>Type declaration</h4>
-								<ul class="tsd-parameters">
-									<li class="tsd-parameter-signature">
-										<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-variable">
-											<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>target<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Buffer</span>, data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span>, position<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Buffer</span></li>
-										</ul>
-										<ul class="tsd-descriptions">
-											<li class="tsd-description">
-												<h4 class="tsd-parameters-title">Parameters</h4>
-												<ul class="tsd-parameters">
-													<li>
-														<h5>target: <span class="tsd-signature-type">Buffer</span></h5>
-													</li>
-													<li>
-														<h5>data: <span class="tsd-signature-type">T</span></h5>
-													</li>
-													<li>
-														<h5>position: <span class="tsd-signature-type">number</span></h5>
-													</li>
-													<li>
-														<h5>type: <span class="tsd-signature-type">string</span></h5>
-													</li>
-												</ul>
-												<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Buffer</span></h4>
-											</li>
-										</ul>
-									</li>
-								</ul>
-							</div>
-						</section>
-					</section>
 				</section>
 			</section>
 		</div>
@@ -571,9 +187,6 @@
 					</li>
 					<li class="current tsd-kind-module">
 						<a href="_abi_.html">&quot;abi&quot;</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="_buffer_.html">&quot;buffer&quot;</a>
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="_contract_.html">&quot;contract&quot;</a>
@@ -591,41 +204,32 @@
 						<a href="_parsers_array_.html">&quot;parsers/array&quot;</a>
 					</li>
 					<li class=" tsd-kind-module">
-						<a href="_parsers_bytes_.html">&quot;parsers/bytes&quot;</a>
-					</li>
-					<li class=" tsd-kind-module">
 						<a href="_parsers_number_.html">&quot;parsers/number&quot;</a>
 					</li>
 					<li class=" tsd-kind-module">
-						<a href="_parsers_string_.html">&quot;parsers/string&quot;</a>
+						<a href="_parsers_parser_.html">&quot;parsers/parser&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="_utils_buffer_.html">&quot;utils/buffer&quot;</a>
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="_utils_keccak256_.html">&quot;utils/keccak256&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="_utils_twos_complement_.html">&quot;utils/twos-<wbr>complement&quot;</a>
 					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-function tsd-parent-kind-module">
+					<li class=" tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter">
 						<a href="_abi_.html#decode" class="tsd-kind-icon">decode</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-module">
-						<a href="_abi_.html#decodevalue" class="tsd-kind-icon">decode<wbr>Value</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-module">
 						<a href="_abi_.html#encode" class="tsd-kind-icon">encode</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-module">
-						<a href="_abi_.html#encodevalue" class="tsd-kind-icon">encode<wbr>Value</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-module">
 						<a href="_abi_.html#encodewithidentifier" class="tsd-kind-icon">encode<wbr>With<wbr>Identifier</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-module">
-						<a href="_abi_.html#iterate" class="tsd-kind-icon">iterate</a>
-					</li>
-					<li class=" tsd-kind-object-literal tsd-parent-kind-module">
-						<a href="_abi_.html#parsers_by_type" class="tsd-kind-icon">PARSERS_<wbr>BY_<wbr>TYPE</a>
 					</li>
 				</ul>
 			</nav>
@@ -640,6 +244,7 @@
 				<li class="tsd-kind-object-literal"><span class="tsd-kind-icon">Object literal</span></li>
 				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
 				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
+				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
 				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
 				<li class="tsd-kind-type-alias tsd-has-type-parameter"><span class="tsd-kind-icon">Type alias with type parameter</span></li>
 			</ul>

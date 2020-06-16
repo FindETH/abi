@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>NonPayableContractFunction | @findeth/abi</title>
+	<title>Parser | @findeth/abi</title>
 	<meta name="description" content="Documentation for @findeth/abi">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -56,31 +56,24 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/_contract_.html">&quot;contract&quot;</a>
+					<a href="../modules/_parsers_parser_.html">&quot;parsers/parser&quot;</a>
 				</li>
 				<li>
-					<a href="_contract_.nonpayablecontractfunction.html">NonPayableContractFunction</a>
+					<a href="_parsers_parser_.parser.html">Parser</a>
 				</li>
 			</ul>
-			<h1>Interface NonPayableContractFunction</h1>
+			<h1>Interface Parser</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
-			<section class="tsd-panel tsd-comment">
-				<div class="tsd-comment tsd-typography">
-					<div class="lead">
-						<p>Non-payable contract function where <code>stateMutability</code> is <code>nonpayable</code>.</p>
-					</div>
-				</div>
-			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">NonPayableContractFunction</span>
+						<span class="target">Parser</span>
 					</li>
 				</ul>
 			</section>
@@ -91,9 +84,9 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_contract_.nonpayablecontractfunction.html#constant" class="tsd-kind-icon">constant</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_contract_.nonpayablecontractfunction.html#payable" class="tsd-kind-icon">payable</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_contract_.nonpayablecontractfunction.html#statemutability" class="tsd-kind-icon">state<wbr>Mutability</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_parsers_parser_.parser.html#decode" class="tsd-kind-icon">decode</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_parsers_parser_.parser.html#dynamic" class="tsd-kind-icon">dynamic</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_parsers_parser_.parser.html#encode" class="tsd-kind-icon">encode</a></li>
 							</ul>
 						</section>
 					</div>
@@ -102,37 +95,32 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="constant" class="tsd-anchor"></a>
-					<h3>constant</h3>
-					<div class="tsd-signature tsd-kind-icon">constant<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">false</span></div>
+					<a name="decode" class="tsd-anchor"></a>
+					<h3>decode</h3>
+					<div class="tsd-signature tsd-kind-icon">decode<span class="tsd-signature-symbol">:</span> <a href="../modules/_parsers_parser_.html#decodefunction" class="tsd-signature-type">DecodeFunction</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/FindETH/abi/blob/3d52f4b/src/contract.ts#L68">contract.ts:68</a></li>
+							<li>Defined in <a href="https://github.com/FindETH/abi/blob/3d52f4b/src/parsers/parser.ts#L10">parsers/parser.ts:10</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="payable" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> payable</h3>
-					<div class="tsd-signature tsd-kind-icon">payable<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span></div>
+					<a name="dynamic" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> dynamic</h3>
+					<div class="tsd-signature tsd-kind-icon">dynamic<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">true</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/FindETH/abi/blob/3d52f4b/src/contract.ts#L73">contract.ts:73</a></li>
+							<li>Defined in <a href="https://github.com/FindETH/abi/blob/3d52f4b/src/parsers/parser.ts#L8">parsers/parser.ts:8</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Defaults to <code>false</code>.</p>
-						</div>
-					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="statemutability" class="tsd-anchor"></a>
-					<h3>state<wbr>Mutability</h3>
-					<div class="tsd-signature tsd-kind-icon">state<wbr>Mutability<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"nonpayable"</span></div>
+					<a name="encode" class="tsd-anchor"></a>
+					<h3>encode</h3>
+					<div class="tsd-signature tsd-kind-icon">encode<span class="tsd-signature-symbol">:</span> <a href="../modules/_parsers_parser_.html#encodefunction" class="tsd-signature-type">EncodeFunction</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/FindETH/abi/blob/3d52f4b/src/contract.ts#L67">contract.ts:67</a></li>
+							<li>Defined in <a href="https://github.com/FindETH/abi/blob/3d52f4b/src/parsers/parser.ts#L9">parsers/parser.ts:9</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -147,7 +135,7 @@
 					<li class=" tsd-kind-module">
 						<a href="../modules/_abi_.html">&quot;abi&quot;</a>
 					</li>
-					<li class="current tsd-kind-module">
+					<li class=" tsd-kind-module">
 						<a href="../modules/_contract_.html">&quot;contract&quot;</a>
 					</li>
 					<li class=" tsd-kind-module">
@@ -165,7 +153,7 @@
 					<li class=" tsd-kind-module">
 						<a href="../modules/_parsers_number_.html">&quot;parsers/number&quot;</a>
 					</li>
-					<li class=" tsd-kind-module">
+					<li class="current tsd-kind-module">
 						<a href="../modules/_parsers_parser_.html">&quot;parsers/parser&quot;</a>
 					</li>
 					<li class=" tsd-kind-module">
@@ -181,62 +169,29 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-interface tsd-parent-kind-module">
-						<a href="_contract_.constantcontractfunction.html" class="tsd-kind-icon">Constant<wbr>Contract<wbr>Function</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-module">
-						<a href="_contract_.contractevent.html" class="tsd-kind-icon">Contract<wbr>Event</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-module">
-						<a href="_contract_.contractinputregular.html" class="tsd-kind-icon">Contract<wbr>Input<wbr>Regular</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-module">
-						<a href="_contract_.contractinputtuple.html" class="tsd-kind-icon">Contract<wbr>Input<wbr>Tuple</a>
-					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface tsd-parent-kind-module">
-						<a href="_contract_.nonpayablecontractfunction.html" class="tsd-kind-icon">Non<wbr>Payable<wbr>Contract<wbr>Function</a>
+						<a href="_parsers_parser_.parser.html" class="tsd-kind-icon">Parser</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_contract_.nonpayablecontractfunction.html#constant" class="tsd-kind-icon">constant</a>
+								<a href="_parsers_parser_.parser.html#decode" class="tsd-kind-icon">decode</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_contract_.nonpayablecontractfunction.html#payable" class="tsd-kind-icon">payable</a>
+								<a href="_parsers_parser_.parser.html#dynamic" class="tsd-kind-icon">dynamic</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_contract_.nonpayablecontractfunction.html#statemutability" class="tsd-kind-icon">state<wbr>Mutability</a>
+								<a href="_parsers_parser_.parser.html#encode" class="tsd-kind-icon">encode</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
-					<li class=" tsd-kind-interface tsd-parent-kind-module">
-						<a href="_contract_.payablecontractfunction.html" class="tsd-kind-icon">Payable<wbr>Contract<wbr>Function</a>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
+						<a href="../modules/_parsers_parser_.html#decodefunction" class="tsd-kind-icon">Decode<wbr>Function</a>
 					</li>
 					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
-						<a href="../modules/_contract_.html#contracteventinput" class="tsd-kind-icon">Contract<wbr>Event<wbr>Input</a>
-					</li>
-					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
-						<a href="../modules/_contract_.html#contractfunction" class="tsd-kind-icon">Contract<wbr>Function</a>
-					</li>
-					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
-						<a href="../modules/_contract_.html#contractinput" class="tsd-kind-icon">Contract<wbr>Input</a>
-					</li>
-					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
-						<a href="../modules/_contract_.html#contractinterface" class="tsd-kind-icon">Contract<wbr>Interface</a>
-					</li>
-					<li class=" tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter">
-						<a href="../modules/_contract_.html#decodefunction" class="tsd-kind-icon">Decode<wbr>Function</a>
-					</li>
-					<li class=" tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter">
-						<a href="../modules/_contract_.html#encodefunction" class="tsd-kind-icon">Encode<wbr>Function</a>
-					</li>
-					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
-						<a href="../modules/_contract_.html#nonconstantcontractfunction" class="tsd-kind-icon">Non<wbr>Constant<wbr>Contract<wbr>Function</a>
-					</li>
-					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
-						<a href="../modules/_contract_.html#type" class="tsd-kind-icon">Type</a>
+						<a href="../modules/_parsers_parser_.html#encodefunction" class="tsd-kind-icon">Encode<wbr>Function</a>
 					</li>
 				</ul>
 			</nav>

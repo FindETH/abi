@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>&quot;parsers/string&quot; | @findeth/abi</title>
+	<title>&quot;utils/twos-complement&quot; | @findeth/abi</title>
 	<meta name="description" content="Documentation for @findeth/abi">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -56,10 +56,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="_parsers_string_.html">&quot;parsers/string&quot;</a>
+					<a href="_utils_twos_complement_.html">&quot;utils/twos-complement&quot;</a>
 				</li>
 			</ul>
-			<h1>Module &quot;parsers/string&quot;</h1>
+			<h1>Module &quot;utils/twos-complement&quot;</h1>
 		</div>
 	</div>
 </header>
@@ -73,8 +73,8 @@
 						<section class="tsd-index-section ">
 							<h3>Functions</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-function tsd-parent-kind-module"><a href="_parsers_string_.html#decodestring" class="tsd-kind-icon">decode<wbr>String</a></li>
-								<li class="tsd-kind-function tsd-parent-kind-module"><a href="_parsers_string_.html#encodestring" class="tsd-kind-icon">encode<wbr>String</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module"><a href="_utils_twos_complement_.html#fromtwoscomplement" class="tsd-kind-icon">from<wbr>Twos<wbr>Complement</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module"><a href="_utils_twos_complement_.html#totwoscomplement" class="tsd-kind-icon">to<wbr>Twos<wbr>Complement</a></li>
 							</ul>
 						</section>
 					</div>
@@ -83,54 +83,48 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Functions</h2>
 				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
-					<a name="decodestring" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagConst">Const</span> decode<wbr>String</h3>
+					<a name="fromtwoscomplement" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> from<wbr>Twos<wbr>Complement</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
-						<li class="tsd-signature tsd-kind-icon">decode<wbr>String<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Buffer</span>, data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Buffer</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+						<li class="tsd-signature tsd-kind-icon">from<wbr>Twos<wbr>Complement<span class="tsd-signature-symbol">(</span>buffer<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Buffer</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">bigint</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/FindETH/abi/blob/e2ed806/src/parsers/string.ts#L5">parsers/string.ts:5</a></li>
+									<li>Defined in <a href="https://github.com/FindETH/abi/blob/3d52f4b/src/utils/twos-complement.ts#L1">utils/twos-complement.ts:1</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>value: <span class="tsd-signature-type">Buffer</span></h5>
-								</li>
-								<li>
-									<h5>data: <span class="tsd-signature-type">Buffer</span></h5>
+									<h5>buffer: <span class="tsd-signature-type">Buffer</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">bigint</span></h4>
 						</li>
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
-					<a name="encodestring" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagConst">Const</span> encode<wbr>String</h3>
+					<a name="totwoscomplement" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> to<wbr>Twos<wbr>Complement</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
-						<li class="tsd-signature tsd-kind-icon">encode<wbr>String<span class="tsd-signature-symbol">(</span>target<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Buffer</span>, data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, position<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Buffer</span></li>
+						<li class="tsd-signature tsd-kind-icon">to<wbr>Twos<wbr>Complement<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">bigint</span>, length<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Buffer</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/FindETH/abi/blob/e2ed806/src/parsers/string.ts#L12">parsers/string.ts:12</a></li>
+									<li>Defined in <a href="https://github.com/FindETH/abi/blob/3d52f4b/src/utils/twos-complement.ts#L11">utils/twos-complement.ts:11</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>target: <span class="tsd-signature-type">Buffer</span></h5>
+									<h5>value: <span class="tsd-signature-type">bigint</span></h5>
 								</li>
 								<li>
-									<h5>data: <span class="tsd-signature-type">string</span></h5>
-								</li>
-								<li>
-									<h5>position: <span class="tsd-signature-type">number</span></h5>
+									<h5>length: <span class="tsd-signature-type">number</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Buffer</span></h4>
@@ -149,9 +143,6 @@
 						<a href="_abi_.html">&quot;abi&quot;</a>
 					</li>
 					<li class=" tsd-kind-module">
-						<a href="_buffer_.html">&quot;buffer&quot;</a>
-					</li>
-					<li class=" tsd-kind-module">
 						<a href="_contract_.html">&quot;contract&quot;</a>
 					</li>
 					<li class=" tsd-kind-module">
@@ -167,26 +158,29 @@
 						<a href="_parsers_array_.html">&quot;parsers/array&quot;</a>
 					</li>
 					<li class=" tsd-kind-module">
-						<a href="_parsers_bytes_.html">&quot;parsers/bytes&quot;</a>
-					</li>
-					<li class=" tsd-kind-module">
 						<a href="_parsers_number_.html">&quot;parsers/number&quot;</a>
 					</li>
-					<li class="current tsd-kind-module">
-						<a href="_parsers_string_.html">&quot;parsers/string&quot;</a>
+					<li class=" tsd-kind-module">
+						<a href="_parsers_parser_.html">&quot;parsers/parser&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="_utils_buffer_.html">&quot;utils/buffer&quot;</a>
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="_utils_keccak256_.html">&quot;utils/keccak256&quot;</a>
+					</li>
+					<li class="current tsd-kind-module">
+						<a href="_utils_twos_complement_.html">&quot;utils/twos-<wbr>complement&quot;</a>
 					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
 					<li class=" tsd-kind-function tsd-parent-kind-module">
-						<a href="_parsers_string_.html#decodestring" class="tsd-kind-icon">decode<wbr>String</a>
+						<a href="_utils_twos_complement_.html#fromtwoscomplement" class="tsd-kind-icon">from<wbr>Twos<wbr>Complement</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-module">
-						<a href="_parsers_string_.html#encodestring" class="tsd-kind-icon">encode<wbr>String</a>
+						<a href="_utils_twos_complement_.html#totwoscomplement" class="tsd-kind-icon">to<wbr>Twos<wbr>Complement</a>
 					</li>
 				</ul>
 			</nav>
@@ -201,6 +195,7 @@
 				<li class="tsd-kind-object-literal"><span class="tsd-kind-icon">Object literal</span></li>
 				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
 				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
+				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
 				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
 				<li class="tsd-kind-type-alias tsd-has-type-parameter"><span class="tsd-kind-icon">Type alias with type parameter</span></li>
 			</ul>
