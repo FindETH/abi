@@ -1,5 +1,9 @@
-import { ContractFunction, ContractInput } from './contract';
+import { ContractFunction, ContractInput, ContractInputTuple } from './contract';
 import { keccak256 } from './utils/keccak256';
+
+const isTuple = (input: ContractInput): input is ContractInputTuple => {
+  return input.type === 'tuple';
+};
 
 /**
  * Parse the type of a contract input to a `string`.
@@ -8,7 +12,7 @@ import { keccak256 } from './utils/keccak256';
  * @return {string}
  */
 export const parseType = (input: ContractInput): string => {
-  if (input.components) {
+  if (isTuple(input)) {
     return `(${input.components.map(parseType)})`;
   }
 

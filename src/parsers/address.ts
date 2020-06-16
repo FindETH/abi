@@ -1,13 +1,14 @@
-import { DecodeFunction, EncodeFunction } from '../contract';
+import { concat } from '../utils/buffer';
+import { DecodeFunction, EncodeFunction } from './parser';
 
-export const decodeAddress: DecodeFunction<string> = (value): string => {
-  const addressBuffer = value.subarray(-20);
-  return `0x${addressBuffer.toString('hex')}`;
+export const encodeAddress: EncodeFunction = (buffer: Buffer, value: string): Buffer => {
+  const addressBuffer = Buffer.alloc(32);
+  addressBuffer.write(value.substring(2), 12, 'hex');
+
+  return concat(buffer, addressBuffer);
 };
 
-export const encodeAddress: EncodeFunction<string> = (target, data, position): Buffer => {
-  const addressBuffer = Buffer.alloc(32);
-  addressBuffer.write(data.substring(2), 12, 'hex');
-
-  return Buffer.concat([target.slice(0, position), addressBuffer, target.subarray(position)]);
+export const decodeAddress: DecodeFunction = (value: Buffer): string => {
+  const addressBuffer = value.subarray(-20);
+  return `0x${addressBuffer.toString('hex')}`;
 };

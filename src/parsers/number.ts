@@ -1,8 +1,8 @@
-import { toBigIntBE, toBufferBE } from 'bigint-buffer';
-import { concat } from '../buffer';
-import { DecodeFunction, EncodeFunction } from '../contract';
+import { concat, toBuffer, toNumber } from '../utils/buffer';
+import { fromTwosComplement, toTwosComplement } from '../utils/twos-complement';
+import { DecodeFunction, EncodeFunction } from './parser';
 
-const NUMBER_REGEX = /u?int([0-9]*)?/;
+const NUMBER_REGEX = /^u?int([0-9]*)?$/;
 
 const isSigned = (type: string): boolean => {
   return type.startsWith('i');
@@ -29,44 +29,22 @@ export const inRange = (value: bigint, type: string): boolean => {
   return value >= 0 && value <= maxValue;
 };
 
-const fromTwosComplement = (buffer: Buffer): bigint => {
-  let value = 0n;
-  for (const byte of buffer) {
-    // tslint:disable-next-line:no-bitwise
-    value = (value << 8n) + BigInt(byte);
-  }
-
-  return BigInt.asIntN(buffer.length * 8, value);
-};
-
-export const decodeNumber: DecodeFunction<bigint> = (value, _, type): bigint => {
-  if (isSigned(type)) {
-    return fromTwosComplement(value);
-  }
-
-  return toBigIntBE(value);
-};
-
-const toTwosComplement = (value: bigint, length: number): Buffer => {
-  const buffer = Buffer.alloc(length);
-  for (let i = 0; i < buffer.length; i++) {
-    buffer[i] = Number(BigInt.asUintN(8, value));
-    // tslint:disable-next-line:no-bitwise
-    value = value >> 8n;
-  }
-
-  return buffer.reverse();
-};
-
-export const encodeNumber: EncodeFunction<bigint> = (target, data, position, type): Buffer => {
-  if (!inRange(data, type)) {
+export const encodeNumber: EncodeFunction = (buffer: Buffer, value: bigint, type: string): Buffer => {
+  if (!inRange(value, type)) {
     throw new Error(`Cannot encode number: value is out of range for type ${type}`);
   }
 
   if (isSigned(type)) {
-    return concat(target, toTwosComplement(data, 32), position);
+    return concat(buffer, toTwosComplement(value, 32));
   }
 
-  const numberBuffer = toBufferBE(data, 32);
-  return concat(target, numberBuffer, position);
+  return concat(buffer, toBuffer(value));
+};
+
+export const decodeNumber: DecodeFunction = (value: Buffer, _, type: string): bigint => {
+  if (isSigned(type)) {
+    return fromTwosComplement(value);
+  }
+
+  return toNumber(value);
 };

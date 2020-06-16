@@ -1,1 +1,2 @@
-export { decode, decodeValue, encode, encodeValue, encodeWithIdentifier } from './abi';
+export { encode, encodeWithIdentifier, decode } from './abi';
+export * from './contract';
