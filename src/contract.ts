@@ -21,7 +21,6 @@ export type Type =
 export interface ContractInputRegular {
   name: string;
   type: Type | string;
-  components: undefined;
 }
 
 /**

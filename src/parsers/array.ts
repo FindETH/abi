@@ -39,7 +39,8 @@ export const decodeArray: DecodeFunction = (value: Buffer, buffer: Buffer, type:
   const pointer = Number(toNumber(value));
   const length = Number(toNumber(buffer.subarray(pointer, pointer + 32)));
 
-  const arrayBuffer = buffer.subarray(pointer, length * 32);
+  const arrayPointer = pointer + 32;
+  const arrayBuffer = buffer.subarray(arrayPointer);
 
   return unpack(arrayBuffer, new Array(length).fill(actualType));
 };
