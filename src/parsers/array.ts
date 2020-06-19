@@ -1,5 +1,6 @@
 import { concat, toBuffer, toNumber } from '../utils/buffer';
 import { decodeAddress, encodeAddress } from './address';
+import { decodeFixedBytes, encodeFixedBytes, isFixedBytes } from './fixed-bytes';
 import { decodeNumber, encodeNumber, isNumber } from './number';
 import { DecodeFunction, EncodeFunction, Parser } from './parser';
 
@@ -49,14 +50,18 @@ export const decodeArray: DecodeFunction = (value: Buffer, buffer: Buffer, type:
  * All available parsers.
  */
 const parsers: Record<string, Parser> = {
+  address: {
+    encode: encodeAddress,
+    decode: decodeAddress
+  },
   array: {
     dynamic: true,
     encode: encodeArray,
     decode: decodeArray
   },
-  address: {
-    encode: encodeAddress,
-    decode: decodeAddress
+  fixedBytes: {
+    encode: encodeFixedBytes,
+    decode: decodeFixedBytes
   },
   number: {
     encode: encodeNumber,
@@ -75,10 +80,17 @@ export const getParser = (type: string): Parser => {
     return parsers[type];
   }
 
+  // bytes[n]
+  if (isFixedBytes(type)) {
+    return parsers.fixedBytes;
+  }
+
+  // u?int[n]
   if (isNumber(type)) {
     return parsers.number;
   }
 
+  // type[]
   if (isArray(type)) {
     return parsers.array;
   }
