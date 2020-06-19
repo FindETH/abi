@@ -10,7 +10,7 @@ import { concat } from './utils/buffer';
  * @param {unknown[]} values
  * @return {Buffer}
  */
-export const encode = (input: (ContractInput | string)[], values: unknown[]): Buffer => {
+export const encode = (input: Array<ContractInput | string>, values: unknown[]): Buffer => {
   const types = input.map((type) => {
     if (typeof type === 'string') {
       return type;
@@ -36,7 +36,7 @@ export const encodeWithIdentifier = (contractFunction: ContractFunction, values:
   return concat(identifier, encoded);
 };
 
-export const decode = <T extends unknown[]>(input: (ContractInput | string)[], buffer: Buffer): T => {
+export const decode = <T extends unknown[]>(input: Array<ContractInput | string>, buffer: Buffer): T => {
   const types = input.map((type) => {
     if (typeof type === 'string') {
       return type;
