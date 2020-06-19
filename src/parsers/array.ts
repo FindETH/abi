@@ -101,7 +101,7 @@ export const getParser = (type: string): Parser => {
 interface PackState {
   staticBuffer: Buffer;
   dynamicBuffer: Buffer;
-  updateFunctions: ((buffer: Buffer) => Buffer)[];
+  updateFunctions: Array<(buffer: Buffer) => Buffer>;
 }
 
 /**
