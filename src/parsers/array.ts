@@ -1,8 +1,8 @@
 import { concat, toBuffer, toNumber } from '../utils/buffer';
 import { decodeAddress, encodeAddress } from './address';
+import { decodeFixedBytes, encodeFixedBytes, isFixedBytes } from './fixed-bytes';
 import { decodeNumber, encodeNumber, isNumber } from './number';
 import { DecodeFunction, EncodeFunction, Parser } from './parser';
-import { decodeFixedBytes, encodeFixedBytes, isFixedBytes } from './fixed-bytes';
 
 const ARRAY_REGEX = /^(.*)\[]$/;
 
