@@ -16,7 +16,7 @@ describe('fromTwosComplement', () => {
 });
 
 describe('toTwosComplement', () => {
-  it('returns the two\'s complement equivalent of a number', () => {
+  it("returns the two's complement equivalent of a number", () => {
     expect(toHex(toTwosComplement(1n, 1))).toBe('01');
     expect(toHex(toTwosComplement(1n, 32))).toBe('0000000000000000000000000000000000000000000000000000000000000001');
     expect(toHex(toTwosComplement(-1n, 1))).toBe('ff');
