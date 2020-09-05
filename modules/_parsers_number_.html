@@ -79,6 +79,7 @@
 						<section class="tsd-index-section ">
 							<h3>Functions</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-function tsd-parent-kind-module tsd-is-not-exported"><a href="_parsers_number_.html#asnumber" class="tsd-kind-icon">as<wbr>Number</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module"><a href="_parsers_number_.html#decodenumber" class="tsd-kind-icon">decode<wbr>Number</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module"><a href="_parsers_number_.html#encodenumber" class="tsd-kind-icon">encode<wbr>Number</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module"><a href="_parsers_number_.html#getbitlength" class="tsd-kind-icon">get<wbr>Bit<wbr>Length</a></li>
@@ -98,33 +99,56 @@
 					<div class="tsd-signature tsd-kind-icon">NUMBER_<wbr>REGEX<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">RegExp</span><span class="tsd-signature-symbol"> = /^u?int([0-9]*)?$/</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/FindETH/abi/blob/a35c06e/src/parsers/number.ts#L5">parsers/number.ts:5</a></li>
+							<li>Defined in <a href="https://github.com/FindETH/abi/blob/2472552/src/parsers/number.ts#L5">parsers/number.ts:5</a></li>
 						</ul>
 					</aside>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Functions</h2>
-				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
-					<a name="decodenumber" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagConst">Const</span> decode<wbr>Number</h3>
-					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
-						<li class="tsd-signature tsd-kind-icon">decode<wbr>Number<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Buffer</span>, _<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Buffer</span>, type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">bigint</span></li>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+					<a name="asnumber" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> as<wbr>Number</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">as<wbr>Number<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">bigint</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">bigint</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/FindETH/abi/blob/a35c06e/src/parsers/number.ts#L44">parsers/number.ts:44</a></li>
+									<li>Defined in <a href="https://github.com/FindETH/abi/blob/2472552/src/parsers/number.ts#L32">parsers/number.ts:32</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>value: <span class="tsd-signature-type">Buffer</span></h5>
+									<h5>value: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">bigint</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">bigint</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
+					<a name="decodenumber" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> decode<wbr>Number</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
+						<li class="tsd-signature tsd-kind-icon">decode<wbr>Number<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Uint8Array</span>, _<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Uint8Array</span>, type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">bigint</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/FindETH/abi/blob/2472552/src/parsers/number.ts#L54">parsers/number.ts:54</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>value: <span class="tsd-signature-type">Uint8Array</span></h5>
 								</li>
 								<li>
-									<h5>_: <span class="tsd-signature-type">Buffer</span></h5>
+									<h5>_: <span class="tsd-signature-type">Uint8Array</span></h5>
 								</li>
 								<li>
 									<h5>type: <span class="tsd-signature-type">string</span></h5>
@@ -138,28 +162,28 @@
 					<a name="encodenumber" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> encode<wbr>Number</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
-						<li class="tsd-signature tsd-kind-icon">encode<wbr>Number<span class="tsd-signature-symbol">(</span>buffer<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Buffer</span>, value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">bigint</span>, type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Buffer</span></li>
+						<li class="tsd-signature tsd-kind-icon">encode<wbr>Number<span class="tsd-signature-symbol">(</span>buffer<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Uint8Array</span>, value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">bigint</span>, type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Uint8Array</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/FindETH/abi/blob/a35c06e/src/parsers/number.ts#L32">parsers/number.ts:32</a></li>
+									<li>Defined in <a href="https://github.com/FindETH/abi/blob/2472552/src/parsers/number.ts#L40">parsers/number.ts:40</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>buffer: <span class="tsd-signature-type">Buffer</span></h5>
+									<h5>buffer: <span class="tsd-signature-type">Uint8Array</span></h5>
 								</li>
 								<li>
-									<h5>value: <span class="tsd-signature-type">bigint</span></h5>
+									<h5>value: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">bigint</span></h5>
 								</li>
 								<li>
 									<h5>type: <span class="tsd-signature-type">string</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Buffer</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Uint8Array</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -173,7 +197,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/FindETH/abi/blob/a35c06e/src/parsers/number.ts#L15">parsers/number.ts:15</a></li>
+									<li>Defined in <a href="https://github.com/FindETH/abi/blob/2472552/src/parsers/number.ts#L15">parsers/number.ts:15</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -196,7 +220,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/FindETH/abi/blob/a35c06e/src/parsers/number.ts#L20">parsers/number.ts:20</a></li>
+									<li>Defined in <a href="https://github.com/FindETH/abi/blob/2472552/src/parsers/number.ts#L20">parsers/number.ts:20</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -222,7 +246,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/FindETH/abi/blob/a35c06e/src/parsers/number.ts#L11">parsers/number.ts:11</a></li>
+									<li>Defined in <a href="https://github.com/FindETH/abi/blob/2472552/src/parsers/number.ts#L11">parsers/number.ts:11</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -245,7 +269,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/FindETH/abi/blob/a35c06e/src/parsers/number.ts#L7">parsers/number.ts:7</a></li>
+									<li>Defined in <a href="https://github.com/FindETH/abi/blob/2472552/src/parsers/number.ts#L7">parsers/number.ts:7</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -284,11 +308,26 @@
 					<li class=" tsd-kind-module">
 						<a href="_parsers_array_.html">&quot;parsers/array&quot;</a>
 					</li>
+					<li class=" tsd-kind-module">
+						<a href="_parsers_boolean_.html">&quot;parsers/boolean&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="_parsers_bytes_.html">&quot;parsers/bytes&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="_parsers_fixed_bytes_.html">&quot;parsers/fixed-<wbr>bytes&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="_parsers_function_.html">&quot;parsers/function&quot;</a>
+					</li>
 					<li class="current tsd-kind-module">
 						<a href="_parsers_number_.html">&quot;parsers/number&quot;</a>
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="_parsers_parser_.html">&quot;parsers/parser&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="_parsers_string_.html">&quot;parsers/string&quot;</a>
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="_utils_buffer_.html">&quot;utils/buffer&quot;</a>
@@ -305,6 +344,9 @@
 				<ul class="before-current">
 					<li class=" tsd-kind-variable tsd-parent-kind-module tsd-is-not-exported">
 						<a href="_parsers_number_.html#number_regex" class="tsd-kind-icon">NUMBER_<wbr>REGEX</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+						<a href="_parsers_number_.html#asnumber" class="tsd-kind-icon">as<wbr>Number</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-module">
 						<a href="_parsers_number_.html#decodenumber" class="tsd-kind-icon">decode<wbr>Number</a>
