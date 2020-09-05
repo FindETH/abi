@@ -1,10 +1,14 @@
-export const fromTwosComplement = (buffer: Uint8Array): bigint => {
+import { toBuffer } from './buffer';
+
+export const fromTwosComplement = (buffer: string | Uint8Array): bigint => {
+  const bufferValue = toBuffer(buffer);
+
   let value = 0n;
-  for (const byte of buffer) {
+  for (const byte of bufferValue) {
     value = (value << 8n) + BigInt(byte);
   }
 
-  return BigInt.asIntN(buffer.length * 8, value);
+  return BigInt.asIntN(bufferValue.length * 8, value);
 };
 
 export const toTwosComplement = (value: bigint, length: number): Uint8Array => {
