@@ -26,22 +26,32 @@ export const inRange = (value: bigint, type: string): boolean => {
   }
 
   const maxValue = 2n ** bits - 1n;
-  return value >= 0 && value <= maxValue;
+  return value >= 0n && value <= maxValue;
 };
 
-export const encodeNumber: EncodeFunction = (buffer: Buffer, value: bigint, type: string): Buffer => {
-  if (!inRange(value, type)) {
+const asNumber = (value: string | bigint): bigint => {
+  if (typeof value === 'bigint') {
+    return value;
+  }
+
+  return BigInt(value);
+};
+
+export const encodeNumber: EncodeFunction = (buffer: Uint8Array, value: string | bigint, type: string): Uint8Array => {
+  const numberValue = asNumber(value);
+
+  if (!inRange(numberValue, type)) {
     throw new Error(`Cannot encode number: value is out of range for type ${type}`);
   }
 
   if (isSigned(type)) {
-    return concat(buffer, toTwosComplement(value, 32));
+    return concat(buffer, toTwosComplement(numberValue, 32));
   }
 
-  return concat(buffer, toBuffer(value));
+  return concat(buffer, toBuffer(numberValue));
 };
 
-export const decodeNumber: DecodeFunction = (value: Buffer, _, type: string): bigint => {
+export const decodeNumber: DecodeFunction = (value: Uint8Array, _, type: string): bigint => {
   if (isSigned(type)) {
     return fromTwosComplement(value);
   }

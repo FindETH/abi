@@ -1,8 +1,10 @@
 import { concat, toBuffer, toNumber } from '../utils/buffer';
 import { decodeAddress, encodeAddress } from './address';
+import { decodeBytes, encodeBytes } from './bytes';
 import { decodeFixedBytes, encodeFixedBytes, isFixedBytes } from './fixed-bytes';
 import { decodeNumber, encodeNumber, isNumber } from './number';
 import { DecodeFunction, EncodeFunction, Parser } from './parser';
+import { decodeString, encodeString } from './string';
 
 const ARRAY_REGEX = /^(.*)\[]$/;
 
@@ -26,7 +28,7 @@ const getType = (type: string): string => {
   return type.match(ARRAY_REGEX)![1];
 };
 
-export const encodeArray: EncodeFunction = (buffer: Buffer, values: unknown[], type: string): Buffer => {
+export const encodeArray: EncodeFunction = (buffer: Uint8Array, values: unknown[], type: string): Uint8Array => {
   const actualType = getType(type);
   const length = toBuffer(values.length);
 
@@ -35,7 +37,7 @@ export const encodeArray: EncodeFunction = (buffer: Buffer, values: unknown[], t
   return pack(arrayBuffer, values, new Array(values.length).fill(actualType));
 };
 
-export const decodeArray: DecodeFunction = (value: Buffer, buffer: Buffer, type: string): unknown[] => {
+export const decodeArray: DecodeFunction = (value: Uint8Array, buffer: Uint8Array, type: string): unknown[] => {
   const actualType = getType(type);
   const pointer = Number(toNumber(value));
   const length = Number(toNumber(buffer.subarray(pointer, pointer + 32)));
@@ -59,6 +61,11 @@ const parsers: Record<string, Parser> = {
     encode: encodeArray,
     decode: decodeArray
   },
+  bytes: {
+    dynamic: true,
+    encode: encodeBytes,
+    decode: decodeBytes
+  },
   fixedBytes: {
     encode: encodeFixedBytes,
     decode: decodeFixedBytes
@@ -66,6 +73,11 @@ const parsers: Record<string, Parser> = {
   number: {
     encode: encodeNumber,
     decode: decodeNumber
+  },
+  string: {
+    dynamic: true,
+    encode: encodeString,
+    decode: decodeString
   }
 };
 
@@ -85,8 +97,8 @@ export const getParser = (type: string): Parser => {
     return parsers.fixedBytes;
   }
 
-  // u?int[n]
-  if (isNumber(type)) {
+  // u?int[n], bool
+  if (isNumber(type) || type === 'bool') {
     return parsers.number;
   }
 
@@ -99,9 +111,9 @@ export const getParser = (type: string): Parser => {
 };
 
 interface PackState {
-  staticBuffer: Buffer;
-  dynamicBuffer: Buffer;
-  updateFunctions: Array<(buffer: Buffer) => Buffer>;
+  staticBuffer: Uint8Array;
+  dynamicBuffer: Uint8Array;
+  updateFunctions: Array<(buffer: Uint8Array) => Uint8Array>;
 }
 
 /**
@@ -116,7 +128,7 @@ interface PackState {
  * @param {string[]} types
  * @return {Buffer}
  */
-export const pack = (buffer: Buffer, values: unknown[], types: string[]): Buffer => {
+export const pack = (buffer: Uint8Array, values: unknown[], types: string[]): Uint8Array => {
   const {
     staticBuffer: packedStaticBuffer,
     dynamicBuffer: packedDynamicBuffer,
@@ -133,7 +145,7 @@ export const pack = (buffer: Buffer, values: unknown[], types: string[]): Buffer
         const newStaticBuffer = concat(staticBuffer, Buffer.alloc(32, 0));
         const newDynamicBuffer = parser.encode(dynamicBuffer, value, type);
 
-        const update = (oldBuffer: Buffer): Buffer => {
+        const update = (oldBuffer: Uint8Array): Uint8Array => {
           return Buffer.concat([
             oldBuffer.subarray(0, staticOffset),
             toBuffer(oldBuffer.length + offset),
@@ -152,15 +164,15 @@ export const pack = (buffer: Buffer, values: unknown[], types: string[]): Buffer
 
       return { staticBuffer: newBuffer, dynamicBuffer, updateFunctions };
     },
-    { staticBuffer: Buffer.alloc(0), dynamicBuffer: Buffer.alloc(0), updateFunctions: [] }
+    { staticBuffer: new Uint8Array(0), dynamicBuffer: new Uint8Array(0), updateFunctions: [] }
   );
 
-  const updatedStaticBuffer = packedUpdateFunctions.reduce<Buffer>(
+  const updatedStaticBuffer = packedUpdateFunctions.reduce<Uint8Array>(
     (target, update) => update(target),
     packedStaticBuffer
   );
 
-  return Buffer.concat([buffer, updatedStaticBuffer, packedDynamicBuffer]);
+  return new Uint8Array([...buffer, ...updatedStaticBuffer, ...packedDynamicBuffer]);
 };
 
 /**
@@ -170,7 +182,7 @@ export const pack = (buffer: Buffer, values: unknown[], types: string[]): Buffer
  * @param {number} chunkSize
  * @return {Generator<Buffer, Buffer, void>}
  */
-export function* iterate(buffer: Buffer, chunkSize: number): Generator<Buffer, Buffer, void> {
+export function* iterate(buffer: Uint8Array, chunkSize: number): Generator<Uint8Array, Uint8Array, void> {
   for (let i = 0; i < buffer.length; i += chunkSize) {
     yield buffer.slice(i, i + chunkSize);
   }
@@ -178,7 +190,7 @@ export function* iterate(buffer: Buffer, chunkSize: number): Generator<Buffer, B
   return buffer;
 }
 
-export const unpack = (buffer: Buffer, types: string[]): unknown[] => {
+export const unpack = (buffer: Uint8Array, types: string[]): unknown[] => {
   const iterator = iterate(buffer, 32);
 
   return types.map((type) => {
