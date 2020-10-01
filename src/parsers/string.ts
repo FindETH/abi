@@ -8,6 +8,6 @@ export const encodeString: EncodeFunction = (buffer: Uint8Array, value: string):
   return encodeBytes(buffer, bufferValue, 'bytes');
 };
 
-export const decodeString: DecodeFunction = (value: Uint8Array): string => {
-  return toString(decodeBytes(value, Buffer.alloc(0), 'bytes'));
+export const decodeString: DecodeFunction = (value: Uint8Array, buffer: Uint8Array): string => {
+  return toString(decodeBytes(value, buffer, 'string'));
 };

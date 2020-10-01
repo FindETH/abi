@@ -18,6 +18,21 @@ export const concat = (target: Uint8Array, value: Uint8Array, position?: number)
 };
 
 /**
+ * Concatenates multiple buffers, compatible with Uint8Arrays of browsers.
+ *
+ * @param {Uint8Array[]} buffers
+ * @return {Uint8Array}
+ */
+export const concatMultiple = (buffers: Uint8Array[]): Uint8Array => {
+  return buffers.reduce((target, buffer) => {
+    const array = new Uint8Array(target.length + buffer.length);
+    array.set(target, 0);
+    array.set(buffer, target.length);
+    return array;
+  }, new Uint8Array(0));
+};
+
+/**
  * Add padding to a buffer. If the buffer is larger than `length`, this function won't do anything. If it's smaller, the
  * buffer will be padded to the specified length, with extra zeroes at the end.
  *
