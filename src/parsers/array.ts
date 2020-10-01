@@ -1,4 +1,4 @@
-import { concat, toBuffer, toNumber } from '../utils/buffer';
+import { concat, concatMultiple, toBuffer, toNumber } from '../utils/buffer';
 import { decodeAddress, encodeAddress } from './address';
 import { decodeBytes, encodeBytes } from './bytes';
 import { decodeFixedBytes, encodeFixedBytes, isFixedBytes } from './fixed-bytes';
@@ -24,11 +24,15 @@ export const isArray = (type: string): boolean => {
  * @param {string} type
  * @return {string}
  */
-const getType = (type: string): string => {
+export const getType = (type: string): string => {
   return type.match(ARRAY_REGEX)![1];
 };
 
 export const encodeArray: EncodeFunction = (buffer: Uint8Array, values: unknown[], type: string): Uint8Array => {
+  if (!isArray(type)) {
+    throw new Error('Invalid type: type is not array');
+  }
+
   const actualType = getType(type);
   const length = toBuffer(values.length);
 
@@ -38,6 +42,10 @@ export const encodeArray: EncodeFunction = (buffer: Uint8Array, values: unknown[
 };
 
 export const decodeArray: DecodeFunction = (value: Uint8Array, buffer: Uint8Array, type: string): unknown[] => {
+  if (!isArray(type)) {
+    throw new Error('Invalid type: type is not array');
+  }
+
   const actualType = getType(type);
   const pointer = Number(toNumber(value));
   const length = Number(toNumber(buffer.subarray(pointer, pointer + 32)));
@@ -146,7 +154,7 @@ export const pack = (buffer: Uint8Array, values: unknown[], types: string[]): Ui
         const newDynamicBuffer = parser.encode(dynamicBuffer, value, type);
 
         const update = (oldBuffer: Uint8Array): Uint8Array => {
-          return Buffer.concat([
+          return concatMultiple([
             oldBuffer.subarray(0, staticOffset),
             toBuffer(oldBuffer.length + offset),
             oldBuffer.subarray(staticOffset + 32)
@@ -172,7 +180,7 @@ export const pack = (buffer: Uint8Array, values: unknown[], types: string[]): Ui
     packedStaticBuffer
   );
 
-  return new Uint8Array([...buffer, ...updatedStaticBuffer, ...packedDynamicBuffer]);
+  return concatMultiple([buffer, updatedStaticBuffer, packedDynamicBuffer]);
 };
 
 /**
