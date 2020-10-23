@@ -52,7 +52,7 @@
     "prepare": "yarn run build"
   },
   "dependencies": {
-    "keccak": "^3.0.0"
+    "keccak": "^3.0.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.10.1",
