@@ -4048,9 +4048,9 @@ lockfile-lint-api@^5.1.6:
     object-hash "^2.0.1"
 
 lockfile-lint@^4.3.6:
-  version "4.3.6"
-  resolved "https://registry.yarnpkg.com/lockfile-lint/-/lockfile-lint-4.3.6.tgz#ace4c638c91df6da960dc31b6755bf3d3fa3ac6e"
-  integrity sha512-W2N4Ygeispqv8elwO+Amw8WTOukC5zw0taDxpwKkUE6/FCfUl/I05uoNgqLODD6i0oTw6iohwTHHd/b1fhLFFw==
+  version "4.3.7"
+  resolved "https://registry.yarnpkg.com/lockfile-lint/-/lockfile-lint-4.3.7.tgz#68c9d1dc129292cd85a71b2d7f65a9e2fe4333be"
+  integrity sha512-hOHVJyHxtrK6cgYlKoaWveVOCz/w4IXlhmxM+RSWW7f1lA3ENJaRL9eNS9AO0PBKx4P/KMXuker0KzExNDenRg==
   dependencies:
     cosmiconfig "^6.0.0"
     debug "^4.1.1"
