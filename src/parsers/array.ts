@@ -1,4 +1,4 @@
-import { concat, concatMultiple, toBuffer, toNumber } from '../utils/buffer';
+import { concat, toBuffer, toNumber } from '../utils';
 import { decodeAddress, encodeAddress } from './address';
 import { decodeBytes, encodeBytes } from './bytes';
 import { decodeFixedBytes, encodeFixedBytes, isFixedBytes } from './fixed-bytes';
@@ -36,7 +36,7 @@ export const encodeArray: EncodeFunction = (buffer: Uint8Array, values: unknown[
   const actualType = getType(type);
   const length = toBuffer(values.length);
 
-  const arrayBuffer = concat(buffer, length);
+  const arrayBuffer = concat([buffer, length]);
 
   return pack(arrayBuffer, values, new Array(values.length).fill(actualType));
 };
@@ -118,10 +118,12 @@ export const getParser = (type: string): Parser => {
   throw new Error(`type "${type}" is not supported`);
 };
 
+export type UpdateFunction = (buffer: Uint8Array) => Uint8Array;
+
 interface PackState {
   staticBuffer: Uint8Array;
   dynamicBuffer: Uint8Array;
-  updateFunctions: Array<(buffer: Uint8Array) => Uint8Array>;
+  updateFunctions: UpdateFunction[];
 }
 
 /**
@@ -150,11 +152,11 @@ export const pack = (buffer: Uint8Array, values: unknown[], types: string[]): Ui
         const offset = dynamicBuffer.length;
         const staticOffset = staticBuffer.length;
 
-        const newStaticBuffer = concat(staticBuffer, Buffer.alloc(32, 0));
+        const newStaticBuffer = concat([staticBuffer, new Uint8Array(32).fill(0)]);
         const newDynamicBuffer = parser.encode(dynamicBuffer, value, type);
 
         const update = (oldBuffer: Uint8Array): Uint8Array => {
-          return concatMultiple([
+          return concat([
             oldBuffer.subarray(0, staticOffset),
             toBuffer(oldBuffer.length + offset),
             oldBuffer.subarray(staticOffset + 32)
@@ -180,7 +182,7 @@ export const pack = (buffer: Uint8Array, values: unknown[], types: string[]): Ui
     packedStaticBuffer
   );
 
-  return concatMultiple([buffer, updatedStaticBuffer, packedDynamicBuffer]);
+  return concat([buffer, updatedStaticBuffer, packedDynamicBuffer]);
 };
 
 /**

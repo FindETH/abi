@@ -3,11 +3,10 @@ import { decodeBoolean, encodeBoolean } from './boolean';
 
 describe('encodeBoolean', () => {
   it('encodes a boolean as a uint256 number', () => {
-    const buffer = Buffer.alloc(0);
-    expect(toHex(encodeBoolean(buffer, true, 'bool'))).toBe(
+    expect(toHex(encodeBoolean(new Uint8Array(0), true, 'bool'))).toBe(
       '0000000000000000000000000000000000000000000000000000000000000001'
     );
-    expect(toHex(encodeBoolean(buffer, false, 'bool'))).toBe(
+    expect(toHex(encodeBoolean(new Uint8Array(0), false, 'bool'))).toBe(
       '0000000000000000000000000000000000000000000000000000000000000000'
     );
   });

@@ -1,4 +1,4 @@
-import { concat, toHex } from '../utils/buffer';
+import { concat, fromHex, stripPrefix, toHex } from '../utils';
 import { DecodeFunction, EncodeFunction } from './parser';
 
 export const encodeAddress: EncodeFunction = (buffer: Uint8Array, value: string): Uint8Array => {
@@ -6,10 +6,9 @@ export const encodeAddress: EncodeFunction = (buffer: Uint8Array, value: string)
     throw new Error('Invalid address length');
   }
 
-  const addressBuffer = Buffer.alloc(32);
-  addressBuffer.write(value.substring(2), 12, 'hex');
+  const addressBuffer = fromHex(stripPrefix(value).padStart(64, '0'));
 
-  return concat(buffer, addressBuffer);
+  return concat([buffer, addressBuffer]);
 };
 
 export const decodeAddress: DecodeFunction = (value: Uint8Array): string => {

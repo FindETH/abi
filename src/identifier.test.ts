@@ -1,5 +1,5 @@
-import erc20Abi from './__tests__/erc20.json';
-import miscAbi from './__tests__/misc.json';
+import erc20Abi from './__fixtures__/erc20.json';
+import miscAbi from './__fixtures__/misc.json';
 import { ContractFunction } from './contract';
 import { getIdentifier, parseType } from './identifier';
 

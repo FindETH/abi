@@ -105,7 +105,3 @@ export interface ContractEvent {
 }
 
 export type ContractInterface = ContractFunction | ContractEvent;
-
-export type DecodeFunction<T> = (value: Buffer, buffer: Buffer, type: string) => T;
-
-export type EncodeFunction<T> = (target: Buffer, data: T, position: number, type: string) => Buffer;

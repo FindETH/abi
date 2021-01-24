@@ -1,5 +1,5 @@
 import { ContractFunction, ContractInput, ContractInputTuple } from './contract';
-import { keccak256 } from './utils/keccak256';
+import { keccak256 } from './utils';
 
 const isTuple = (input: ContractInput): input is ContractInputTuple => {
   return input.type === 'tuple';
