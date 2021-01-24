@@ -1,35 +1,145 @@
 const BUFFER_WIDTH = 32;
+const HEX_REGEX = /^[a-f0-9]+$/i;
 
-/**
- * Concatenate two buffers. If a position is specified, `value` will be put in `target` at the specified position. All
- * bytes after that will be moved to the end of the buffer.
- *
- * @param {Uint8Array} target
- * @param {Uint8Array} value
- * @param {number} [position]
- * @return {Uint8Array}
- */
-export const concat = (target: Uint8Array, value: Uint8Array, position?: number): Uint8Array => {
-  return new Uint8Array([
-    ...target.subarray(0, position ?? target.length),
-    ...value,
-    ...target.subarray(position ?? target.length)
-  ]);
+export type BinaryLike = string | number | bigint | ArrayBufferLike | number[];
+
+export const stripPrefix = (value: string): string => {
+  if (value.startsWith('0x')) {
+    return value.substring(2);
+  }
+
+  return value;
 };
 
 /**
- * Concatenates multiple buffers, compatible with Uint8Arrays of browsers.
+ * Returns an instance of `TextEncoder` that works with both Node.js and web browsers.
+ *
+ * @return {TextEncoder}
+ */
+export const getTextEncoder = (): TextEncoder => {
+  if (typeof TextEncoder === 'undefined') {
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    const Encoder = require('util').TextEncoder;
+    return new Encoder();
+  }
+
+  return new TextEncoder();
+};
+
+/**
+ * Returns an instance of `TextDecoder` that works with both Node.js and web browsers.
+ *
+ * @return {TextDecoder}
+ */
+export const getTextDecoder = (encoding = 'utf8'): TextDecoder => {
+  if (typeof TextEncoder === 'undefined') {
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    const Decoder = require('util').TextDecoder;
+    return new Decoder(encoding);
+  }
+
+  return new TextDecoder(encoding);
+};
+
+/**
+ * Get a buffer as UTF-8 encoded string.
+ *
+ * @param {Uint8Array} data
+ * @return {string}
+ */
+export const toUtf8 = (data: Uint8Array): string => {
+  return getTextDecoder().decode(data);
+};
+
+/**
+ * Get a UTF-8 encoded string as buffer.
+ *
+ * @param {string} data
+ * @return {Uint8Array}
+ */
+export const fromUtf8 = (data: string): Uint8Array => {
+  return getTextEncoder().encode(data);
+};
+
+/**
+ * Get a Uint8Array as hexadecimal string
+ *
+ * @param {Uint8Array} data
+ * @return {string}
+ */
+export const toHex = (data: Uint8Array): string => {
+  return Array.from(data)
+    .map((n) => `0${n.toString(16)}`.slice(-2))
+    .join('');
+};
+
+/**
+ * Get a hexadecimal string as Uint8Array.
+ *
+ * @param {string} data
+ * @return {Uint8Array}
+ */
+export const fromHex = (data: string): Uint8Array => {
+  if (data.startsWith('0x')) {
+    data = data.slice(2);
+  }
+
+  if (data.length % 2 !== 0) {
+    throw new Error('Length must be even');
+  }
+
+  if (!data.match(HEX_REGEX)) {
+    throw new Error('Input must be hexadecimal');
+  }
+
+  return new Uint8Array(data.match(/.{1,2}/g)!.map((byte) => parseInt(byte, 16)));
+};
+
+/**
+ * Attempt to parse a value as Uint8Array.
+ *
+ * @param {BinaryLike} data
+ * @return {Uint8Array}
+ */
+export const toBuffer = (data: BinaryLike): Uint8Array => {
+  if (typeof data === 'string') {
+    return fromHex(data);
+  }
+
+  if (typeof data === 'number' || typeof data === 'bigint') {
+    const string = data.toString(16);
+    return fromHex(string.padStart(BUFFER_WIDTH * 2, '0'));
+  }
+
+  return new Uint8Array(data);
+};
+
+/**
+ * Safe function to merge multiple Uint8Arrays into a single Uint8array.
  *
  * @param {Uint8Array[]} buffers
  * @return {Uint8Array}
  */
-export const concatMultiple = (buffers: Uint8Array[]): Uint8Array => {
-  return buffers.reduce((target, buffer) => {
-    const array = new Uint8Array(target.length + buffer.length);
-    array.set(target, 0);
-    array.set(buffer, target.length);
-    return array;
+export const concat = (buffers: Uint8Array[]): Uint8Array => {
+  return buffers.reduce((a, b) => {
+    const buffer = new Uint8Array(a.length + b.length);
+    buffer.set(a);
+    buffer.set(b, a.length);
+
+    return buffer;
   }, new Uint8Array(0));
+};
+
+/**
+ * Concatenate two buffers by placing one buffer at a specific position in another buffer.
+ *
+ * @param {Uint8Array} a
+ * @param {Uint8Array} b
+ * @param {number} position
+ * @return {Uint8Array}
+ */
+export const concatAt = (a: Uint8Array, b: Uint8Array, position: number): Uint8Array => {
+  return concat([a.slice(0, position), b, a.slice(position)]);
 };
 
 /**
@@ -40,45 +150,9 @@ export const concatMultiple = (buffers: Uint8Array[]): Uint8Array => {
  * @param {number} [length]
  * @return {Uint8Array}
  */
-export const addPadding = (buffer: Uint8Array, length = 32): Uint8Array => {
-  const padding = Buffer.alloc(Math.max(length - buffer.length, 0), 0);
-  return concat(buffer, padding);
-};
-
-/**
- * Get a value as buffer. The value can be a string, number, bigint or buffer. If the value is a string, it is assumed
- * that it is a hexadecimal value.
- *
- * @param {string | number | bigint | Uint8Array} value
- * @return {Uint8Array}
- */
-export const toBuffer = (value: string | number | bigint | Uint8Array): Uint8Array => {
-  if (Buffer.isBuffer(value) || value instanceof Uint8Array) {
-    return value;
-  }
-
-  if (typeof value === 'string') {
-    const stringValue = value.startsWith('0x') ? value.substring(2) : value;
-    return Buffer.from(stringValue, 'hex');
-  }
-
-  const hex = value.toString(16);
-  return Buffer.from(hex.padStart(BUFFER_WIDTH * 2, '0').slice(0, BUFFER_WIDTH * 2), 'hex');
-};
-
-/**
- * Get a UTF-8 encodes buffer as string.
- *
- * @param {Uint8Array} value
- * @return {string}
- */
-export const toString = (value: Uint8Array): string => {
-  if (typeof window !== 'undefined' && window.TextDecoder) {
-    return new TextDecoder('utf-8').decode(value);
-  }
-
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
-  return new (require('util').TextDecoder)('utf-8').decode(value);
+export const addPadding = (buffer: Uint8Array, length = BUFFER_WIDTH): Uint8Array => {
+  const padding = new Uint8Array(Math.max(length - buffer.length, 0)).fill(0x00);
+  return concat([buffer, padding]);
 };
 
 /**
@@ -93,18 +167,4 @@ export const toNumber = (buffer: Uint8Array): bigint => {
   }
 
   return BigInt(`0x${hex}`);
-};
-
-const numberToHex = (value: number): string => {
-  return ('0' + value.toString(16)).slice(-2);
-};
-
-/**
- * Get a buffer as hexadecimal string.
- *
- * @param {Uint8Array} buffer
- * @return {string}
- */
-export const toHex = (buffer: Uint8Array): string => {
-  return Array.from(buffer).map(numberToHex).join('');
 };

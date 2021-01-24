@@ -1,14 +1,14 @@
 import { ContractFunction, ContractInput } from './contract';
 import { getIdentifier } from './identifier';
 import { pack, unpack } from './parsers/array';
-import { concat } from './utils/buffer';
+import { concat, fromHex } from './utils';
 
 /**
  * Encode the input data with the provided types.
  *
  * @param {(ContractInput | string)[]} input
  * @param {unknown[]} values
- * @return {Buffer}
+ * @return {Uint8Array}
  */
 export const encode = (input: Array<ContractInput | string>, values: unknown[]): Uint8Array => {
   const types = input.map((type) => {
@@ -19,7 +19,7 @@ export const encode = (input: Array<ContractInput | string>, values: unknown[]):
     return type.type;
   });
 
-  return pack(Buffer.alloc(0), values, types);
+  return pack(new Uint8Array(0), values, types);
 };
 
 /**
@@ -27,16 +27,16 @@ export const encode = (input: Array<ContractInput | string>, values: unknown[]):
  *
  * @param {ContractFunction} contractFunction
  * @param {unknown[]} values
- * @return {Buffer}
+ * @return {Uint8Array}
  */
 export const encodeWithIdentifier = (contractFunction: ContractFunction, values: unknown[]): Uint8Array => {
-  const identifier = Buffer.from(getIdentifier(contractFunction), 'hex');
+  const identifier = fromHex(getIdentifier(contractFunction));
   const encoded = encode(contractFunction.inputs, values);
 
-  return concat(identifier, encoded);
+  return concat([identifier, encoded]);
 };
 
-export const decode = <T extends unknown[]>(input: Array<ContractInput | string>, buffer: Buffer): T => {
+export const decode = <T extends unknown[]>(input: Array<ContractInput | string>, buffer: Uint8Array): T => {
   const types = input.map((type) => {
     if (typeof type === 'string') {
       return type;

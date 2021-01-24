@@ -1,4 +1,4 @@
-import { addPadding, concat, toBuffer } from '../utils/buffer';
+import { addPadding, concat, toBuffer } from '../utils';
 import { DecodeFunction, EncodeFunction } from './parser';
 
 const BYTES_REGEX = /^bytes([0-9]{1,2})$/;
@@ -41,7 +41,7 @@ export const encodeFixedBytes: EncodeFunction = (
     throw new Error(`Buffer is too long, expected ${length}, got ${bufferValue.length}`);
   }
 
-  return concat(buffer, addPadding(bufferValue));
+  return concat([buffer, addPadding(bufferValue)]);
 };
 
 export const decodeFixedBytes: DecodeFunction = (value: Uint8Array, _: Uint8Array, type: string): Uint8Array => {

@@ -1,4 +1,5 @@
 import createKeccakHash from 'keccak';
+import { toHex } from './buffer';
 
 /**
  * Returns the Keccak-256 hash of a string, as a hexadecimal string.
@@ -7,5 +8,5 @@ import createKeccakHash from 'keccak';
  * @return {string}
  */
 export const keccak256 = (input: string): string => {
-  return createKeccakHash('keccak256').update(input).digest().toString('hex');
+  return toHex(createKeccakHash('keccak256').update(input).digest());
 };

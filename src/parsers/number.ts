@@ -1,5 +1,4 @@
-import { concat, toBuffer, toNumber } from '../utils/buffer';
-import { fromTwosComplement, toTwosComplement } from '../utils/twos-complement';
+import { concat, toBuffer, toNumber, fromTwosComplement, toTwosComplement } from '../utils';
 import { DecodeFunction, EncodeFunction } from './parser';
 
 const NUMBER_REGEX = /^u?int([0-9]*)?$/;
@@ -45,10 +44,10 @@ export const encodeNumber: EncodeFunction = (buffer: Uint8Array, value: string |
   }
 
   if (isSigned(type)) {
-    return concat(buffer, toTwosComplement(numberValue, 32));
+    return concat([buffer, toTwosComplement(numberValue, 32)]);
   }
 
-  return concat(buffer, toBuffer(numberValue));
+  return concat([buffer, toBuffer(numberValue)]);
 };
 
 export const decodeNumber: DecodeFunction = (value: Uint8Array, _, type: string): bigint => {
