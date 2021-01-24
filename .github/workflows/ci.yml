@@ -10,45 +10,12 @@ on:
       - 'master'
 
 jobs:
-  test:
-    name: Test
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version:
-          - 10
-          - 12
-
-    steps:
-      - uses: actions/checkout@v2
-
-      - name: Setup Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v2.1.4
-        with:
-          node-version: ${{ matrix.node-version }}
-
-      - name: Cache Dependencies
-        uses: actions/cache@v2
-        with:
-          path: node_modules
-          key: yarn-${{ hashFiles('yarn.lock') }}
-
-      - name: Install Dependencies
-        run: yarn install --frozen-lockfile
-
-      - name: Test
-        run: yarn test
-
-      - name: Upload Coverage
-        uses: codecov/codecov-action@v1
-
   lint:
     name: Lint
     runs-on: ubuntu-latest
     strategy:
       matrix:
         node-version:
-          - 10
           - 12
 
     steps:
@@ -66,16 +33,47 @@ jobs:
           key: yarn-${{ hashFiles('yarn.lock') }}
 
       - name: Install Dependencies
-        run: yarn install --frozen-lockfile
+        run: yarn install --frozen-lockfile --ignore-scripts
 
-      - name: Lint TypeScript
-        run: yarn lint:tsc
+      - name: Lint Types
+        run: yarn lint:types
 
-      - name: ESLint
-        run: yarn lint:eslint
+      - name: Lint Source
+        run: yarn lint:source
 
-      - name: Prettier
-        run: yarn lint:prettier
+      - name: Lint Formatting
+        run: yarn lint:format
 
       - name: Lint Lockfile
         run: yarn lint:lockfile
+
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version:
+          - 12
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2.1.4
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Cache Dependencies
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: yarn-${{ hashFiles('yarn.lock') }}
+
+      - name: Install Dependencies
+        run: yarn install --frozen-lockfile --ignore-scripts
+
+      - name: Test
+        run: yarn test --coverage
+
+      - name: Upload Coverage
+        uses: codecov/codecov-action@v1
