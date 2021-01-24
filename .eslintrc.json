@@ -24,7 +24,9 @@
         }
       }
     ],
-    "no-console": "error"
+    "no-console": "error",
+    "no-restricted-globals": ["error", "Buffer"],
+    "quotes": ["error", "single", "avoid-escape"]
   },
   "overrides": [
     {

@@ -1,4 +1,4 @@
-import { toHex } from '../utils/buffer';
+import { fromHex, toHex } from '../utils/buffer';
 import { decodeBoolean, encodeBoolean } from './boolean';
 
 describe('encodeBoolean', () => {
@@ -14,10 +14,10 @@ describe('encodeBoolean', () => {
 
 describe('decodeBoolean', () => {
   it('decodes a boolean as a uint256 number', () => {
-    const trueValue = Buffer.from('0000000000000000000000000000000000000000000000000000000000000001', 'hex');
+    const trueValue = fromHex('0000000000000000000000000000000000000000000000000000000000000001');
     expect(decodeBoolean(trueValue, trueValue, 'bool')).toBe(true);
 
-    const falseValue = Buffer.from('0000000000000000000000000000000000000000000000000000000000000000', 'hex');
+    const falseValue = fromHex('0000000000000000000000000000000000000000000000000000000000000000');
     expect(decodeBoolean(falseValue, falseValue, 'bool')).toBe(false);
   });
 });

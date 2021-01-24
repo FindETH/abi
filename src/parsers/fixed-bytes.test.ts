@@ -1,4 +1,4 @@
-import { toHex } from '../utils/buffer';
+import { fromHex, toHex } from '../utils/buffer';
 import { decodeFixedBytes, encodeFixedBytes } from './fixed-bytes';
 
 describe('encodeFixedBytes', () => {
@@ -15,7 +15,7 @@ describe('encodeFixedBytes', () => {
 
 describe('decodeFixedBytes', () => {
   it('decodes a fixed byte array from a buffer', () => {
-    const buffer = Buffer.from('f00f000000000000000000000000000000000000000000000000000000000000', 'hex');
+    const buffer = fromHex('f00f000000000000000000000000000000000000000000000000000000000000');
     expect(toHex(decodeFixedBytes(buffer, new Uint8Array(0), 'bytes1'))).toBe('f0');
     expect(toHex(decodeFixedBytes(buffer, new Uint8Array(0), 'bytes16'))).toBe('f00f0000000000000000000000000000');
     expect(toHex(decodeFixedBytes(buffer, new Uint8Array(0), 'bytes32'))).toBe(
