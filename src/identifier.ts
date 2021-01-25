@@ -1,5 +1,5 @@
 import { ContractFunction, ContractInput, ContractInputTuple } from './contract';
-import { keccak256 } from './utils';
+import { fromUtf8, keccak256, toHex } from './utils';
 
 const isTuple = (input: ContractInput): input is ContractInputTuple => {
   return input.type === 'tuple';
@@ -28,5 +28,5 @@ export const parseType = (input: ContractInput): string => {
 export const getIdentifier = (contractFunction: ContractFunction): string => {
   const types = contractFunction.inputs.map(parseType).join(',');
 
-  return keccak256(`${contractFunction.name}(${types})`).slice(0, 8);
+  return toHex(keccak256(fromUtf8(`${contractFunction.name}(${types})`))).slice(0, 8);
 };
