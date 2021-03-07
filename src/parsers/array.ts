@@ -138,7 +138,7 @@ interface PackState {
  * @param {string[]} types
  * @return {Buffer}
  */
-export const pack = (buffer: Uint8Array, values: unknown[], types: string[]): Uint8Array => {
+export const pack = (buffer: Uint8Array, values: unknown[], types: Readonly<string[]>): Uint8Array => {
   const {
     staticBuffer: packedStaticBuffer,
     dynamicBuffer: packedDynamicBuffer,
@@ -200,7 +200,7 @@ export function* iterate(buffer: Uint8Array, chunkSize: number): Generator<Uint8
   return buffer;
 }
 
-export const unpack = (buffer: Uint8Array, types: string[]): unknown[] => {
+export const unpack = (buffer: Uint8Array, types: Readonly<string[]>): unknown[] => {
   const iterator = iterate(buffer, 32);
 
   return types.map((type) => {

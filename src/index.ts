@@ -1,3 +1,3 @@
-export { encode, encodeWithIdentifier, decode } from './abi';
+export * from './abi';
+export * from './types';
 export * from './utils';
-export * from './contract';

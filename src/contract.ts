@@ -1,107 +1,19 @@
-/**
- * Most valid types for the Solidity JSON ABI specification, excluding dynamic types like `uint<N>`, `fixed<M>x<N>`,
- * `bytes<N>`, etc.
- */
-export type Type =
-  | 'address'
-  | 'array'
-  | 'bool'
-  | 'bytes'
-  | 'fixed'
-  | 'function'
-  | 'int'
-  | 'string'
-  | 'tuple'
-  | 'ufixed'
-  | 'uint';
+import { ContractInput, ContractInputTuple } from './types';
 
-/**
- * Contract input that is not a `tuple` and thus does not contain extra `components`.
- */
-export interface ContractInputRegular {
-  name: string;
-  type: Type | string;
-}
-
-/**
- * Contract input that is a `tuple` and thus contains extra `components`.
- */
-export interface ContractInputTuple {
-  name: string;
-  type: 'tuple';
-  components: ContractInput[];
-}
-
-export type ContractInput = ContractInputRegular | ContractInputTuple;
-
-/**
- * Constant contract function, where `stateMutability` is either `pure` or `view`.
- */
-export interface ConstantContractFunction {
-  stateMutability: 'pure' | 'view';
-  constant: true;
-
-  /**
-   * Defaults to `false`.
-   */
-  payable?: false;
-}
-
-/**
- * Payable contract function where `stateMutability` is `payable`.
- */
-export interface PayableContractFunction {
-  stateMutability: 'payable';
-
-  /**
-   * Defaults to `false`.
-   */
-  constant?: false;
-  payable: true;
-}
-
-/**
- * Non-payable contract function where `stateMutability` is `nonpayable`.
- */
-export interface NonPayableContractFunction {
-  stateMutability: 'nonpayable';
-  constant: false;
-
-  /**
-   * Defaults to `false`.
-   */
-  payable?: false;
-}
-
-export type NonConstantContractFunction = PayableContractFunction | NonPayableContractFunction;
-
-/**
- * Contract function.
- */
-export type ContractFunction = (ConstantContractFunction | NonConstantContractFunction) & {
-  /**
-   * Defaults to `function`.
-   */
-  type?: 'function' | 'constructor' | 'fallback';
-  name: string;
-  inputs: ContractInput[];
-
-  /**
-   * `undefined` if the function doesn't have any outputs.
-   */
-  outputs?: ContractInput[];
+const isTuple = (input: ContractInput): input is ContractInputTuple => {
+  return input.type === 'tuple';
 };
 
-export type ContractEventInput = ContractInput & { indexed: boolean };
-
 /**
- * Contract event.
+ * Parse the type of a contract input to a `string`.
+ *
+ * @param {ContractInput} input
+ * @return {string}
  */
-export interface ContractEvent {
-  type: 'event';
-  name: string;
-  inputs: ContractEventInput[];
-  anonymous: boolean;
-}
+export const parseType = (input: ContractInput): string => {
+  if (isTuple(input)) {
+    return `(${input.components.map(parseType)})`;
+  }
 
-export type ContractInterface = ContractFunction | ContractEvent;
+  return input.type;
+};

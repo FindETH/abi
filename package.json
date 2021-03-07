@@ -51,9 +51,6 @@
     "format": "prettier --write --ignore-path .gitignore '**/*.{ts,tsx,js,json,yml}'",
     "prepare": "yarn run build"
   },
-  "dependencies": {
-    "keccak": "^3.0.1"
-  },
   "devDependencies": {
     "@babel/cli": "^7.10.1",
     "@babel/core": "^7.10.2",
@@ -83,7 +80,7 @@
     "rimraf": "^3.0.2",
     "ts-node": "^9.0.0",
     "typedoc": "^0.20.17",
-    "typescript": "^4.0.5"
+    "typescript": "^4.2.3"
   },
   "lint-staged": {
     "*.{ts,tsx,js}": [
