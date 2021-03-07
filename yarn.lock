@@ -3,9 +3,9 @@
 
 
 "@babel/cli@^7.10.1":
-  version "7.12.10"
-  resolved "https://registry.yarnpkg.com/@babel/cli/-/cli-7.12.10.tgz#67a1015b1cd505bde1696196febf910c4c339a48"
-  integrity sha512-+y4ZnePpvWs1fc/LhZRTHkTesbXkyBYuOB+5CyodZqrEuETXi3zOVfpAQIdgC3lXbHLTDG9dQosxR9BhvLKDLQ==
+  version "7.13.0"
+  resolved "https://registry.yarnpkg.com/@babel/cli/-/cli-7.13.0.tgz#48e77614e897615ca299bece587b68a70723ff4c"
+  integrity sha512-y5AohgeVhU+wO5kU1WGMLdocFj83xCxVjsVFa2ilII8NEwmBZvx7Ambq621FbFIK68loYJ9p43nfoi6es+rzSA==
   dependencies:
     commander "^4.0.1"
     convert-source-map "^1.1.0"
@@ -844,9 +844,9 @@
     "@babel/plugin-transform-typescript" "^7.12.1"
 
 "@babel/runtime@^7.10.2", "@babel/runtime@^7.8.4":
-  version "7.12.5"
-  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.12.5.tgz#410e7e487441e1b360c29be715d870d9b985882e"
-  integrity sha512-plcc+hbExy3McchJCEQG3knOsuh3HH+Prx1P6cLIkET/0dLuQDEnrT+s27Axgc9bqfsmNUNHfscgMUdBpC9xfg==
+  version "7.13.9"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.13.9.tgz#97dbe2116e2630c489f22e0656decd60aaa1fcee"
+  integrity sha512-aY2kU+xgJ3dJ1eU6FMB9EH8dIe8dmusF1xEku52joLvw6eAFN0AI+WxCLDnpev2LEejWBAy2sBvBOBAjI3zmvA==
   dependencies:
     regenerator-runtime "^0.13.4"
 
