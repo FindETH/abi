@@ -87,7 +87,10 @@
 								<li class="tsd-kind-type-alias tsd-parent-kind-module"><a href="types.html#contractfunction" class="tsd-kind-icon">Contract<wbr>Function</a></li>
 								<li class="tsd-kind-type-alias tsd-parent-kind-module"><a href="types.html#contractinput" class="tsd-kind-icon">Contract<wbr>Input</a></li>
 								<li class="tsd-kind-type-alias tsd-parent-kind-module"><a href="types.html#contractinterface" class="tsd-kind-icon">Contract<wbr>Interface</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter"><a href="types.html#narrow" class="tsd-kind-icon">Narrow</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-module"><a href="types.html#narrowable" class="tsd-kind-icon">Narrowable</a></li>
 								<li class="tsd-kind-type-alias tsd-parent-kind-module"><a href="types.html#nonconstantcontractfunction" class="tsd-kind-icon">Non<wbr>Constant<wbr>Contract<wbr>Function</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter"><a href="types.html#try" class="tsd-kind-icon">Try</a></li>
 								<li class="tsd-kind-type-alias tsd-parent-kind-module"><a href="types.html#type" class="tsd-kind-icon">Type</a></li>
 								<li class="tsd-kind-type-alias tsd-parent-kind-module"><a href="types.html#typemap" class="tsd-kind-icon">Type<wbr>Map</a></li>
 								<li class="tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter"><a href="types.html#typemapper" class="tsd-kind-icon">Type<wbr>Mapper</a></li>
@@ -104,7 +107,7 @@
 					<div class="tsd-signature tsd-kind-icon">Contract<wbr>Event<wbr>Input<span class="tsd-signature-symbol">:</span> <a href="types_contract.html#contractinput" class="tsd-signature-type" data-tsd-kind="Type alias">ContractInput</a><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-symbol">{ </span>indexed<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> }</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/FindETH/abi/blob/94e6d01/src/types/contract.ts#L80">types/contract.ts:80</a></li>
+							<li>Defined in <a href="https://github.com/FindETH/abi/blob/9028ccc/src/types/contract.ts#L80">types/contract.ts:80</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -114,7 +117,7 @@
 					<div class="tsd-signature tsd-kind-icon">Contract<wbr>Function<span class="tsd-signature-symbol">:</span> <a href="../interfaces/types_contract.constantcontractfunction.html" class="tsd-signature-type" data-tsd-kind="Interface">ConstantContractFunction</a><span class="tsd-signature-symbol"> | </span><a href="types_contract.html#nonconstantcontractfunction" class="tsd-signature-type" data-tsd-kind="Type alias">NonConstantContractFunction</a><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-symbol">{ </span>inputs<span class="tsd-signature-symbol">: </span><a href="types_contract.html#contractinput" class="tsd-signature-type" data-tsd-kind="Type alias">ContractInput</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">; </span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>outputs<span class="tsd-signature-symbol">?: </span><a href="types_contract.html#contractinput" class="tsd-signature-type" data-tsd-kind="Type alias">ContractInput</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">; </span>type<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">&quot;function&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;constructor&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;fallback&quot;</span><span class="tsd-signature-symbol"> }</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/FindETH/abi/blob/94e6d01/src/types/contract.ts#L66">types/contract.ts:66</a></li>
+							<li>Defined in <a href="https://github.com/FindETH/abi/blob/9028ccc/src/types/contract.ts#L66">types/contract.ts:66</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -129,7 +132,7 @@
 					<div class="tsd-signature tsd-kind-icon">Contract<wbr>Input<span class="tsd-signature-symbol">:</span> <a href="../interfaces/types_contract.contractinputregular.html" class="tsd-signature-type" data-tsd-kind="Interface">ContractInputRegular</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/types_contract.contractinputtuple.html" class="tsd-signature-type" data-tsd-kind="Interface">ContractInputTuple</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/FindETH/abi/blob/94e6d01/src/types/contract.ts#L20">types/contract.ts:20</a></li>
+							<li>Defined in <a href="https://github.com/FindETH/abi/blob/9028ccc/src/types/contract.ts#L20">types/contract.ts:20</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -139,7 +142,33 @@
 					<div class="tsd-signature tsd-kind-icon">Contract<wbr>Interface<span class="tsd-signature-symbol">:</span> <a href="types_contract.html#contractfunction" class="tsd-signature-type" data-tsd-kind="Type alias">ContractFunction</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/types_contract.contractevent.html" class="tsd-signature-type" data-tsd-kind="Interface">ContractEvent</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/FindETH/abi/blob/94e6d01/src/types/contract.ts#L92">types/contract.ts:92</a></li>
+							<li>Defined in <a href="https://github.com/FindETH/abi/blob/9028ccc/src/types/contract.ts#L92">types/contract.ts:92</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter">
+					<a name="narrow" class="tsd-anchor"></a>
+					<h3>Narrow</h3>
+					<div class="tsd-signature tsd-kind-icon">Narrow&lt;A&gt;<span class="tsd-signature-symbol">:</span> <a href="types_narrow.html#try" class="tsd-signature-type" data-tsd-kind="Type alias">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">NarrowRaw</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/FindETH/abi/blob/9028ccc/src/types/narrow.ts#L18">types/narrow.ts:18</a></li>
+						</ul>
+					</aside>
+					<h4 class="tsd-type-parameters-title">Type parameters</h4>
+					<ul class="tsd-type-parameters">
+						<li>
+							<h4>A<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module">
+					<a name="narrowable" class="tsd-anchor"></a>
+					<h3>Narrowable</h3>
+					<div class="tsd-signature tsd-kind-icon">Narrowable<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">bigint</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">boolean</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/FindETH/abi/blob/9028ccc/src/types/narrow.ts#L8">types/narrow.ts:8</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -149,9 +178,37 @@
 					<div class="tsd-signature tsd-kind-icon">Non<wbr>Constant<wbr>Contract<wbr>Function<span class="tsd-signature-symbol">:</span> <a href="../interfaces/types_contract.payablecontractfunction.html" class="tsd-signature-type" data-tsd-kind="Interface">PayableContractFunction</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/types_contract.nonpayablecontractfunction.html" class="tsd-signature-type" data-tsd-kind="Interface">NonPayableContractFunction</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/FindETH/abi/blob/94e6d01/src/types/contract.ts#L61">types/contract.ts:61</a></li>
+							<li>Defined in <a href="https://github.com/FindETH/abi/blob/9028ccc/src/types/contract.ts#L61">types/contract.ts:61</a></li>
 						</ul>
 					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter">
+					<a name="try" class="tsd-anchor"></a>
+					<h3>Try</h3>
+					<div class="tsd-signature tsd-kind-icon">Try&lt;A1, A2, Catch&gt;<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">A1</span><span class="tsd-signature-symbol"> extends </span><span class="tsd-signature-type">A2</span><span class="tsd-signature-symbol"> ? </span><span class="tsd-signature-type">A1</span><span class="tsd-signature-symbol"> : </span><span class="tsd-signature-type">Catch</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/FindETH/abi/blob/9028ccc/src/types/narrow.ts#L6">types/narrow.ts:6</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>ts-toolbelt <code>Narrow</code> type
+							<a href="https://github.com/millsp/ts-toolbelt/blob/master/sources/Function/Narrow.ts">https://github.com/millsp/ts-toolbelt/blob/master/sources/Function/Narrow.ts</a></p>
+						</div>
+					</div>
+					<h4 class="tsd-type-parameters-title">Type parameters</h4>
+					<ul class="tsd-type-parameters">
+						<li>
+							<h4>A1<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></h4>
+						</li>
+						<li>
+							<h4>A2<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></h4>
+						</li>
+						<li>
+							<h4>Catch = <span class="tsd-signature-type">never</span></h4>
+						</li>
+					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module">
 					<a name="type" class="tsd-anchor"></a>
@@ -159,7 +216,7 @@
 					<div class="tsd-signature tsd-kind-icon">Type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">keyof </span><a href="types_mappings.html#typemap" class="tsd-signature-type" data-tsd-kind="Type alias">TypeMap</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/FindETH/abi/blob/94e6d01/src/types/mappings.ts#L32">types/mappings.ts:32</a></li>
+							<li>Defined in <a href="https://github.com/FindETH/abi/blob/9028ccc/src/types/mappings.ts#L32">types/mappings.ts:32</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -169,7 +226,7 @@
 					<div class="tsd-signature tsd-kind-icon">Type<wbr>Map<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">TypeMapWithoutArrays</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-symbol">{</span><span class="tsd-signature-symbol">[ </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol"> in </span><span class="tsd-signature-symbol">keyof </span><span class="tsd-signature-type">TypeMapWithoutArrays</span><span class="tsd-signature-symbol"> as </span><span class="tsd-signature-symbol">`</span><span class="tsd-signature-symbol">${</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">}</span><span class="tsd-signature-type">[]</span><span class="tsd-signature-symbol">`</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TypeMapWithoutArrays</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> }</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/FindETH/abi/blob/94e6d01/src/types/mappings.ts#L27">types/mappings.ts:27</a></li>
+							<li>Defined in <a href="https://github.com/FindETH/abi/blob/9028ccc/src/types/mappings.ts#L27">types/mappings.ts:27</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -182,16 +239,16 @@
 				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter">
 					<a name="typemapper" class="tsd-anchor"></a>
 					<h3>Type<wbr>Mapper</h3>
-					<div class="tsd-signature tsd-kind-icon">Type<wbr>Mapper&lt;I&gt;<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Mapper</span><span class="tsd-signature-symbol">&lt;</span><a href="types_mappings.html#typemap" class="tsd-signature-type" data-tsd-kind="Type alias">TypeMap</a><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">Writable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">I</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<div class="tsd-signature tsd-kind-icon">Type<wbr>Mapper&lt;I&gt;<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Mapper</span><span class="tsd-signature-symbol">&lt;</span><a href="types_mappings.html#typemap" class="tsd-signature-type" data-tsd-kind="Type alias">TypeMap</a><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">I</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/FindETH/abi/blob/94e6d01/src/types/mappings.ts#L33">types/mappings.ts:33</a></li>
+							<li>Defined in <a href="https://github.com/FindETH/abi/blob/9028ccc/src/types/mappings.ts#L33">types/mappings.ts:33</a></li>
 						</ul>
 					</aside>
 					<h4 class="tsd-type-parameters-title">Type parameters</h4>
 					<ul class="tsd-type-parameters">
 						<li>
-							<h4>I<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4>I<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -249,6 +306,9 @@
 						<a href="types_mappings.html">types/mappings</a>
 					</li>
 					<li class=" tsd-kind-module">
+						<a href="types_narrow.html">types/narrow</a>
+					</li>
+					<li class=" tsd-kind-module">
 						<a href="types_vendor_keccak.html">types/vendor/keccak</a>
 					</li>
 					<li class=" tsd-kind-module">
@@ -294,8 +354,17 @@
 					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
 						<a href="types.html#contractinterface" class="tsd-kind-icon">Contract<wbr>Interface</a>
 					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="types.html#narrow" class="tsd-kind-icon">Narrow</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
+						<a href="types.html#narrowable" class="tsd-kind-icon">Narrowable</a>
+					</li>
 					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
 						<a href="types.html#nonconstantcontractfunction" class="tsd-kind-icon">Non<wbr>Constant<wbr>Contract<wbr>Function</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="types.html#try" class="tsd-kind-icon">Try</a>
 					</li>
 					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
 						<a href="types.html#type" class="tsd-kind-icon">Type</a>

@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>parsers/address | @findeth/abi</title>
+	<title>types/narrow | @findeth/abi</title>
 	<meta name="description" content="Documentation for @findeth/abi">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -55,10 +55,10 @@
 					<a href="../modules.html">@findeth/abi</a>
 				</li>
 				<li>
-					<a href="parsers_address.html">parsers/address</a>
+					<a href="types_narrow.html">types/narrow</a>
 				</li>
 			</ul>
-			<h1>Module parsers/address</h1>
+			<h1>Module types/narrow</h1>
 		</div>
 	</div>
 </header>
@@ -70,72 +70,69 @@
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
-							<h3>Functions</h3>
+							<h3>Type aliases</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-function tsd-parent-kind-module"><a href="parsers_address.html#decodeaddress" class="tsd-kind-icon">decode<wbr>Address</a></li>
-								<li class="tsd-kind-function tsd-parent-kind-module"><a href="parsers_address.html#encodeaddress" class="tsd-kind-icon">encode<wbr>Address</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter"><a href="types_narrow.html#narrow" class="tsd-kind-icon">Narrow</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-module"><a href="types_narrow.html#narrowable" class="tsd-kind-icon">Narrowable</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter"><a href="types_narrow.html#try" class="tsd-kind-icon">Try</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Functions</h2>
-				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
-					<a name="decodeaddress" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagConst">Const</span> decode<wbr>Address</h3>
-					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
-						<li class="tsd-signature tsd-kind-icon">decode<wbr>Address<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Uint8Array</span>, buffer<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Uint8Array</span>, type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/FindETH/abi/blob/9028ccc/src/parsers/address.ts#L14">parsers/address.ts:14</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>value: <span class="tsd-signature-type">Uint8Array</span></h5>
-								</li>
-								<li>
-									<h5>buffer: <span class="tsd-signature-type">Uint8Array</span></h5>
-								</li>
-								<li>
-									<h5>type: <span class="tsd-signature-type">string</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
+				<h2>Type aliases</h2>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter">
+					<a name="narrow" class="tsd-anchor"></a>
+					<h3>Narrow</h3>
+					<div class="tsd-signature tsd-kind-icon">Narrow&lt;A&gt;<span class="tsd-signature-symbol">:</span> <a href="types_narrow.html#try" class="tsd-signature-type" data-tsd-kind="Type alias">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">NarrowRaw</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/FindETH/abi/blob/9028ccc/src/types/narrow.ts#L18">types/narrow.ts:18</a></li>
+						</ul>
+					</aside>
+					<h4 class="tsd-type-parameters-title">Type parameters</h4>
+					<ul class="tsd-type-parameters">
+						<li>
+							<h4>A<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></h4>
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
-					<a name="encodeaddress" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagConst">Const</span> encode<wbr>Address</h3>
-					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
-						<li class="tsd-signature tsd-kind-icon">encode<wbr>Address<span class="tsd-signature-symbol">(</span>buffer<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Uint8Array</span>, value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Uint8Array</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/FindETH/abi/blob/9028ccc/src/parsers/address.ts#L4">parsers/address.ts:4</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>buffer: <span class="tsd-signature-type">Uint8Array</span></h5>
-								</li>
-								<li>
-									<h5>value: <span class="tsd-signature-type">any</span></h5>
-								</li>
-								<li>
-									<h5>type: <span class="tsd-signature-type">string</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Uint8Array</span></h4>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module">
+					<a name="narrowable" class="tsd-anchor"></a>
+					<h3>Narrowable</h3>
+					<div class="tsd-signature tsd-kind-icon">Narrowable<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">bigint</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">boolean</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/FindETH/abi/blob/9028ccc/src/types/narrow.ts#L8">types/narrow.ts:8</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter">
+					<a name="try" class="tsd-anchor"></a>
+					<h3>Try</h3>
+					<div class="tsd-signature tsd-kind-icon">Try&lt;A1, A2, Catch&gt;<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">A1</span><span class="tsd-signature-symbol"> extends </span><span class="tsd-signature-type">A2</span><span class="tsd-signature-symbol"> ? </span><span class="tsd-signature-type">A1</span><span class="tsd-signature-symbol"> : </span><span class="tsd-signature-type">Catch</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/FindETH/abi/blob/9028ccc/src/types/narrow.ts#L6">types/narrow.ts:6</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>ts-toolbelt <code>Narrow</code> type
+							<a href="https://github.com/millsp/ts-toolbelt/blob/master/sources/Function/Narrow.ts">https://github.com/millsp/ts-toolbelt/blob/master/sources/Function/Narrow.ts</a></p>
+						</div>
+					</div>
+					<h4 class="tsd-type-parameters-title">Type parameters</h4>
+					<ul class="tsd-type-parameters">
+						<li>
+							<h4>A1<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></h4>
+						</li>
+						<li>
+							<h4>A2<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></h4>
+						</li>
+						<li>
+							<h4>Catch = <span class="tsd-signature-type">never</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -156,7 +153,7 @@
 					<li class=" tsd-kind-module">
 						<a href="index.html">index</a>
 					</li>
-					<li class="current tsd-kind-module">
+					<li class=" tsd-kind-module">
 						<a href="parsers_address.html">parsers/address</a>
 					</li>
 					<li class=" tsd-kind-module">
@@ -192,7 +189,7 @@
 					<li class=" tsd-kind-module">
 						<a href="types_mappings.html">types/mappings</a>
 					</li>
-					<li class=" tsd-kind-module">
+					<li class="current tsd-kind-module">
 						<a href="types_narrow.html">types/narrow</a>
 					</li>
 					<li class=" tsd-kind-module">
@@ -211,11 +208,14 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-function tsd-parent-kind-module">
-						<a href="parsers_address.html#decodeaddress" class="tsd-kind-icon">decode<wbr>Address</a>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="types_narrow.html#narrow" class="tsd-kind-icon">Narrow</a>
 					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-module">
-						<a href="parsers_address.html#encodeaddress" class="tsd-kind-icon">encode<wbr>Address</a>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
+						<a href="types_narrow.html#narrowable" class="tsd-kind-icon">Narrowable</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="types_narrow.html#try" class="tsd-kind-icon">Try</a>
 					</li>
 				</ul>
 			</nav>
