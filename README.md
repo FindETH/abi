@@ -3,7 +3,7 @@
 ![Version](https://img.shields.io/npm/v/@findeth/abi) ![License](https://img.shields.io/github/license/FindETH/abi) [![Travis CI](https://travis-ci.com/FindETH/abi.svg?branch=master)](https://travis-ci.com/FindETH/abi) [![codecov](https://codecov.io/gh/FindETH/abi/branch/master/graph/badge.svg)](https://codecov.io/gh/FindETH/abi)
 
 
-`@findeth/abi` is a library used by FindETH, used to decode and encode Solidity contract ABI data. **This library is experimental**, and likely does not work with all contract interfaces. It is used in the desktop, web and CLI applications, that can be found here:
+`@findeth/abi` is a zero-dependencies ABI encoder and decoder library used by FindETH. **This library is experimental**, and likely does not work with all contract interfaces. It is used in the desktop, web and CLI applications, that can be found here:
 
 - [Desktop](https://github.com/FindETH/desktop)
 - [Web](https://github.com/FindETH/web)
@@ -24,6 +24,8 @@ $ yarn add @findeth/abi
 ```
 $ npm install @findeth/abi
 ```
+
+**Note**: If you are using TypeScript, `@findeth/abi` requires TypeScript 4.1 or newer.
 
 ## Getting Started
 

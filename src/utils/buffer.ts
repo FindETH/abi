@@ -131,18 +131,6 @@ export const concat = (buffers: Uint8Array[]): Uint8Array => {
 };
 
 /**
- * Concatenate two buffers by placing one buffer at a specific position in another buffer.
- *
- * @param {Uint8Array} a
- * @param {Uint8Array} b
- * @param {number} position
- * @return {Uint8Array}
- */
-export const concatAt = (a: Uint8Array, b: Uint8Array, position: number): Uint8Array => {
-  return concat([a.slice(0, position), b, a.slice(position)]);
-};
-
-/**
  * Add padding to a buffer. If the buffer is larger than `length`, this function won't do anything. If it's smaller, the
  * buffer will be padded to the specified length, with extra zeroes at the end.
  *
