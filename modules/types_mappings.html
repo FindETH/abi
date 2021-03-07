@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>utils/keccak256 | @findeth/abi</title>
+	<title>types/mappings | @findeth/abi</title>
 	<meta name="description" content="Documentation for @findeth/abi">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -55,10 +55,10 @@
 					<a href="../modules.html">@findeth/abi</a>
 				</li>
 				<li>
-					<a href="utils_keccak256.html">utils/keccak256</a>
+					<a href="types_mappings.html">types/mappings</a>
 				</li>
 			</ul>
-			<h1>Module utils/keccak256</h1>
+			<h1>Module types/mappings</h1>
 		</div>
 	</div>
 </header>
@@ -70,41 +70,57 @@
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
-							<h3>Functions</h3>
+							<h3>Type aliases</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-function tsd-parent-kind-module"><a href="utils_keccak256.html#keccak256" class="tsd-kind-icon">keccak256</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-module"><a href="types_mappings.html#type" class="tsd-kind-icon">Type</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-module"><a href="types_mappings.html#typemap" class="tsd-kind-icon">Type<wbr>Map</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter"><a href="types_mappings.html#typemapper" class="tsd-kind-icon">Type<wbr>Mapper</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Functions</h2>
-				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
-					<a name="keccak256" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagConst">Const</span> keccak256</h3>
-					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
-						<li class="tsd-signature tsd-kind-icon">keccak256<span class="tsd-signature-symbol">(</span>input<span class="tsd-signature-symbol">: </span><a href="utils_buffer.html#binarylike" class="tsd-signature-type" data-tsd-kind="Type alias">BinaryLike</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Uint8Array</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/FindETH/abi/blob/01607ce/src/utils/keccak256.ts#L10">utils/keccak256.ts:10</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Returns the Keccak-256 hash of a string, as a hexadecimal string.</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>input: <a href="utils_buffer.html#binarylike" class="tsd-signature-type" data-tsd-kind="Type alias">BinaryLike</a></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Uint8Array</span></h4>
+				<h2>Type aliases</h2>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module">
+					<a name="type" class="tsd-anchor"></a>
+					<h3>Type</h3>
+					<div class="tsd-signature tsd-kind-icon">Type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">keyof </span><a href="types_mappings.html#typemap" class="tsd-signature-type" data-tsd-kind="Type alias">TypeMap</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/FindETH/abi/blob/94e6d01/src/types/mappings.ts#L32">types/mappings.ts:32</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module">
+					<a name="typemap" class="tsd-anchor"></a>
+					<h3>Type<wbr>Map</h3>
+					<div class="tsd-signature tsd-kind-icon">Type<wbr>Map<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">TypeMapWithoutArrays</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-symbol">{</span><span class="tsd-signature-symbol">[ </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol"> in </span><span class="tsd-signature-symbol">keyof </span><span class="tsd-signature-type">TypeMapWithoutArrays</span><span class="tsd-signature-symbol"> as </span><span class="tsd-signature-symbol">`</span><span class="tsd-signature-symbol">${</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">}</span><span class="tsd-signature-type">[]</span><span class="tsd-signature-symbol">`</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TypeMapWithoutArrays</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> }</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/FindETH/abi/blob/94e6d01/src/types/mappings.ts#L27">types/mappings.ts:27</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>An object type with most possible ABI types, and their respective TypeScript type. Note that some dynamic types, like
+							<code>&lt;type&gt;[&lt;length&gt;]</code> and <code>fixed&lt;M&gt;x&lt;N&gt;</code> are not supported, and <code>unknown</code> is used instead.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter">
+					<a name="typemapper" class="tsd-anchor"></a>
+					<h3>Type<wbr>Mapper</h3>
+					<div class="tsd-signature tsd-kind-icon">Type<wbr>Mapper&lt;I&gt;<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Mapper</span><span class="tsd-signature-symbol">&lt;</span><a href="types_mappings.html#typemap" class="tsd-signature-type" data-tsd-kind="Type alias">TypeMap</a><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">Writable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">I</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/FindETH/abi/blob/94e6d01/src/types/mappings.ts#L33">types/mappings.ts:33</a></li>
+						</ul>
+					</aside>
+					<h4 class="tsd-type-parameters-title">Type parameters</h4>
+					<ul class="tsd-type-parameters">
+						<li>
+							<h4>I<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -121,9 +137,6 @@
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="contract.html">contract</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="identifier.html">identifier</a>
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="index.html">index</a>
@@ -156,6 +169,15 @@
 						<a href="parsers_string.html">parsers/string</a>
 					</li>
 					<li class=" tsd-kind-module">
+						<a href="types.html">types</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="types_contract.html">types/contract</a>
+					</li>
+					<li class="current tsd-kind-module">
+						<a href="types_mappings.html">types/mappings</a>
+					</li>
+					<li class=" tsd-kind-module">
 						<a href="types_vendor_keccak.html">types/vendor/keccak</a>
 					</li>
 					<li class=" tsd-kind-module">
@@ -164,9 +186,6 @@
 					<li class=" tsd-kind-module">
 						<a href="utils_buffer.html">utils/buffer</a>
 					</li>
-					<li class="current tsd-kind-module">
-						<a href="utils_keccak256.html">utils/keccak256</a>
-					</li>
 					<li class=" tsd-kind-module">
 						<a href="utils_twos_complement.html">utils/twos-<wbr>complement</a>
 					</li>
@@ -174,8 +193,14 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-function tsd-parent-kind-module">
-						<a href="utils_keccak256.html#keccak256" class="tsd-kind-icon">keccak256</a>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
+						<a href="types_mappings.html#type" class="tsd-kind-icon">Type</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
+						<a href="types_mappings.html#typemap" class="tsd-kind-icon">Type<wbr>Map</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="types_mappings.html#typemapper" class="tsd-kind-icon">Type<wbr>Mapper</a>
 					</li>
 				</ul>
 			</nav>
@@ -190,6 +215,7 @@
 				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
 				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
 				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+				<li class="tsd-kind-type-alias tsd-has-type-parameter"><span class="tsd-kind-icon">Type alias with type parameter</span></li>
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>

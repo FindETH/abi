@@ -106,7 +106,7 @@
 					<div class="tsd-signature tsd-kind-icon">constant<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">false</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/FindETH/abi/blob/01607ce/src/contract.ts#L68">contract.ts:68</a></li>
+							<li>Defined in <a href="https://github.com/FindETH/abi/blob/94e6d01/src/types/contract.ts#L53">types/contract.ts:53</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -116,7 +116,7 @@
 					<div class="tsd-signature tsd-kind-icon">payable<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/FindETH/abi/blob/01607ce/src/contract.ts#L73">contract.ts:73</a></li>
+							<li>Defined in <a href="https://github.com/FindETH/abi/blob/94e6d01/src/types/contract.ts#L58">types/contract.ts:58</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -131,7 +131,7 @@
 					<div class="tsd-signature tsd-kind-icon">state<wbr>Mutability<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">&quot;nonpayable&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/FindETH/abi/blob/01607ce/src/contract.ts#L67">contract.ts:67</a></li>
+							<li>Defined in <a href="https://github.com/FindETH/abi/blob/94e6d01/src/types/contract.ts#L52">types/contract.ts:52</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -148,9 +148,6 @@
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="../modules/contract.html">contract</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="../modules/identifier.html">identifier</a>
 					</li>
 					<li class="current tsd-kind-module">
 						<a href="../modules/index.html">index</a>
@@ -183,6 +180,15 @@
 						<a href="../modules/parsers_string.html">parsers/string</a>
 					</li>
 					<li class=" tsd-kind-module">
+						<a href="../modules/types.html">types</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/types_contract.html">types/contract</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/types_mappings.html">types/mappings</a>
+					</li>
+					<li class=" tsd-kind-module">
 						<a href="../modules/types_vendor_keccak.html">types/vendor/keccak</a>
 					</li>
 					<li class=" tsd-kind-module">
@@ -192,24 +198,12 @@
 						<a href="../modules/utils_buffer.html">utils/buffer</a>
 					</li>
 					<li class=" tsd-kind-module">
-						<a href="../modules/utils_keccak256.html">utils/keccak256</a>
-					</li>
-					<li class=" tsd-kind-module">
 						<a href="../modules/utils_twos_complement.html">utils/twos-<wbr>complement</a>
 					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-reference tsd-parent-kind-module">
-						<a href="../modules/index.html#decode" class="tsd-kind-icon">decode</a>
-					</li>
-					<li class=" tsd-kind-reference tsd-parent-kind-module">
-						<a href="../modules/index.html#encode" class="tsd-kind-icon">encode</a>
-					</li>
-					<li class=" tsd-kind-reference tsd-parent-kind-module">
-						<a href="../modules/index.html#encodewithidentifier" class="tsd-kind-icon">encode<wbr>With<wbr>Identifier</a>
-					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-module">
 						<a href="index.constantcontractfunction.html" class="tsd-kind-icon">Constant<wbr>Contract<wbr>Function</a>
 					</li>
@@ -264,14 +258,23 @@
 					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
 						<a href="../modules/index.html#type" class="tsd-kind-icon">Type</a>
 					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
+						<a href="../modules/index.html#typemap" class="tsd-kind-icon">Type<wbr>Map</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="../modules/index.html#typemapper" class="tsd-kind-icon">Type<wbr>Mapper</a>
+					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-module">
 						<a href="../modules/index.html#addpadding" class="tsd-kind-icon">add<wbr>Padding</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-module">
 						<a href="../modules/index.html#concat" class="tsd-kind-icon">concat</a>
 					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-module">
-						<a href="../modules/index.html#concatat" class="tsd-kind-icon">concat<wbr>At</a>
+					<li class=" tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="../modules/index.html#decode" class="tsd-kind-icon">decode</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="../modules/index.html#encode" class="tsd-kind-icon">encode</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-module">
 						<a href="../modules/index.html#fromhex" class="tsd-kind-icon">from<wbr>Hex</a>
@@ -287,9 +290,6 @@
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-module">
 						<a href="../modules/index.html#gettextencoder" class="tsd-kind-icon">get<wbr>Text<wbr>Encoder</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-module">
-						<a href="../modules/index.html#keccak256" class="tsd-kind-icon">keccak256</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-module">
 						<a href="../modules/index.html#stripprefix" class="tsd-kind-icon">strip<wbr>Prefix</a>
@@ -322,6 +322,7 @@
 				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
 				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
 				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+				<li class="tsd-kind-type-alias tsd-has-type-parameter"><span class="tsd-kind-icon">Type alias with type parameter</span></li>
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
