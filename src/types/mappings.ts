@@ -30,7 +30,7 @@ export type TypeMap = TypeMapWithoutArrays &
   };
 
 export type Type = keyof TypeMap;
-export type TypeMapper<I extends Readonly<any[]>> = Mapper<TypeMap, Writable<I>>;
+export type TypeMapper<I extends any[]> = Mapper<TypeMap, I>;
 
 /**
  * Helper type to generate an object type from a union.
@@ -45,8 +45,3 @@ type DynamicType<K extends string, T> = {
 type Mapper<T, I extends any[]> = {
   [K in keyof I]: I[K] extends I[number] ? T[I[K]] : unknown;
 };
-
-/**
- * Helper type that removes a readonly modifier from a field.
- */
-type Writable<T> = { -readonly [P in keyof T]: T[P] };
