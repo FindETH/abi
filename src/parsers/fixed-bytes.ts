@@ -1,5 +1,5 @@
+import { BytesInput, DecodeFunction, EncodeFunction } from '../types';
 import { addPadding, concat, toBuffer } from '../utils';
-import { DecodeFunction, EncodeFunction } from './parser';
 
 const BYTES_REGEX = /^bytes([0-9]{1,2})$/;
 
@@ -29,9 +29,9 @@ export const getByteLength = (type: string): number => {
   throw new Error('Invalid type: no length');
 };
 
-export const encodeFixedBytes: EncodeFunction = (
+export const encodeFixedBytes: EncodeFunction<BytesInput> = (
   buffer: Uint8Array,
-  value: string | Uint8Array,
+  value: BytesInput,
   type: string
 ): Uint8Array => {
   const length = getByteLength(type);
@@ -44,7 +44,11 @@ export const encodeFixedBytes: EncodeFunction = (
   return concat([buffer, addPadding(bufferValue)]);
 };
 
-export const decodeFixedBytes: DecodeFunction = (value: Uint8Array, _: Uint8Array, type: string): Uint8Array => {
+export const decodeFixedBytes: DecodeFunction<Uint8Array> = (
+  value: Uint8Array,
+  _: Uint8Array,
+  type: string
+): Uint8Array => {
   const length = getByteLength(type);
 
   return value.subarray(0, length);
