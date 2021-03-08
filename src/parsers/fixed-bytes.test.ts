@@ -1,4 +1,4 @@
-import { fromHex, toHex } from '../utils/buffer';
+import { fromHex, toHex } from '../utils';
 import { decodeFixedBytes, encodeFixedBytes } from './fixed-bytes';
 
 describe('encodeFixedBytes', () => {

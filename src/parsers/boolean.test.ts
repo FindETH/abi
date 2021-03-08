@@ -10,6 +10,21 @@ describe('encodeBoolean', () => {
       '0000000000000000000000000000000000000000000000000000000000000000'
     );
   });
+
+  it('encodes a string', () => {
+    expect(toHex(encodeBoolean(new Uint8Array(0), 'true', 'bool'))).toBe(
+      '0000000000000000000000000000000000000000000000000000000000000001'
+    );
+    expect(toHex(encodeBoolean(new Uint8Array(0), 'yes', 'bool'))).toBe(
+      '0000000000000000000000000000000000000000000000000000000000000001'
+    );
+    expect(toHex(encodeBoolean(new Uint8Array(0), 'false', 'bool'))).toBe(
+      '0000000000000000000000000000000000000000000000000000000000000000'
+    );
+    expect(toHex(encodeBoolean(new Uint8Array(0), 'foo bar', 'bool'))).toBe(
+      '0000000000000000000000000000000000000000000000000000000000000000'
+    );
+  });
 });
 
 describe('decodeBoolean', () => {

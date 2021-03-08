@@ -1,10 +1,18 @@
+import { BooleanInput, DecodeFunction, EncodeFunction } from '../types';
 import { decodeNumber, encodeNumber } from './number';
-import { DecodeFunction, EncodeFunction } from './parser';
 
-export const encodeBoolean: EncodeFunction = (buffer: Uint8Array, value: boolean | string): Uint8Array => {
-  return encodeNumber(buffer, value ? 1n : 0n, 'uint256');
+const getBooleanValue = (value: BooleanInput): boolean => {
+  if (typeof value === 'string') {
+    return value === 'true' || value === 'yes';
+  }
+
+  return value;
 };
 
-export const decodeBoolean: DecodeFunction = (value: Uint8Array, buffer: Uint8Array): boolean => {
+export const encodeBoolean: EncodeFunction<BooleanInput> = (buffer: Uint8Array, value: BooleanInput): Uint8Array => {
+  return encodeNumber(buffer, getBooleanValue(value) ? 1 : 0, 'uint256');
+};
+
+export const decodeBoolean: DecodeFunction<boolean> = (value: Uint8Array, buffer: Uint8Array): boolean => {
   return decodeNumber(value, buffer, 'uint256') === 1n;
 };

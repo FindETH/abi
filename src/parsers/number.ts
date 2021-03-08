@@ -1,5 +1,6 @@
+import { NumberInput } from '../types';
+import { DecodeFunction, EncodeFunction } from '../types/parser';
 import { concat, toBuffer, toNumber, fromTwosComplement, toTwosComplement } from '../utils';
-import { DecodeFunction, EncodeFunction } from './parser';
 
 const NUMBER_REGEX = /^u?int([0-9]*)?$/;
 
@@ -28,7 +29,7 @@ export const inRange = (value: bigint, type: string): boolean => {
   return value >= 0n && value <= maxValue;
 };
 
-const asNumber = (value: string | bigint): bigint => {
+const asNumber = (value: NumberInput): bigint => {
   if (typeof value === 'bigint') {
     return value;
   }
@@ -36,7 +37,11 @@ const asNumber = (value: string | bigint): bigint => {
   return BigInt(value);
 };
 
-export const encodeNumber: EncodeFunction = (buffer: Uint8Array, value: string | bigint, type: string): Uint8Array => {
+export const encodeNumber: EncodeFunction<NumberInput> = (
+  buffer: Uint8Array,
+  value: NumberInput,
+  type: string
+): Uint8Array => {
   const numberValue = asNumber(value);
 
   if (!inRange(numberValue, type)) {
@@ -50,7 +55,7 @@ export const encodeNumber: EncodeFunction = (buffer: Uint8Array, value: string |
   return concat([buffer, toBuffer(numberValue)]);
 };
 
-export const decodeNumber: DecodeFunction = (value: Uint8Array, _, type: string): bigint => {
+export const decodeNumber: DecodeFunction<bigint> = (value: Uint8Array, _, type: string): bigint => {
   if (isSigned(type)) {
     return fromTwosComplement(value);
   }

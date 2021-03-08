@@ -1,3 +1,9 @@
+import type { decodeAddress } from '../parsers/address';
+import type { decodeBoolean } from '../parsers/boolean';
+import type { decodeBytes } from '../parsers/bytes';
+import type { decodeFunction } from '../parsers/function';
+import type { decodeString } from '../parsers/string';
+
 // prettier-ignore
 type ByteLength = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20 | 21 | 22 | 23 | 24 | 25 | 26 | 27 | 28 | 29 | 30 | 31 | 32;
 // prettier-ignore
@@ -14,11 +20,11 @@ export type TypeMapper<I extends any[], T = TypeMap> = Mapper<T, I>;
  * Output types.
  */
 interface StaticTypes {
-  address: string;
-  bool: boolean;
-  bytes: Uint8Array;
-  function: Uint8Array;
-  string: string;
+  address: ReturnType<typeof decodeAddress>;
+  bool: ReturnType<typeof decodeBoolean>;
+  bytes: ReturnType<typeof decodeBytes>;
+  function: ReturnType<typeof decodeFunction>;
+  string: ReturnType<typeof decodeString>;
 }
 
 type TypeMapWithoutArrays = StaticTypes &
@@ -35,12 +41,13 @@ export type TypeMap = WithArrayTypes<TypeMapWithoutArrays>;
 /**
  * Input types.
  */
-export type BytesInput = string | Uint8Array;
-export type NumberInput = bigint | number;
+export type BytesInput = string | Uint8Array | number[];
+export type NumberInput = bigint | number | string;
+export type BooleanInput = boolean | string;
 
 interface StaticInputTypes {
   address: string;
-  bool: boolean;
+  bool: BooleanInput;
   bytes: BytesInput;
   function: BytesInput;
   string: string;

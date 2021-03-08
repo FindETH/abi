@@ -1,9 +1,10 @@
+import { DecodeFunction, EncodeFunction } from '../types/parser';
 import { concat, toBuffer, toNumber } from '../utils';
 import { decodeAddress, encodeAddress } from './address';
+import { decodeBoolean, encodeBoolean } from './boolean';
 import { decodeBytes, encodeBytes } from './bytes';
 import { decodeFixedBytes, encodeFixedBytes, isFixedBytes } from './fixed-bytes';
 import { decodeNumber, encodeNumber, isNumber } from './number';
-import { DecodeFunction, EncodeFunction, Parser } from './parser';
 import { decodeString, encodeString } from './string';
 
 const ARRAY_REGEX = /^(.*)\[]$/;
@@ -28,7 +29,11 @@ export const getType = (type: string): string => {
   return type.match(ARRAY_REGEX)![1];
 };
 
-export const encodeArray: EncodeFunction = (buffer: Uint8Array, values: unknown[], type: string): Uint8Array => {
+export const encodeArray: EncodeFunction<unknown[]> = (
+  buffer: Uint8Array,
+  values: unknown[],
+  type: string
+): Uint8Array => {
   if (!isArray(type)) {
     throw new Error('Invalid type: type is not array');
   }
@@ -41,7 +46,11 @@ export const encodeArray: EncodeFunction = (buffer: Uint8Array, values: unknown[
   return pack(arrayBuffer, values, new Array(values.length).fill(actualType));
 };
 
-export const decodeArray: DecodeFunction = (value: Uint8Array, buffer: Uint8Array, type: string): unknown[] => {
+export const decodeArray: DecodeFunction<unknown[]> = (
+  value: Uint8Array,
+  buffer: Uint8Array,
+  type: string
+): unknown[] => {
   if (!isArray(type)) {
     throw new Error('Invalid type: type is not array');
   }
@@ -59,8 +68,9 @@ export const decodeArray: DecodeFunction = (value: Uint8Array, buffer: Uint8Arra
 /**
  * All available parsers.
  */
-const parsers: Record<string, Parser> = {
+const parsers = {
   address: {
+    dynamic: false,
     encode: encodeAddress,
     decode: decodeAddress
   },
@@ -69,16 +79,23 @@ const parsers: Record<string, Parser> = {
     encode: encodeArray,
     decode: decodeArray
   },
+  bool: {
+    dynamic: false,
+    encode: encodeBoolean,
+    decode: decodeBoolean
+  },
   bytes: {
     dynamic: true,
     encode: encodeBytes,
     decode: decodeBytes
   },
   fixedBytes: {
+    dynamic: false,
     encode: encodeFixedBytes,
     decode: decodeFixedBytes
   },
   number: {
+    dynamic: false,
     encode: encodeNumber,
     decode: decodeNumber
   },
@@ -89,16 +106,20 @@ const parsers: Record<string, Parser> = {
   }
 };
 
+export type ParserType = keyof typeof parsers;
+
 /**
  * Get a parser for a type. Throws an error if the parser could not be found.
  *
  * @param {string} type
  * @return {Parser}
  */
-export const getParser = (type: string): Parser => {
-  if (parsers[type]) {
-    return parsers[type];
+export const getParser = (type: string) => {
+  if (parsers[type as ParserType]) {
+    return parsers[type as ParserType];
   }
+
+  // TODO: Figure out type issues
 
   // bytes[n]
   if (isFixedBytes(type)) {
@@ -106,7 +127,7 @@ export const getParser = (type: string): Parser => {
   }
 
   // u?int[n], bool
-  if (isNumber(type) || type === 'bool') {
+  if (isNumber(type)) {
     return parsers.number;
   }
 
@@ -138,7 +159,7 @@ interface PackState {
  * @param {string[]} types
  * @return {Buffer}
  */
-export const pack = (buffer: Uint8Array, values: unknown[], types: Readonly<string[]>): Uint8Array => {
+export const pack = (buffer: Uint8Array, values: unknown[], types: string[]): Uint8Array => {
   const {
     staticBuffer: packedStaticBuffer,
     dynamicBuffer: packedDynamicBuffer,
@@ -146,7 +167,8 @@ export const pack = (buffer: Uint8Array, values: unknown[], types: Readonly<stri
   } = types.reduce<PackState>(
     ({ staticBuffer, dynamicBuffer, updateFunctions }, type, index) => {
       const parser = getParser(type);
-      const value = values[index];
+      // TODO: Solve type issue
+      const value = values[index] as any;
 
       if (parser.dynamic) {
         const offset = dynamicBuffer.length;
@@ -200,7 +222,7 @@ export function* iterate(buffer: Uint8Array, chunkSize: number): Generator<Uint8
   return buffer;
 }
 
-export const unpack = (buffer: Uint8Array, types: Readonly<string[]>): unknown[] => {
+export const unpack = (buffer: Uint8Array, types: string[]): unknown[] => {
   const iterator = iterate(buffer, 32);
 
   return types.map((type) => {
