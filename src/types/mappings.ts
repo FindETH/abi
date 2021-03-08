@@ -7,6 +7,12 @@ type Bytes = `bytes${ByteLength}`;
 type Integer = `int${IntegerLength}`;
 type UnsignedInteger = `uint${IntegerLength}`;
 
+export type Type = keyof TypeMap;
+export type TypeMapper<I extends any[], T = TypeMap> = Mapper<T, I>;
+
+/**
+ * Output types.
+ */
 interface StaticTypes {
   address: string;
   bool: boolean;
@@ -24,13 +30,34 @@ type TypeMapWithoutArrays = StaticTypes &
  * An object type with most possible ABI types, and their respective TypeScript type. Note that some dynamic types, like
  * `<type>[<length>]` and `fixed<M>x<N>` are not supported, and `unknown` is used instead.
  */
-export type TypeMap = TypeMapWithoutArrays &
-  {
-    [K in keyof TypeMapWithoutArrays as `${K}[]`]: Array<TypeMapWithoutArrays[K]>;
-  };
+export type TypeMap = WithArrayTypes<TypeMapWithoutArrays>;
 
-export type Type = keyof TypeMap;
-export type TypeMapper<I extends any[]> = Mapper<TypeMap, I>;
+/**
+ * Input types.
+ */
+export type BytesInput = string | Uint8Array;
+export type NumberInput = bigint | number;
+
+interface StaticInputTypes {
+  address: string;
+  bool: boolean;
+  bytes: BytesInput;
+  function: BytesInput;
+  string: string;
+}
+
+type InputTypeMapWithoutArrays = StaticInputTypes &
+  DynamicType<Bytes, BytesInput> &
+  DynamicType<Integer, NumberInput> &
+  DynamicType<UnsignedInteger, NumberInput>;
+
+/**
+ * An object type with most possible ABI types, and their respective TypeScript type. Note that some dynamic types, like
+ * `<type>[<length>]` and `fixed<M>x<N>` are not supported, and `unknown` is used instead.
+ *
+ * Accepts multiple input types for certain ABI types, like strings, bytes, numbers.
+ */
+export type InputTypeMap = WithArrayTypes<InputTypeMapWithoutArrays>;
 
 /**
  * Helper type to generate an object type from a union.
@@ -45,3 +72,11 @@ type DynamicType<K extends string, T> = {
 type Mapper<T, I extends any[]> = {
   [K in keyof I]: I[K] extends I[number] ? T[I[K]] : unknown;
 };
+
+/**
+ * Adds an array type for each of the specified keys and types.
+ */
+type WithArrayTypes<T> = T &
+  {
+    [K in keyof T as `${string & K}[]`]: Array<T[K]>;
+  };

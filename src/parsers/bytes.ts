@@ -1,7 +1,8 @@
+import { BytesInput } from '../types';
 import { addPadding, concat, toBuffer, toNumber } from '../utils';
 import { DecodeFunction, EncodeFunction } from './parser';
 
-export const encodeBytes: EncodeFunction = (buffer: Uint8Array, value: string | Uint8Array): Uint8Array => {
+export const encodeBytes: EncodeFunction = (buffer: Uint8Array, value: BytesInput): Uint8Array => {
   const bufferValue = toBuffer(value);
   const paddedSize = Math.ceil(bufferValue.byteLength / 32) * 32;
 
