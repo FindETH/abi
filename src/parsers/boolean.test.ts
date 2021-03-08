@@ -2,7 +2,7 @@ import { fromHex, toHex } from '../utils';
 import { decodeBoolean, encodeBoolean } from './boolean';
 
 describe('encodeBoolean', () => {
-  it('encodes a boolean as a uint256 number', () => {
+  it('encodes a boolean', () => {
     expect(toHex(encodeBoolean(new Uint8Array(0), true, 'bool'))).toBe(
       '0000000000000000000000000000000000000000000000000000000000000001'
     );
@@ -28,7 +28,7 @@ describe('encodeBoolean', () => {
 });
 
 describe('decodeBoolean', () => {
-  it('decodes a boolean as a uint256 number', () => {
+  it('decodes a boolean', () => {
     const trueValue = fromHex('0000000000000000000000000000000000000000000000000000000000000001');
     expect(decodeBoolean(trueValue, trueValue, 'bool')).toBe(true);
 

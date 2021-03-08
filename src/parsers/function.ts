@@ -19,6 +19,6 @@ export const encodeFunction: EncodeFunction<BytesInput> = (buffer: Uint8Array, v
  * @param {string | Uint8Array} value
  * @return {Uint8Array}
  */
-export const decodeFunction: DecodeFunction<BytesInput> = (value: Uint8Array, buffer: Uint8Array): Uint8Array => {
+export const decodeFunction: DecodeFunction<Uint8Array> = (value: Uint8Array, buffer: Uint8Array): Uint8Array => {
   return decodeFixedBytes(value, buffer, 'bytes24');
 };
