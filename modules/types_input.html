@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>contract | @findeth/abi</title>
+	<title>types/input | @findeth/abi</title>
 	<meta name="description" content="Documentation for @findeth/abi">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -55,10 +55,10 @@
 					<a href="../modules.html">@findeth/abi</a>
 				</li>
 				<li>
-					<a href="contract.html">contract</a>
+					<a href="types_input.html">types/input</a>
 				</li>
 			</ul>
-			<h1>Module contract</h1>
+			<h1>Module types/input</h1>
 		</div>
 	</div>
 </header>
@@ -70,43 +70,47 @@
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
-							<h3>Functions</h3>
+							<h3>Type aliases</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-function tsd-parent-kind-module"><a href="contract.html#parsetype" class="tsd-kind-icon">parse<wbr>Type</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-module"><a href="types_input.html#booleaninput" class="tsd-kind-icon">Boolean<wbr>Input</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-module"><a href="types_input.html#bytesinput" class="tsd-kind-icon">Bytes<wbr>Input</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-module"><a href="types_input.html#numberinput" class="tsd-kind-icon">Number<wbr>Input</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Functions</h2>
-				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
-					<a name="parsetype" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagConst">Const</span> parse<wbr>Type</h3>
-					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
-						<li class="tsd-signature tsd-kind-icon">parse<wbr>Type<span class="tsd-signature-symbol">(</span>input<span class="tsd-signature-symbol">: </span><a href="types_contract.html#contractinput" class="tsd-signature-type" data-tsd-kind="Type alias">ContractInput</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/FindETH/abi/blob/9028ccc/src/contract.ts#L13">contract.ts:13</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Parse the type of a contract input to a <code>string</code>.</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>input: <a href="types_contract.html#contractinput" class="tsd-signature-type" data-tsd-kind="Type alias">ContractInput</a></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
-						</li>
-					</ul>
+				<h2>Type aliases</h2>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module">
+					<a name="booleaninput" class="tsd-anchor"></a>
+					<h3>Boolean<wbr>Input</h3>
+					<div class="tsd-signature tsd-kind-icon">Boolean<wbr>Input<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/FindETH/abi/blob/d198607/src/types/input.ts#L3">types/input.ts:3</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module">
+					<a name="bytesinput" class="tsd-anchor"></a>
+					<h3>Bytes<wbr>Input</h3>
+					<div class="tsd-signature tsd-kind-icon">Bytes<wbr>Input<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Uint8Array</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/FindETH/abi/blob/d198607/src/types/input.ts#L1">types/input.ts:1</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module">
+					<a name="numberinput" class="tsd-anchor"></a>
+					<h3>Number<wbr>Input</h3>
+					<div class="tsd-signature tsd-kind-icon">Number<wbr>Input<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">bigint</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/FindETH/abi/blob/d198607/src/types/input.ts#L2">types/input.ts:2</a></li>
+						</ul>
+					</aside>
 				</section>
 			</section>
 		</div>
@@ -118,9 +122,6 @@
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="abi.html">abi</a>
-					</li>
-					<li class="current tsd-kind-module">
-						<a href="contract.html">contract</a>
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="index.html">index</a>
@@ -147,22 +148,22 @@
 						<a href="parsers_number.html">parsers/number</a>
 					</li>
 					<li class=" tsd-kind-module">
-						<a href="parsers_parser.html">parsers/parser</a>
-					</li>
-					<li class=" tsd-kind-module">
 						<a href="parsers_string.html">parsers/string</a>
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="types.html">types</a>
 					</li>
-					<li class=" tsd-kind-module">
-						<a href="types_contract.html">types/contract</a>
+					<li class="current tsd-kind-module">
+						<a href="types_input.html">types/input</a>
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="types_mappings.html">types/mappings</a>
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="types_narrow.html">types/narrow</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="types_parser.html">types/parser</a>
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="types_vendor_keccak.html">types/vendor/keccak</a>
@@ -180,8 +181,14 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-function tsd-parent-kind-module">
-						<a href="contract.html#parsetype" class="tsd-kind-icon">parse<wbr>Type</a>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
+						<a href="types_input.html#booleaninput" class="tsd-kind-icon">Boolean<wbr>Input</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
+						<a href="types_input.html#bytesinput" class="tsd-kind-icon">Bytes<wbr>Input</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
+						<a href="types_input.html#numberinput" class="tsd-kind-icon">Number<wbr>Input</a>
 					</li>
 				</ul>
 			</nav>
@@ -197,9 +204,6 @@
 				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
 				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
 				<li class="tsd-kind-type-alias tsd-has-type-parameter"><span class="tsd-kind-icon">Type alias with type parameter</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
 			</ul>
 		</div>
 	</div>
