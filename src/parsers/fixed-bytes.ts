@@ -1,5 +1,4 @@
-import { BytesInput } from '../types';
-import { DecodeFunction, EncodeFunction } from '../types/parser';
+import { BytesInput, DecodeFunction, EncodeFunction } from '../types';
 import { addPadding, concat, toBuffer } from '../utils';
 
 const BYTES_REGEX = /^bytes([0-9]{1,2})$/;

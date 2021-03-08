@@ -1,4 +1,4 @@
-import { DecodeFunction, EncodeFunction } from '../types/parser';
+import { DecodeFunction, EncodeFunction } from '../types';
 import { concat, toBuffer, toNumber } from '../utils';
 import { decodeAddress, encodeAddress } from './address';
 import { decodeBoolean, encodeBoolean } from './boolean';

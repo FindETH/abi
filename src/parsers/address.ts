@@ -1,4 +1,4 @@
-import { DecodeFunction, EncodeFunction } from '../types/parser';
+import { DecodeFunction, EncodeFunction } from '../types';
 import { concat, fromHex, stripPrefix, toHex } from '../utils';
 
 export const encodeAddress: EncodeFunction<string> = (buffer: Uint8Array, value: string): Uint8Array => {

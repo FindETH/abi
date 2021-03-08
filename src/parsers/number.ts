@@ -1,5 +1,4 @@
-import { NumberInput } from '../types';
-import { DecodeFunction, EncodeFunction } from '../types/parser';
+import { NumberInput, DecodeFunction, EncodeFunction } from '../types';
 import { concat, toBuffer, toNumber, fromTwosComplement, toTwosComplement } from '../utils';
 
 const NUMBER_REGEX = /^u?int([0-9]*)?$/;

@@ -1,5 +1,4 @@
-import { BytesInput } from '../types';
-import { DecodeFunction, EncodeFunction } from '../types/parser';
+import { BytesInput, DecodeFunction, EncodeFunction } from '../types';
 import { addPadding, concat, toBuffer, toNumber } from '../utils';
 
 export const encodeBytes: EncodeFunction<BytesInput> = (buffer: Uint8Array, value: BytesInput): Uint8Array => {

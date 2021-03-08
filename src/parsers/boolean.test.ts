@@ -1,4 +1,4 @@
-import { fromHex, toHex } from '../utils/buffer';
+import { fromHex, toHex } from '../utils';
 import { decodeBoolean, encodeBoolean } from './boolean';
 
 describe('encodeBoolean', () => {
