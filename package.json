@@ -49,7 +49,7 @@
     "lint:format": "prettier --check --ignore-path .gitignore '**/*.{ts,tsx,js,json,yml}'",
     "lint:lockfile": "lockfile-lint --type yarn --path yarn.lock --allowed-hosts yarn --validate-https --validate-checksum --validate-integrity",
     "format": "prettier --write --ignore-path .gitignore '**/*.{ts,tsx,js,json,yml}'",
-    "prepare": "yarn run build"
+    "prepare": "husky install"
   },
   "devDependencies": {
     "@babel/cli": "^7.10.1",
@@ -90,11 +90,6 @@
     "*.{json,yml}": [
       "prettier --write"
     ]
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
   },
   "publishConfig": {
     "access": "public"
