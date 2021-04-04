@@ -1,16 +1,20 @@
-import { BytesInput, DecodeFunction, EncodeFunction } from '../types';
+import { BytesLike, DecodeArgs, Parser } from '../types';
 import { addPadding, concat, toBuffer, toNumber } from '../utils';
 
-export const encodeBytes: EncodeFunction<BytesInput> = (buffer: Uint8Array, value: BytesInput): Uint8Array => {
-  const bufferValue = toBuffer(value);
-  const paddedSize = Math.ceil(bufferValue.byteLength / 32) * 32;
+export const bytes: Parser<BytesLike, Uint8Array> = {
+  isDynamic: true,
 
-  return concat([buffer, toBuffer(bufferValue.byteLength), addPadding(bufferValue, paddedSize)]);
-};
+  encode({ buffer, value }): Uint8Array {
+    const bufferValue = toBuffer(value);
+    const paddedSize = Math.ceil(bufferValue.byteLength / 32) * 32;
 
-export const decodeBytes: DecodeFunction<Uint8Array> = (value: Uint8Array, buffer: Uint8Array): Uint8Array => {
-  const pointer = Number(toNumber(value.subarray(0, 32)));
-  const length = Number(toNumber(buffer.subarray(pointer, pointer + 32)));
+    return concat([buffer, toBuffer(bufferValue.byteLength), addPadding(bufferValue, paddedSize)]);
+  },
 
-  return buffer.subarray(pointer + 32, pointer + 32 + Number(length));
+  decode({ value }: DecodeArgs): Uint8Array {
+    const buffer = value.slice(0, 32);
+    const length = Number(toNumber(buffer));
+
+    return value.subarray(32, 32 + length);
+  }
 };

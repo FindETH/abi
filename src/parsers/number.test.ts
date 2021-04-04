@@ -1,40 +1,48 @@
-import { toHex } from '../utils';
-import { encodeNumber } from './number';
+import { fromHex, toHex } from '../utils';
+import { number } from './number';
 
-describe('encodeNumber', () => {
-  it('encodes a number', () => {
-    expect(toHex(encodeNumber(new Uint8Array(0), 12345, 'uint256'))).toBe(
-      '0000000000000000000000000000000000000000000000000000000000003039'
-    );
-    expect(toHex(encodeNumber(new Uint8Array(0), 12345, 'int256'))).toBe(
-      '0000000000000000000000000000000000000000000000000000000000003039'
-    );
-    expect(toHex(encodeNumber(new Uint8Array(0), -12345, 'int256'))).toBe(
-      'ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffcfc7'
-    );
+describe('number', () => {
+  describe('encode', () => {
+    it('encodes a unsigned number', () => {
+      expect(toHex(number.encode({ type: 'uint256', value: 314159n, buffer: new Uint8Array() }))).toBe(
+        '000000000000000000000000000000000000000000000000000000000004cb2f'
+      );
+      expect(toHex(number.encode({ type: 'uint256', value: 314159, buffer: new Uint8Array() }))).toBe(
+        '000000000000000000000000000000000000000000000000000000000004cb2f'
+      );
+      expect(toHex(number.encode({ type: 'uint256', value: '314159', buffer: new Uint8Array() }))).toBe(
+        '000000000000000000000000000000000000000000000000000000000004cb2f'
+      );
+      expect(toHex(number.encode({ type: 'uint256', value: '0x314159', buffer: new Uint8Array() }))).toBe(
+        '0000000000000000000000000000000000000000000000000000000000314159'
+      );
+    });
+
+    it('encodes a signed number', () => {
+      expect(toHex(number.encode({ type: 'int256', value: -314159n, buffer: new Uint8Array() }))).toBe(
+        'fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffb34d1'
+      );
+      expect(toHex(number.encode({ type: 'int256', value: -314159, buffer: new Uint8Array() }))).toBe(
+        'fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffb34d1'
+      );
+      expect(toHex(number.encode({ type: 'int256', value: '-314159', buffer: new Uint8Array() }))).toBe(
+        'fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffb34d1'
+      );
+    });
   });
 
-  it('encodes a bigint', () => {
-    expect(toHex(encodeNumber(new Uint8Array(0), 12345n, 'uint256'))).toBe(
-      '0000000000000000000000000000000000000000000000000000000000003039'
-    );
-    expect(toHex(encodeNumber(new Uint8Array(0), 12345n, 'int256'))).toBe(
-      '0000000000000000000000000000000000000000000000000000000000003039'
-    );
-    expect(toHex(encodeNumber(new Uint8Array(0), -12345n, 'int256'))).toBe(
-      'ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffcfc7'
-    );
-  });
+  describe('decode', () => {
+    it('decodes an encoded unsigned number', () => {
+      const value = fromHex('000000000000000000000000000000000000000000000000000000000004cb2f');
+      expect(number.decode({ type: 'uint256', value, skip: jest.fn() })).toBe(314159n);
+    });
 
-  it('encodes a string', () => {
-    expect(toHex(encodeNumber(new Uint8Array(0), '12345', 'uint256'))).toBe(
-      '0000000000000000000000000000000000000000000000000000000000003039'
-    );
-    expect(toHex(encodeNumber(new Uint8Array(0), '12345', 'int256'))).toBe(
-      '0000000000000000000000000000000000000000000000000000000000003039'
-    );
-    expect(toHex(encodeNumber(new Uint8Array(0), '-12345', 'int256'))).toBe(
-      'ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffcfc7'
-    );
+    it('decodes an encoded signed number', () => {
+      const value = fromHex('000000000000000000000000000000000000000000000000000000000004cb2f');
+      expect(number.decode({ type: 'int256', value, skip: jest.fn() })).toBe(314159n);
+
+      const negativeValue = fromHex('fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffb34d1');
+      expect(number.decode({ type: 'int256', value: negativeValue, skip: jest.fn() })).toBe(-314159n);
+    });
   });
 });

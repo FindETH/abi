@@ -1,3 +1,9 @@
-export type BytesInput = string | Uint8Array | number[];
-export type NumberInput = bigint | number | string;
-export type BooleanInput = boolean | string;
+export type BytesLike = string | Uint8Array;
+export type BooleanLike = 'true' | 'false' | 'yes' | 'no' | boolean;
+export type NumberLike = number | bigint | string;
+
+export type FunctionLike = string | SolidityFunction;
+export interface SolidityFunction {
+  address: string;
+  selector: string;
+}

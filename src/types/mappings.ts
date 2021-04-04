@@ -1,10 +1,5 @@
-import type { decodeAddress, encodeAddress } from '../parsers/address';
-import type { decodeBoolean, encodeBoolean } from '../parsers/boolean';
-import type { decodeBytes, encodeBytes } from '../parsers/bytes';
-import type { decodeFunction, encodeFunction } from '../parsers/function';
-import type { decodeNumber, encodeNumber } from '../parsers/number';
-import type { decodeString, encodeString } from '../parsers/string';
-import type { DecodeFunction, EncodeFunction } from './parser';
+import { address, bool, bytes, fn, number, string } from '../parsers';
+import { Parser } from './parser';
 
 // prettier-ignore
 type ByteLength = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20 | 21 | 22 | 23 | 24 | 25 | 26 | 27 | 28 | 29 | 30 | 31 | 32;
@@ -22,16 +17,7 @@ export type TypeMapper<I extends any[], T = OutputTypeMap> = Mapper<T, I>;
  * An object type with most possible ABI types, and their respective TypeScript type. Note that some dynamic types, like
  * `<type>[<length>]` and `fixed<M>x<N>` are not supported, and `unknown` is used instead.
  */
-export type OutputTypeMap = WithArrayTypes<
-  GenericTypeMap<
-    typeof decodeAddress,
-    typeof decodeBoolean,
-    typeof decodeBytes,
-    typeof decodeFunction,
-    typeof decodeNumber,
-    typeof decodeString
-  >
->;
+export type OutputTypeMap = WithArrayTypes<MapToOutput<TypeMap>>;
 
 /**
  * An object type with most possible ABI types, and their respective TypeScript type. Note that some dynamic types, like
@@ -39,38 +25,22 @@ export type OutputTypeMap = WithArrayTypes<
  *
  * Accepts multiple input types for certain ABI types, like strings, bytes, numbers.
  */
-export type InputTypeMap = WithArrayTypes<
-  GenericTypeMap<
-    typeof encodeAddress,
-    typeof encodeBoolean,
-    typeof encodeBytes,
-    typeof encodeFunction,
-    typeof encodeNumber,
-    typeof encodeString
-  >
->;
+export type InputTypeMap = WithArrayTypes<MapToInput<TypeMap>>;
 
 /**
  * Generic type map which is used to generate the input and output type map.
  */
-type GenericTypeMap<
-  AddressFunction,
-  BooleanFunction,
-  BytesFunction,
-  FunctionFunction,
-  NumberFunction,
-  StringFunction
-> = {
-  address: ExtractGeneric<AddressFunction>;
-  bool: ExtractGeneric<BooleanFunction>;
-  bytes: ExtractGeneric<BytesFunction>;
-  function: ExtractGeneric<FunctionFunction>;
-  int: ExtractGeneric<NumberFunction>;
-  string: ExtractGeneric<StringFunction>;
-  uint: ExtractGeneric<NumberFunction>;
-} & DynamicType<Bytes, ExtractGeneric<BytesFunction>> &
-  DynamicType<Integer, ExtractGeneric<NumberFunction>> &
-  DynamicType<UnsignedInteger, ExtractGeneric<NumberFunction>>;
+type TypeMap = {
+  address: ExtractGeneric<typeof address>;
+  bool: ExtractGeneric<typeof bool>;
+  bytes: ExtractGeneric<typeof bytes>;
+  function: ExtractGeneric<typeof fn>;
+  int: ExtractGeneric<typeof number>;
+  string: ExtractGeneric<typeof string>;
+  uint: ExtractGeneric<typeof number>;
+} & DynamicType<Bytes, ExtractGeneric<typeof bytes>> &
+  DynamicType<Integer, ExtractGeneric<typeof number>> &
+  DynamicType<UnsignedInteger, ExtractGeneric<typeof number>>;
 
 /**
  * Helper type to generate an object type from a union.
@@ -87,6 +57,20 @@ type Mapper<T, I extends any[]> = {
 };
 
 /**
+ * Helper type that maps a tuple to the first element.
+ */
+export type MapToInput<T extends Record<string, [unknown, unknown]>> = {
+  [K in keyof T]: T[K][0];
+};
+
+/**
+ * Helper type that maps a tuple to the second element.
+ */
+export type MapToOutput<T extends Record<string, [unknown, unknown]>> = {
+  [K in keyof T]: T[K][1];
+};
+
+/**
  * Helper type that adds an array type for each of the specified keys and types.
  */
 type WithArrayTypes<T> = T &
@@ -95,6 +79,6 @@ type WithArrayTypes<T> = T &
   };
 
 /**
- * Helper type that extracts the input or output from an EncodeFunction or DecodeFunction.
+ * Helper type that extracts the input or output from a Parser;.
  */
-type ExtractGeneric<T> = T extends DecodeFunction<infer O> ? O : T extends EncodeFunction<infer I> ? I : never;
+type ExtractGeneric<T> = T extends Parser<infer I, infer O> ? [I, O] : never;

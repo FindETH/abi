@@ -1,17 +1,41 @@
 import { fromHex, toHex } from '../utils';
-import { decodeFunction, encodeFunction } from './function';
+import { fn } from './function';
 
-describe('encodeFunction', () => {
-  it('encodes a function', () => {
-    expect(
-      toHex(encodeFunction(new Uint8Array(0), 'ec3f4f80aa317fe2f345fb30ad0745746fd3a44855721d61', 'function'))
-    ).toBe('ec3f4f80aa317fe2f345fb30ad0745746fd3a44855721d610000000000000000');
+describe('function', () => {
+  describe('encode', () => {
+    it('encodes a function', () => {
+      expect(
+        toHex(
+          fn.encode({
+            type: 'function',
+            value: '6b175474e89094c44da98b954eedeac495271d0f70a08231',
+            buffer: new Uint8Array()
+          })
+        )
+      ).toBe('6b175474e89094c44da98b954eedeac495271d0f70a082310000000000000000');
+
+      expect(
+        toHex(
+          fn.encode({
+            type: 'function',
+            value: {
+              address: '0x6b175474e89094c44da98b954eedeac495271d0f',
+              selector: '70a08231'
+            },
+            buffer: new Uint8Array()
+          })
+        )
+      ).toBe('6b175474e89094c44da98b954eedeac495271d0f70a082310000000000000000');
+    });
   });
-});
 
-describe('decodeFunction', () => {
-  it('encodes a function', () => {
-    const buffer = fromHex('ec3f4f80aa317fe2f345fb30ad0745746fd3a44855721d610000000000000000');
-    expect(toHex(decodeFunction(buffer, buffer, 'function'))).toBe('ec3f4f80aa317fe2f345fb30ad0745746fd3a44855721d61');
+  describe('decode', () => {
+    it('decodes an encoded function', () => {
+      const value = fromHex('6b175474e89094c44da98b954eedeac495271d0f70a082310000000000000000');
+      expect(fn.decode({ type: 'function', value, skip: jest.fn() })).toStrictEqual({
+        address: '0x6b175474e89094c44da98b954eedeac495271d0f',
+        selector: '70a08231'
+      });
+    });
   });
 });

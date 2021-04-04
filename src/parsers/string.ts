@@ -1,12 +1,15 @@
-import { DecodeFunction, EncodeFunction } from '../types';
+import { DecodeArgs, Parser } from '../types';
 import { fromUtf8, toUtf8 } from '../utils';
-import { decodeBytes, encodeBytes } from './bytes';
+import { bytes } from './bytes';
 
-export const encodeString: EncodeFunction<string> = (buffer: Uint8Array, value: string): Uint8Array => {
-  const bufferValue = fromUtf8(value);
-  return encodeBytes(buffer, bufferValue, 'bytes');
-};
+export const string: Parser<string> = {
+  isDynamic: true,
 
-export const decodeString: DecodeFunction<string> = (value: Uint8Array, buffer: Uint8Array): string => {
-  return toUtf8(decodeBytes(value, buffer, 'string'));
+  encode({ buffer, value }): Uint8Array {
+    return bytes.encode({ type: 'bytes', buffer, value: fromUtf8(value) });
+  },
+
+  decode(args: DecodeArgs): string {
+    return toUtf8(bytes.decode(args));
+  }
 };

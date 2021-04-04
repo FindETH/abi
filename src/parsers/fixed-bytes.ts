@@ -1,18 +1,14 @@
-import { BytesInput, DecodeFunction, EncodeFunction } from '../types';
+import { BytesLike, DecodeArgs, Parser } from '../types';
 import { addPadding, concat, toBuffer } from '../utils';
 
 const BYTES_REGEX = /^bytes([0-9]{1,2})$/;
-
-export const isFixedBytes = (type: string): boolean => {
-  return BYTES_REGEX.test(type);
-};
 
 /**
  * Get the length of the specified type. If a length is not specified, or if the length is out of range (0 < n <= 32),
  * this will throw an error.
  *
- * @param {string} type
- * @return {number | undefined}
+ * @param type The type to get the length for.
+ * @return The byte length of the type.
  */
 export const getByteLength = (type: string): number => {
   const bytes = type.match(BYTES_REGEX)?.[1];
@@ -29,27 +25,32 @@ export const getByteLength = (type: string): number => {
   throw new Error('Invalid type: no length');
 };
 
-export const encodeFixedBytes: EncodeFunction<BytesInput> = (
-  buffer: Uint8Array,
-  value: BytesInput,
-  type: string
-): Uint8Array => {
-  const length = getByteLength(type);
-  const bufferValue = toBuffer(value);
+export const fixedBytes: Parser<BytesLike, Uint8Array> = {
+  isDynamic: false,
 
-  if (bufferValue.length > length) {
-    throw new Error(`Buffer is too long, expected ${length}, got ${bufferValue.length}`);
+  /**
+   * Check if a type is a fixed bytes type.
+   *
+   * @param type The type to check.
+   * @return Whether the type is a fixed bytes type.
+   */
+  isType(type: string): boolean {
+    return BYTES_REGEX.test(type);
+  },
+
+  encode({ type, buffer, value }): Uint8Array {
+    const length = getByteLength(type);
+    const bufferValue = toBuffer(value);
+
+    if (bufferValue.length !== length) {
+      throw new Error(`Buffer has invalid length, expected ${length}, got ${bufferValue.length}`);
+    }
+
+    return concat([buffer, addPadding(bufferValue)]);
+  },
+
+  decode({ type, value }: DecodeArgs): Uint8Array {
+    const length = getByteLength(type);
+    return value.slice(0, length);
   }
-
-  return concat([buffer, addPadding(bufferValue)]);
-};
-
-export const decodeFixedBytes: DecodeFunction<Uint8Array> = (
-  value: Uint8Array,
-  _: Uint8Array,
-  type: string
-): Uint8Array => {
-  const length = getByteLength(type);
-
-  return value.subarray(0, length);
 };

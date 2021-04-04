@@ -1,25 +1,47 @@
 import { fromHex, toHex } from '../utils';
-import { decodeFixedBytes, encodeFixedBytes } from './fixed-bytes';
+import { fixedBytes, getByteLength } from './fixed-bytes';
 
-describe('encodeFixedBytes', () => {
-  it('encodes a fixed byte array to a buffer', () => {
-    expect(toHex(encodeFixedBytes(new Uint8Array(0), '0xf00f00', 'bytes32'))).toBe(
-      'f00f000000000000000000000000000000000000000000000000000000000000'
-    );
+describe('fixed-bytes', () => {
+  describe('encode', () => {
+    it('encodes fixed bytes', () => {
+      expect(
+        toHex(
+          fixedBytes.encode({
+            type: 'bytes32',
+            value: 'abcdef1234567890000000000000000000000000000000000000000000000000',
+            buffer: new Uint8Array()
+          })
+        )
+      ).toBe('abcdef1234567890000000000000000000000000000000000000000000000000');
+    });
+
+    it('throws if the length is invalid', () => {
+      expect(() =>
+        fixedBytes.encode({ type: 'bytes32', value: 'abcdef123456789', buffer: new Uint8Array() })
+      ).toThrow();
+    });
   });
 
-  it('throws if the value is too long', () => {
-    expect(() => encodeFixedBytes(new Uint8Array(0), '0xf00f00', 'bytes1')).toThrow();
+  describe('decode', () => {
+    it('decodes encoded fixed bytes', () => {
+      const value = fromHex('abcdef1234567890000000000000000000000000000000000000000000000000');
+      expect(toHex(fixedBytes.decode({ type: 'bytes32', value, skip: jest.fn() }))).toBe(
+        'abcdef1234567890000000000000000000000000000000000000000000000000'
+      );
+    });
   });
 });
 
-describe('decodeFixedBytes', () => {
-  it('decodes a fixed byte array from a buffer', () => {
-    const buffer = fromHex('f00f000000000000000000000000000000000000000000000000000000000000');
-    expect(toHex(decodeFixedBytes(buffer, new Uint8Array(0), 'bytes1'))).toBe('f0');
-    expect(toHex(decodeFixedBytes(buffer, new Uint8Array(0), 'bytes16'))).toBe('f00f0000000000000000000000000000');
-    expect(toHex(decodeFixedBytes(buffer, new Uint8Array(0), 'bytes32'))).toBe(
-      'f00f000000000000000000000000000000000000000000000000000000000000'
-    );
+describe('getByteLength', () => {
+  it('returns the byte length for a type', () => {
+    expect(getByteLength('bytes32')).toBe(32);
+    expect(getByteLength('bytes16')).toBe(16);
+    expect(getByteLength('bytes1')).toBe(1);
+  });
+
+  it('throws an error if the length is invalid', () => {
+    expect(() => getByteLength('bytes64')).toThrow();
+    expect(() => getByteLength('bytes0')).toThrow();
+    expect(() => getByteLength('bytes')).toThrow();
   });
 });
