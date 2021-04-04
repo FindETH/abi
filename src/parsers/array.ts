@@ -6,9 +6,9 @@ import { decodeBytes, encodeBytes } from './bytes';
 import { decodeFixedBytes, encodeFixedBytes, isFixedBytes } from './fixed-bytes';
 import { decodeNumber, encodeNumber, isNumber } from './number';
 import { decodeString, encodeString } from './string';
+import { decodeTuple, encodeTuple, getTypes, isDynamicTuple, isTuple } from './tuple';
 
 const ARRAY_REGEX = /^(.*)\[]$/;
-const TUPLE_REGEX = /^\((.*)\)$/;
 
 /**
  * Check if a type is an array type.
@@ -20,25 +20,14 @@ export const isArray = (type: string): boolean => {
   return ARRAY_REGEX.test(type);
 };
 
-export const isTuple = (type: string): boolean => {
-  return TUPLE_REGEX.test(type);
-};
-
 /**
- * Get the "inner" type for an array or tuple type. E.g. `getType("uint256[]")` -> ["uint256"].
+ * Get the "inner" type for an array type. E.g. `getType("uint256[]")` -> ["uint256"].
  *
  * @param {string} type
  * @return {string}
  */
-export const getType = (type: string): string[] => {
-  if (!isArray(type) && isTuple(type)) {
-    return type
-      .slice(1, -1)
-      .split(',')
-      .map((type) => type.trim());
-  }
-
-  return [type.match(ARRAY_REGEX)![1]];
+export const getType = (type: string): string => {
+  return type.match(ARRAY_REGEX)![1];
 };
 
 export const encodeArray: EncodeFunction<unknown[]> = (
@@ -46,20 +35,16 @@ export const encodeArray: EncodeFunction<unknown[]> = (
   values: unknown[],
   type: string
 ): Uint8Array => {
-  if (!isArray(type) && !isTuple(type)) {
+  if (!isArray(type)) {
     throw new Error('Invalid type: type is not array');
   }
 
   const actualType = getType(type);
 
-  if (isTuple(type)) {
-    return pack(buffer, values, actualType);
-  }
-
   const length = toBuffer(values.length);
   const arrayBuffer = concat([buffer, length]);
 
-  return pack(arrayBuffer, values, new Array(values.length).fill(actualType[0]));
+  return pack(arrayBuffer, values, new Array(values.length).fill(actualType));
 };
 
 export const decodeArray: DecodeFunction<unknown[]> = (
@@ -67,23 +52,18 @@ export const decodeArray: DecodeFunction<unknown[]> = (
   buffer: Uint8Array,
   type: string
 ): unknown[] => {
-  if (!isArray(type) && !isTuple(type)) {
+  if (!isArray(type)) {
     throw new Error('Invalid type: type is not array');
   }
 
   const actualType = getType(type);
   const pointer = Number(toNumber(value));
-
-  if (isTuple(type)) {
-    return unpack(value, actualType);
-  }
-
   const length = Number(toNumber(buffer.subarray(pointer, pointer + 32)));
 
   const arrayPointer = pointer + 32;
   const arrayBuffer = buffer.subarray(arrayPointer);
 
-  return unpack(arrayBuffer, new Array(length).fill(actualType[0]));
+  return unpack(arrayBuffer, new Array(length).fill(actualType));
 };
 
 /**
@@ -97,11 +77,6 @@ const parsers = {
   },
   array: {
     dynamic: true,
-    encode: encodeArray,
-    decode: decodeArray
-  },
-  tuple: {
-    dynamic: false,
     encode: encodeArray,
     decode: decodeArray
   },
@@ -129,6 +104,11 @@ const parsers = {
     dynamic: true,
     encode: encodeString,
     decode: decodeString
+  },
+  tuple: {
+    dynamic: false,
+    encode: encodeTuple,
+    decode: decodeTuple
   }
 };
 
@@ -247,7 +227,18 @@ export const unpack = (buffer: Uint8Array, types: string[]): unknown[] => {
 
     const parser = getParser(type);
     if (isTuple(type)) {
-      const types = getType(type);
+      const types = getTypes(type);
+
+      // TODO: Make this more generic
+      if (isDynamicTuple(types)) {
+        const value = buffer.subarray(pointer, pointer + 32);
+        const valuePointer = Number(toNumber(value));
+        const actualValue = buffer.subarray(valuePointer);
+
+        pointer += 32;
+        return parser.decode(actualValue, buffer, type);
+      }
+
       const tupleLength = types.length * 32;
 
       const value = buffer.subarray(pointer, pointer + tupleLength);
