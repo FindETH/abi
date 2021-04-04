@@ -8,6 +8,7 @@ import { decodeNumber, encodeNumber, isNumber } from './number';
 import { decodeString, encodeString } from './string';
 
 const ARRAY_REGEX = /^(.*)\[]$/;
+const TUPLE_REGEX = /^\((.*)\)$/;
 
 /**
  * Check if a type is an array type.
@@ -19,14 +20,25 @@ export const isArray = (type: string): boolean => {
   return ARRAY_REGEX.test(type);
 };
 
+export const isTuple = (type: string): boolean => {
+  return TUPLE_REGEX.test(type);
+};
+
 /**
- * Get the "inner" type for an array type. E.g. `getType("uint256[]")` -> uint256.
+ * Get the "inner" type for an array or tuple type. E.g. `getType("uint256[]")` -> ["uint256"].
  *
  * @param {string} type
  * @return {string}
  */
-export const getType = (type: string): string => {
-  return type.match(ARRAY_REGEX)![1];
+export const getType = (type: string): string[] => {
+  if (!isArray(type) && isTuple(type)) {
+    return type
+      .slice(1, -1)
+      .split(',')
+      .map((type) => type.trim());
+  }
+
+  return [type.match(ARRAY_REGEX)![1]];
 };
 
 export const encodeArray: EncodeFunction<unknown[]> = (
@@ -34,16 +46,20 @@ export const encodeArray: EncodeFunction<unknown[]> = (
   values: unknown[],
   type: string
 ): Uint8Array => {
-  if (!isArray(type)) {
+  if (!isArray(type) && !isTuple(type)) {
     throw new Error('Invalid type: type is not array');
   }
 
   const actualType = getType(type);
-  const length = toBuffer(values.length);
 
+  if (isTuple(type)) {
+    return pack(buffer, values, actualType);
+  }
+
+  const length = toBuffer(values.length);
   const arrayBuffer = concat([buffer, length]);
 
-  return pack(arrayBuffer, values, new Array(values.length).fill(actualType));
+  return pack(arrayBuffer, values, new Array(values.length).fill(actualType[0]));
 };
 
 export const decodeArray: DecodeFunction<unknown[]> = (
@@ -51,18 +67,23 @@ export const decodeArray: DecodeFunction<unknown[]> = (
   buffer: Uint8Array,
   type: string
 ): unknown[] => {
-  if (!isArray(type)) {
+  if (!isArray(type) && !isTuple(type)) {
     throw new Error('Invalid type: type is not array');
   }
 
   const actualType = getType(type);
   const pointer = Number(toNumber(value));
+
+  if (isTuple(type)) {
+    return unpack(value, actualType);
+  }
+
   const length = Number(toNumber(buffer.subarray(pointer, pointer + 32)));
 
   const arrayPointer = pointer + 32;
   const arrayBuffer = buffer.subarray(arrayPointer);
 
-  return unpack(arrayBuffer, new Array(length).fill(actualType));
+  return unpack(arrayBuffer, new Array(length).fill(actualType[0]));
 };
 
 /**
@@ -76,6 +97,11 @@ const parsers = {
   },
   array: {
     dynamic: true,
+    encode: encodeArray,
+    decode: decodeArray
+  },
+  tuple: {
+    dynamic: false,
     encode: encodeArray,
     decode: decodeArray
   },
@@ -134,6 +160,11 @@ export const getParser = (type: string) => {
   // type[]
   if (isArray(type)) {
     return parsers.array;
+  }
+
+  // (type)
+  if (isTuple(type)) {
+    return parsers.tuple;
   }
 
   throw new Error(`type "${type}" is not supported`);
@@ -207,31 +238,27 @@ export const pack = (buffer: Uint8Array, values: unknown[], types: string[]): Ui
   return concat([buffer, updatedStaticBuffer, packedDynamicBuffer]);
 };
 
-/**
- * Iterate over a `Buffer` with provided `chunkSize`.
- *
- * @param {Buffer} buffer
- * @param {number} chunkSize
- * @return {Generator<Buffer, Buffer, void>}
- */
-export function* iterate(buffer: Uint8Array, chunkSize: number): Generator<Uint8Array, Uint8Array, void> {
-  for (let i = 0; i < buffer.length; i += chunkSize) {
-    yield buffer.slice(i, i + chunkSize);
-  }
-
-  return buffer;
-}
-
 export const unpack = (buffer: Uint8Array, types: string[]): unknown[] => {
-  const iterator = iterate(buffer, 32);
-
+  let pointer = 0;
   return types.map((type) => {
-    const { value, done } = iterator.next();
-    if (done) {
+    if (pointer >= buffer.length) {
       throw new Error('input data has an invalid length');
     }
 
     const parser = getParser(type);
+    if (isTuple(type)) {
+      const types = getType(type);
+      const tupleLength = types.length * 32;
+
+      const value = buffer.subarray(pointer, pointer + tupleLength);
+      pointer += tupleLength;
+
+      return parser.decode(value, buffer, type);
+    }
+
+    const value = buffer.subarray(pointer, pointer + 32);
+    pointer += 32;
+
     return parser.decode(value, buffer, type);
   });
 };
