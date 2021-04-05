@@ -73,6 +73,8 @@
 							<h3>Type aliases</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-type-alias tsd-parent-kind-module"><a href="types_mappings.html#inputtypemap" class="tsd-kind-icon">Input<wbr>Type<wbr>Map</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter"><a href="types_mappings.html#maptoinput" class="tsd-kind-icon">Map<wbr>ToInput</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter"><a href="types_mappings.html#maptooutput" class="tsd-kind-icon">Map<wbr>ToOutput</a></li>
 								<li class="tsd-kind-type-alias tsd-parent-kind-module"><a href="types_mappings.html#outputtypemap" class="tsd-kind-icon">Output<wbr>Type<wbr>Map</a></li>
 								<li class="tsd-kind-type-alias tsd-parent-kind-module"><a href="types_mappings.html#type" class="tsd-kind-icon">Type</a></li>
 								<li class="tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter"><a href="types_mappings.html#typemapper" class="tsd-kind-icon">Type<wbr>Mapper</a></li>
@@ -86,10 +88,10 @@
 				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module">
 					<a name="inputtypemap" class="tsd-anchor"></a>
 					<h3>Input<wbr>Type<wbr>Map</h3>
-					<div class="tsd-signature tsd-kind-icon">Input<wbr>Type<wbr>Map<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">WithArrayTypes</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">GenericTypeMap</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">typeof </span><a href="parsers_address.html#encodeaddress" class="tsd-signature-type" data-tsd-kind="Function">encodeAddress</a><span class="tsd-signature-symbol">, </span><span class="tsd-signature-symbol">typeof </span><a href="parsers_boolean.html#encodeboolean" class="tsd-signature-type" data-tsd-kind="Function">encodeBoolean</a><span class="tsd-signature-symbol">, </span><span class="tsd-signature-symbol">typeof </span><a href="parsers_bytes.html#encodebytes" class="tsd-signature-type" data-tsd-kind="Function">encodeBytes</a><span class="tsd-signature-symbol">, </span><span class="tsd-signature-symbol">typeof </span><a href="parsers_function.html#encodefunction" class="tsd-signature-type" data-tsd-kind="Function">encodeFunction</a><span class="tsd-signature-symbol">, </span><span class="tsd-signature-symbol">typeof </span><a href="parsers_number.html#encodenumber" class="tsd-signature-type" data-tsd-kind="Function">encodeNumber</a><span class="tsd-signature-symbol">, </span><span class="tsd-signature-symbol">typeof </span><a href="parsers_string.html#encodestring" class="tsd-signature-type" data-tsd-kind="Function">encodeString</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<div class="tsd-signature tsd-kind-icon">Input<wbr>Type<wbr>Map<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">WithArrayTypes</span><span class="tsd-signature-symbol">&lt;</span><a href="types_mappings.html#maptoinput" class="tsd-signature-type" data-tsd-kind="Type alias">MapToInput</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TypeMap</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/FindETH/abi/blob/00ba56d/src/types/mappings.ts#L42">types/mappings.ts:42</a></li>
+							<li>Defined in <a href="https://github.com/FindETH/abi/blob/8a04f22/src/types/mappings.ts#L28">types/mappings.ts:28</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -100,13 +102,55 @@
 						<p>Accepts multiple input types for certain ABI types, like strings, bytes, numbers.</p>
 					</div>
 				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter">
+					<a name="maptoinput" class="tsd-anchor"></a>
+					<h3>Map<wbr>ToInput</h3>
+					<div class="tsd-signature tsd-kind-icon">Map<wbr>ToInput&lt;T&gt;<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{</span><span class="tsd-signature-symbol">[ </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol"> in </span><span class="tsd-signature-symbol">keyof </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">0</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol"> }</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/FindETH/abi/blob/8a04f22/src/types/mappings.ts#L62">types/mappings.ts:62</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Helper type that maps a tuple to the first element.</p>
+						</div>
+					</div>
+					<h4 class="tsd-type-parameters-title">Type parameters</h4>
+					<ul class="tsd-type-parameters">
+						<li>
+							<h4>T<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Record</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter">
+					<a name="maptooutput" class="tsd-anchor"></a>
+					<h3>Map<wbr>ToOutput</h3>
+					<div class="tsd-signature tsd-kind-icon">Map<wbr>ToOutput&lt;T&gt;<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{</span><span class="tsd-signature-symbol">[ </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol"> in </span><span class="tsd-signature-symbol">keyof </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">1</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol"> }</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/FindETH/abi/blob/8a04f22/src/types/mappings.ts#L69">types/mappings.ts:69</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Helper type that maps a tuple to the second element.</p>
+						</div>
+					</div>
+					<h4 class="tsd-type-parameters-title">Type parameters</h4>
+					<ul class="tsd-type-parameters">
+						<li>
+							<h4>T<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Record</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module">
 					<a name="outputtypemap" class="tsd-anchor"></a>
 					<h3>Output<wbr>Type<wbr>Map</h3>
-					<div class="tsd-signature tsd-kind-icon">Output<wbr>Type<wbr>Map<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">WithArrayTypes</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">GenericTypeMap</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">typeof </span><a href="parsers_address.html#decodeaddress" class="tsd-signature-type" data-tsd-kind="Function">decodeAddress</a><span class="tsd-signature-symbol">, </span><span class="tsd-signature-symbol">typeof </span><a href="parsers_boolean.html#decodeboolean" class="tsd-signature-type" data-tsd-kind="Function">decodeBoolean</a><span class="tsd-signature-symbol">, </span><span class="tsd-signature-symbol">typeof </span><a href="parsers_bytes.html#decodebytes" class="tsd-signature-type" data-tsd-kind="Function">decodeBytes</a><span class="tsd-signature-symbol">, </span><span class="tsd-signature-symbol">typeof </span><a href="parsers_function.html#decodefunction" class="tsd-signature-type" data-tsd-kind="Function">decodeFunction</a><span class="tsd-signature-symbol">, </span><span class="tsd-signature-symbol">typeof </span><a href="parsers_number.html#decodenumber" class="tsd-signature-type" data-tsd-kind="Function">decodeNumber</a><span class="tsd-signature-symbol">, </span><span class="tsd-signature-symbol">typeof </span><a href="parsers_string.html#decodestring" class="tsd-signature-type" data-tsd-kind="Function">decodeString</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<div class="tsd-signature tsd-kind-icon">Output<wbr>Type<wbr>Map<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">WithArrayTypes</span><span class="tsd-signature-symbol">&lt;</span><a href="types_mappings.html#maptooutput" class="tsd-signature-type" data-tsd-kind="Type alias">MapToOutput</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TypeMap</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/FindETH/abi/blob/00ba56d/src/types/mappings.ts#L25">types/mappings.ts:25</a></li>
+							<li>Defined in <a href="https://github.com/FindETH/abi/blob/8a04f22/src/types/mappings.ts#L20">types/mappings.ts:20</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -122,7 +166,7 @@
 					<div class="tsd-signature tsd-kind-icon">Type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">keyof </span><a href="types_mappings.html#outputtypemap" class="tsd-signature-type" data-tsd-kind="Type alias">OutputTypeMap</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/FindETH/abi/blob/00ba56d/src/types/mappings.ts#L18">types/mappings.ts:18</a></li>
+							<li>Defined in <a href="https://github.com/FindETH/abi/blob/8a04f22/src/types/mappings.ts#L13">types/mappings.ts:13</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -132,7 +176,7 @@
 					<div class="tsd-signature tsd-kind-icon">Type<wbr>Mapper&lt;I, T&gt;<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Mapper</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">I</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/FindETH/abi/blob/00ba56d/src/types/mappings.ts#L19">types/mappings.ts:19</a></li>
+							<li>Defined in <a href="https://github.com/FindETH/abi/blob/8a04f22/src/types/mappings.ts#L14">types/mappings.ts:14</a></li>
 						</ul>
 					</aside>
 					<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -160,13 +204,22 @@
 						<a href="index.html">index</a>
 					</li>
 					<li class=" tsd-kind-module">
+						<a href="iterator.html">iterator</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="packer.html">packer</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="parsers.html">parsers</a>
+					</li>
+					<li class=" tsd-kind-module">
 						<a href="parsers_address.html">parsers/address</a>
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="parsers_array.html">parsers/array</a>
 					</li>
 					<li class=" tsd-kind-module">
-						<a href="parsers_boolean.html">parsers/boolean</a>
+						<a href="parsers_bool.html">parsers/bool</a>
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="parsers_bytes.html">parsers/bytes</a>
@@ -202,9 +255,6 @@
 						<a href="types_parser.html">types/parser</a>
 					</li>
 					<li class=" tsd-kind-module">
-						<a href="types_vendor_keccak.html">types/vendor/keccak</a>
-					</li>
-					<li class=" tsd-kind-module">
 						<a href="utils.html">utils</a>
 					</li>
 					<li class=" tsd-kind-module">
@@ -219,6 +269,12 @@
 				<ul class="before-current">
 					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
 						<a href="types_mappings.html#inputtypemap" class="tsd-kind-icon">Input<wbr>Type<wbr>Map</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="types_mappings.html#maptoinput" class="tsd-kind-icon">Map<wbr>ToInput</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="types_mappings.html#maptooutput" class="tsd-kind-icon">Map<wbr>ToOutput</a>
 					</li>
 					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
 						<a href="types_mappings.html#outputtypemap" class="tsd-kind-icon">Output<wbr>Type<wbr>Map</a>
@@ -239,10 +295,15 @@
 		<h2>Legend</h2>
 		<div class="tsd-legend-group">
 			<ul class="tsd-legend">
+				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
 				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
 				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
 				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
 				<li class="tsd-kind-type-alias tsd-has-type-parameter"><span class="tsd-kind-icon">Type alias with type parameter</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
 			</ul>
 		</div>
 	</div>

@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>parsers/function | @findeth/abi</title>
+	<title>SolidityFunction | @findeth/abi</title>
 	<meta name="description" content="Documentation for @findeth/abi">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -55,81 +55,62 @@
 					<a href="../modules.html">@findeth/abi</a>
 				</li>
 				<li>
-					<a href="parsers_function.html">parsers/function</a>
+					<a href="../modules/types_input.html">types/input</a>
+				</li>
+				<li>
+					<a href="types_input.solidityfunction.html">SolidityFunction</a>
 				</li>
 			</ul>
-			<h1>Module parsers/function</h1>
+			<h1>Interface SolidityFunction</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-hierarchy">
+				<h3>Hierarchy</h3>
+				<ul class="tsd-hierarchy">
+					<li>
+						<span class="target">SolidityFunction</span>
+					</li>
+				</ul>
+			</section>
 			<section class="tsd-panel-group tsd-index-group">
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
-							<h3>Variables</h3>
+							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-variable tsd-parent-kind-module"><a href="parsers_function.html#fn" class="tsd-kind-icon">fn</a></li>
-							</ul>
-						</section>
-						<section class="tsd-index-section ">
-							<h3>Functions</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-function tsd-parent-kind-module"><a href="parsers_function.html#getfunction" class="tsd-kind-icon">get<wbr>Function</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="types_input.solidityfunction.html#address" class="tsd-kind-icon">address</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="types_input.solidityfunction.html#selector" class="tsd-kind-icon">selector</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Variables</h2>
-				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-module">
-					<a name="fn" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagConst">Const</span> fn</h3>
-					<div class="tsd-signature tsd-kind-icon">fn<span class="tsd-signature-symbol">:</span> <a href="../interfaces/types_parser.parser.html" class="tsd-signature-type" data-tsd-kind="Interface">Parser</a><span class="tsd-signature-symbol">&lt;</span><a href="types_input.html#functionlike" class="tsd-signature-type" data-tsd-kind="Type alias">FunctionLike</a><span class="tsd-signature-symbol">, </span><a href="../interfaces/types_input.solidityfunction.html" class="tsd-signature-type" data-tsd-kind="Interface">SolidityFunction</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> = ...</span></div>
+				<h2>Properties</h2>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="address" class="tsd-anchor"></a>
+					<h3>address</h3>
+					<div class="tsd-signature tsd-kind-icon">address<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/FindETH/abi/blob/8a04f22/src/parsers/function.ts#L19">parsers/function.ts:19</a></li>
+							<li>Defined in <a href="https://github.com/FindETH/abi/blob/8a04f22/src/types/input.ts#L7">types/input.ts:7</a></li>
 						</ul>
 					</aside>
 				</section>
-			</section>
-			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Functions</h2>
-				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
-					<a name="getfunction" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagConst">Const</span> get<wbr>Function</h3>
-					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Function<span class="tsd-signature-symbol">(</span>input<span class="tsd-signature-symbol">: </span><a href="types_input.html#functionlike" class="tsd-signature-type" data-tsd-kind="Type alias">FunctionLike</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Uint8Array</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/FindETH/abi/blob/8a04f22/src/parsers/function.ts#L11">parsers/function.ts:11</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Get the encoded function as buffer. It consists of the address (20 bytes) and function selector (4 bytes).</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>input: <a href="types_input.html#functionlike" class="tsd-signature-type" data-tsd-kind="Type alias">FunctionLike</a></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>The function-like input.</p>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Uint8Array</span></h4>
-							<p>The function as buffer.</p>
-						</li>
-					</ul>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="selector" class="tsd-anchor"></a>
+					<h3>selector</h3>
+					<div class="tsd-signature tsd-kind-icon">selector<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/FindETH/abi/blob/8a04f22/src/types/input.ts#L8">types/input.ts:8</a></li>
+						</ul>
+					</aside>
 				</section>
 			</section>
 		</div>
@@ -140,80 +121,101 @@
 						<a href="../modules.html">Exports</a>
 					</li>
 					<li class=" tsd-kind-module">
-						<a href="abi.html">abi</a>
+						<a href="../modules/abi.html">abi</a>
 					</li>
 					<li class=" tsd-kind-module">
-						<a href="index.html">index</a>
+						<a href="../modules/index.html">index</a>
 					</li>
 					<li class=" tsd-kind-module">
-						<a href="iterator.html">iterator</a>
+						<a href="../modules/iterator.html">iterator</a>
 					</li>
 					<li class=" tsd-kind-module">
-						<a href="packer.html">packer</a>
+						<a href="../modules/packer.html">packer</a>
 					</li>
 					<li class=" tsd-kind-module">
-						<a href="parsers.html">parsers</a>
+						<a href="../modules/parsers.html">parsers</a>
 					</li>
 					<li class=" tsd-kind-module">
-						<a href="parsers_address.html">parsers/address</a>
+						<a href="../modules/parsers_address.html">parsers/address</a>
 					</li>
 					<li class=" tsd-kind-module">
-						<a href="parsers_array.html">parsers/array</a>
+						<a href="../modules/parsers_array.html">parsers/array</a>
 					</li>
 					<li class=" tsd-kind-module">
-						<a href="parsers_bool.html">parsers/bool</a>
+						<a href="../modules/parsers_bool.html">parsers/bool</a>
 					</li>
 					<li class=" tsd-kind-module">
-						<a href="parsers_bytes.html">parsers/bytes</a>
+						<a href="../modules/parsers_bytes.html">parsers/bytes</a>
 					</li>
 					<li class=" tsd-kind-module">
-						<a href="parsers_fixed_bytes.html">parsers/fixed-<wbr>bytes</a>
+						<a href="../modules/parsers_fixed_bytes.html">parsers/fixed-<wbr>bytes</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/parsers_function.html">parsers/function</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/parsers_number.html">parsers/number</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/parsers_string.html">parsers/string</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/parsers_tuple.html">parsers/tuple</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/types.html">types</a>
 					</li>
 					<li class="current tsd-kind-module">
-						<a href="parsers_function.html">parsers/function</a>
+						<a href="../modules/types_input.html">types/input</a>
 					</li>
 					<li class=" tsd-kind-module">
-						<a href="parsers_number.html">parsers/number</a>
+						<a href="../modules/types_mappings.html">types/mappings</a>
 					</li>
 					<li class=" tsd-kind-module">
-						<a href="parsers_string.html">parsers/string</a>
+						<a href="../modules/types_narrow.html">types/narrow</a>
 					</li>
 					<li class=" tsd-kind-module">
-						<a href="parsers_tuple.html">parsers/tuple</a>
+						<a href="../modules/types_parser.html">types/parser</a>
 					</li>
 					<li class=" tsd-kind-module">
-						<a href="types.html">types</a>
+						<a href="../modules/utils.html">utils</a>
 					</li>
 					<li class=" tsd-kind-module">
-						<a href="types_input.html">types/input</a>
+						<a href="../modules/utils_buffer.html">utils/buffer</a>
 					</li>
 					<li class=" tsd-kind-module">
-						<a href="types_mappings.html">types/mappings</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="types_narrow.html">types/narrow</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="types_parser.html">types/parser</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="utils.html">utils</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="utils_buffer.html">utils/buffer</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="utils_twos_complement.html">utils/twos-<wbr>complement</a>
+						<a href="../modules/utils_twos_complement.html">utils/twos-<wbr>complement</a>
 					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-variable tsd-parent-kind-module">
-						<a href="parsers_function.html#fn" class="tsd-kind-icon">fn</a>
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-interface tsd-parent-kind-module">
+						<a href="types_input.solidityfunction.html" class="tsd-kind-icon">Solidity<wbr>Function</a>
+						<ul>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="types_input.solidityfunction.html#address" class="tsd-kind-icon">address</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="types_input.solidityfunction.html#selector" class="tsd-kind-icon">selector</a>
+							</li>
+						</ul>
 					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-module">
-						<a href="parsers_function.html#getfunction" class="tsd-kind-icon">get<wbr>Function</a>
+				</ul>
+				<ul class="after-current">
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
+						<a href="../modules/types_input.html#booleanlike" class="tsd-kind-icon">Boolean<wbr>Like</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
+						<a href="../modules/types_input.html#byteslike" class="tsd-kind-icon">Bytes<wbr>Like</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
+						<a href="../modules/types_input.html#functionlike" class="tsd-kind-icon">Function<wbr>Like</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
+						<a href="../modules/types_input.html#numberlike" class="tsd-kind-icon">Number<wbr>Like</a>
 					</li>
 				</ul>
 			</nav>
@@ -234,6 +236,7 @@
 			<ul class="tsd-legend">
 				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
 				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
 			</ul>
 		</div>
 	</div>

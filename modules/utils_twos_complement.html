@@ -91,16 +91,25 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/FindETH/abi/blob/00ba56d/src/utils/twos-complement.ts#L3">utils/twos-complement.ts:3</a></li>
+									<li>Defined in <a href="https://github.com/FindETH/abi/blob/8a04f22/src/utils/twos-complement.ts#L9">utils/twos-complement.ts:9</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get a bigint from a two&#39;s complement encoded buffer or hexadecimal string.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>buffer: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Uint8Array</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The buffer to get the number for.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">bigint</span></h4>
+							<p>The parsed number.</p>
 						</li>
 					</ul>
 				</section>
@@ -114,19 +123,31 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/FindETH/abi/blob/00ba56d/src/utils/twos-complement.ts#L14">utils/twos-complement.ts:14</a></li>
+									<li>Defined in <a href="https://github.com/FindETH/abi/blob/8a04f22/src/utils/twos-complement.ts#L27">utils/twos-complement.ts:27</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get a two&#39;s complement encoded buffer from a bigint.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>value: <span class="tsd-signature-type">bigint</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The number to get the buffer for.</p>
+									</div>
 								</li>
 								<li>
 									<h5>length: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The number of bytes to pad the buffer to.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Uint8Array</span></h4>
+							<p>The two&#39;s complement encoded buffer.</p>
 						</li>
 					</ul>
 				</section>
@@ -145,13 +166,22 @@
 						<a href="index.html">index</a>
 					</li>
 					<li class=" tsd-kind-module">
+						<a href="iterator.html">iterator</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="packer.html">packer</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="parsers.html">parsers</a>
+					</li>
+					<li class=" tsd-kind-module">
 						<a href="parsers_address.html">parsers/address</a>
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="parsers_array.html">parsers/array</a>
 					</li>
 					<li class=" tsd-kind-module">
-						<a href="parsers_boolean.html">parsers/boolean</a>
+						<a href="parsers_bool.html">parsers/bool</a>
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="parsers_bytes.html">parsers/bytes</a>
@@ -187,9 +217,6 @@
 						<a href="types_parser.html">types/parser</a>
 					</li>
 					<li class=" tsd-kind-module">
-						<a href="types_vendor_keccak.html">types/vendor/keccak</a>
-					</li>
-					<li class=" tsd-kind-module">
 						<a href="utils.html">utils</a>
 					</li>
 					<li class=" tsd-kind-module">
@@ -218,10 +245,15 @@
 		<h2>Legend</h2>
 		<div class="tsd-legend-group">
 			<ul class="tsd-legend">
+				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
 				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
 				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
 				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
 				<li class="tsd-kind-type-alias tsd-has-type-parameter"><span class="tsd-kind-icon">Type alias with type parameter</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
 			</ul>
 		</div>
 	</div>

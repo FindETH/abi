@@ -91,12 +91,12 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/FindETH/abi/blob/00ba56d/src/abi.ts#L17">abi.ts:17</a></li>
+									<li>Defined in <a href="https://github.com/FindETH/abi/blob/8a04f22/src/abi.ts#L25">abi.ts:25</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Decode the data with the provided types.</p>
+									<p>Decode an ABI encoded buffer with the specified types.</p>
 								</div>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -109,12 +109,19 @@
 							<ul class="tsd-parameters">
 								<li>
 									<h5>types: <a href="types_narrow.html#try" class="tsd-signature-type" data-tsd-kind="Type alias">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">NarrowRaw</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The types to decode the buffer with.</p>
+									</div>
 								</li>
 								<li>
 									<h5>buffer: <span class="tsd-signature-type">Uint8Array</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The buffer to decode.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Mapper</span><span class="tsd-signature-symbol">&lt;</span><a href="types_mappings.html#outputtypemap" class="tsd-signature-type" data-tsd-kind="Type alias">OutputTypeMap</a><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>The decoded values as array.</p>
 						</li>
 					</ul>
 				</section>
@@ -128,7 +135,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/FindETH/abi/blob/00ba56d/src/abi.ts#L7">abi.ts:7</a></li>
+									<li>Defined in <a href="https://github.com/FindETH/abi/blob/8a04f22/src/abi.ts#L11">abi.ts:11</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -146,12 +153,19 @@
 							<ul class="tsd-parameters">
 								<li>
 									<h5>types: <a href="types_narrow.html#try" class="tsd-signature-type" data-tsd-kind="Type alias">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">NarrowRaw</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The types to encode.</p>
+									</div>
 								</li>
 								<li>
 									<h5>values: <span class="tsd-signature-type">Mapper</span><span class="tsd-signature-symbol">&lt;</span><a href="types_mappings.html#inputtypemap" class="tsd-signature-type" data-tsd-kind="Type alias">InputTypeMap</a><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The values to encode. This array must have the same length as the types array.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Uint8Array</span></h4>
+							<p>The ABI encoded buffer.</p>
 						</li>
 					</ul>
 				</section>
@@ -170,13 +184,22 @@
 						<a href="index.html">index</a>
 					</li>
 					<li class=" tsd-kind-module">
+						<a href="iterator.html">iterator</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="packer.html">packer</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="parsers.html">parsers</a>
+					</li>
+					<li class=" tsd-kind-module">
 						<a href="parsers_address.html">parsers/address</a>
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="parsers_array.html">parsers/array</a>
 					</li>
 					<li class=" tsd-kind-module">
-						<a href="parsers_boolean.html">parsers/boolean</a>
+						<a href="parsers_bool.html">parsers/bool</a>
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="parsers_bytes.html">parsers/bytes</a>
@@ -212,9 +235,6 @@
 						<a href="types_parser.html">types/parser</a>
 					</li>
 					<li class=" tsd-kind-module">
-						<a href="types_vendor_keccak.html">types/vendor/keccak</a>
-					</li>
-					<li class=" tsd-kind-module">
 						<a href="utils.html">utils</a>
 					</li>
 					<li class=" tsd-kind-module">
@@ -243,10 +263,15 @@
 		<h2>Legend</h2>
 		<div class="tsd-legend-group">
 			<ul class="tsd-legend">
+				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
 				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
 				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
 				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
 				<li class="tsd-kind-type-alias tsd-has-type-parameter"><span class="tsd-kind-icon">Type alias with type parameter</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
 			</ul>
 		</div>
 	</div>

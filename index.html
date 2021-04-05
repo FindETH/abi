@@ -61,14 +61,13 @@
 				<a href="#findethabi" id="findethabi" style="color: inherit; text-decoration: none;">
 					<h1><code>@findeth/abi</code></h1>
 				</a>
-				<p><img src="https://img.shields.io/npm/v/@findeth/abi" alt="Version"> <img src="https://img.shields.io/github/license/FindETH/abi" alt="License"> <a href="https://travis-ci.com/FindETH/abi"><img src="https://travis-ci.com/FindETH/abi.svg?branch=master" alt="Travis CI"></a> <a href="https://codecov.io/gh/FindETH/abi"><img src="https://codecov.io/gh/FindETH/abi/branch/master/graph/badge.svg" alt="codecov"></a></p>
-				<p><code>@findeth/abi</code> is a zero-dependencies ABI encoder and decoder library used by FindETH. <strong>This library is experimental</strong>, and likely does not work with all contract interfaces. It is used in the desktop, web and CLI applications, that can be found here:</p>
+				<p><img src="https://img.shields.io/npm/v/@findeth/abi" alt="Version"> <img src="https://img.shields.io/github/license/FindETH/abi" alt="License"> <a href="https://github.com/FindETH/abi/actions"><img src="https://github.com/FindETH/abi/workflows/CI/badge.svg" alt="GitHub CI"></a> <a href="https://codecov.io/gh/FindETH/abi"><img src="https://codecov.io/gh/FindETH/abi/branch/master/graph/badge.svg" alt="codecov"></a></p>
+				<p><code>@findeth/abi</code> is a zero-dependencies ABI encoder and decoder library for FindETH. It supports both Node.js and web browsers. <strong>This library is experimental</strong>, and may not work with all contract interfaces. It is used in the FindETH applications, that can be found here:</p>
 				<ul>
-					<li><a href="https://github.com/FindETH/desktop">Desktop</a></li>
 					<li><a href="https://github.com/FindETH/web">Web</a></li>
-					<li><a href="https://github.com/FindETH/cli">CLI</a></li>
 				</ul>
-				<p><strong>Note</strong>: This is a work-in-progress version of FindETH, and is <strong>not</strong> production-ready. For the current version of FindETH, please refer to <a href="https://github.com/Mrtenz/FindETH/tree/master">this repository</a>.</p>
+				<p>Currently, most types (except fixed-point numbers (<code>fixed&lt;M&gt;x&lt;N&gt;</code>), and fixed-length arrays <code>type&lt;M&gt;</code>) are supported.</p>
+				<p><strong>Note</strong>: This is a work-in-progress version of FindETH, and is <strong>not</strong> production-ready. For the current version of FindETH, please refer to <a href="https://github.com/Mrtenz/FindETH/tree/master">this repository</a>. The public API <em>may</em> change in minor releases below 1.0.0 (though this is unlikely).</p>
 				<hr>
 				<a href="#installation" id="installation" style="color: inherit; text-decoration: none;">
 					<h2>Installation</h2>
@@ -78,11 +77,33 @@
 </code></pre>
 				<pre><code><span style="color: #001080">$</span><span style="color: #000000"> </span><span style="color: #001080">npm</span><span style="color: #000000"> </span><span style="color: #001080">install</span><span style="color: #000000"> @</span><span style="color: #001080">findeth</span><span style="color: #000000">/</span><span style="color: #001080">abi</span>
 </code></pre>
-				<p><strong>Note</strong>: If you are using TypeScript, <code>@findeth/abi</code> requires TypeScript 4.1 or newer.</p>
+				<p><strong>Note</strong>: If you are using TypeScript, <code>@findeth/abi</code> requires TypeScript 4.1 or newer. This is used for automatically inferring the types of the input and output, based on the specified <code>types</code>.</p>
 				<a href="#getting-started" id="getting-started" style="color: inherit; text-decoration: none;">
 					<h2>Getting Started</h2>
 				</a>
-				<p>TODO</p>
+				<p>You can use the <code>encode</code> and <code>decode</code> functions to encode and decode ABI respectively.</p>
+				<a href="#encode" id="encode" style="color: inherit; text-decoration: none;">
+					<h3>Encode</h3>
+				</a>
+				<p>The encode function takes an array of ABI types (e.g., <code>[&quot;string&quot;, &quot;uint256&quot;]</code>) and an array of values to encode. For example:</p>
+				<pre><code class="language-ts"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">encode</span><span style="color: #000000">, </span><span style="color: #001080">toHex</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;@findeth/abi&quot;</span><span style="color: #000000">;</span>
+
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">buffer</span><span style="color: #000000"> = </span><span style="color: #795E26">encode</span><span style="color: #000000">([</span><span style="color: #A31515">&quot;string&quot;</span><span style="color: #000000">, </span><span style="color: #A31515">&quot;uint256&quot;</span><span style="color: #000000">], [</span><span style="color: #A31515">&quot;foo bar&quot;</span><span style="color: #000000">, </span><span style="color: #098658">12345</span><span style="color: #000000">]);</span>
+<span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #795E26">toHex</span><span style="color: #000000">(</span><span style="color: #001080">buffer</span><span style="color: #000000">));</span>
+
+<span style="color: #008000">// 000000000000000000000000000000000000000000000000000000000000004000000000000000000000000000000000000000000000000000000000000030390000000000000000000000000000000000000000000000000000000000000007666f6f2062617200000000000000000000000000000000000000000000000000</span>
+</code></pre>
+				<a href="#decode" id="decode" style="color: inherit; text-decoration: none;">
+					<h3>Decode</h3>
+				</a>
+				<p>The decode function takes an array of ABI types, and a buffer (<code>Uint8Array</code>) to decode. Note that Node.js <code>Buffer</code>s are compatible with <code>Uint8Array</code>, but in order to maintain full compatibility with web browsers (without the need for polyfills), this library does not use <code>Buffer</code>. Example:</p>
+				<pre><code class="language-ts"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">decode</span><span style="color: #000000">, </span><span style="color: #001080">fromHex</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;@findeth/abi&quot;</span><span style="color: #000000">;</span>
+
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">value</span><span style="color: #000000"> = </span><span style="color: #795E26">fromHex</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;000000000000000000000000000000000000000000000000000000000000004000000000000000000000000000000000000000000000000000000000000030390000000000000000000000000000000000000000000000000000000000000007666f6f2062617200000000000000000000000000000000000000000000000000&quot;</span><span style="color: #000000">);</span>
+<span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #795E26">decode</span><span style="color: #000000">([</span><span style="color: #A31515">&quot;string&quot;</span><span style="color: #000000">, </span><span style="color: #A31515">&quot;uint256&quot;</span><span style="color: #000000">], </span><span style="color: #001080">value</span><span style="color: #000000">));</span>
+
+<span style="color: #008000">// [&quot;foo bar&quot;, 12345n]</span>
+</code></pre>
 				<a href="#development" id="development" style="color: inherit; text-decoration: none;">
 					<h2>Development</h2>
 				</a>
@@ -90,10 +111,10 @@
 				<pre><code><span style="color: #001080">$</span><span style="color: #000000"> </span><span style="color: #001080">yarn</span>
 </code></pre>
 				<p>To run automated tests, use the <code>test</code> script:</p>
-				<pre><code><span style="color: #001080">$</span><span style="color: #000000"> </span><span style="color: #001080">yarn</span><span style="color: #000000"> </span><span style="color: #001080">run</span><span style="color: #000000"> </span><span style="color: #001080">lint</span>
+				<pre><code><span style="color: #001080">$</span><span style="color: #000000"> </span><span style="color: #001080">yarn</span><span style="color: #000000"> </span><span style="color: #001080">test</span>
 </code></pre>
 				<p>To build the library, use the <code>build</code> script:</p>
-				<pre><code><span style="color: #001080">$</span><span style="color: #000000"> </span><span style="color: #001080">yarn</span><span style="color: #000000"> </span><span style="color: #001080">run</span><span style="color: #000000"> </span><span style="color: #001080">build</span>
+				<pre><code><span style="color: #001080">$</span><span style="color: #000000"> </span><span style="color: #001080">yarn</span><span style="color: #000000"> </span><span style="color: #001080">build</span>
 </code></pre>
 			</div>
 		</div>
@@ -110,13 +131,22 @@
 						<a href="modules/index.html">index</a>
 					</li>
 					<li class=" tsd-kind-module">
+						<a href="modules/iterator.html">iterator</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/packer.html">packer</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/parsers.html">parsers</a>
+					</li>
+					<li class=" tsd-kind-module">
 						<a href="modules/parsers_address.html">parsers/address</a>
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="modules/parsers_array.html">parsers/array</a>
 					</li>
 					<li class=" tsd-kind-module">
-						<a href="modules/parsers_boolean.html">parsers/boolean</a>
+						<a href="modules/parsers_bool.html">parsers/bool</a>
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="modules/parsers_bytes.html">parsers/bytes</a>
@@ -152,9 +182,6 @@
 						<a href="modules/types_parser.html">types/parser</a>
 					</li>
 					<li class=" tsd-kind-module">
-						<a href="modules/types_vendor_keccak.html">types/vendor/keccak</a>
-					</li>
-					<li class=" tsd-kind-module">
 						<a href="modules/utils.html">utils</a>
 					</li>
 					<li class=" tsd-kind-module">
@@ -177,10 +204,15 @@
 		<h2>Legend</h2>
 		<div class="tsd-legend-group">
 			<ul class="tsd-legend">
+				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
 				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
 				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
 				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
 				<li class="tsd-kind-type-alias tsd-has-type-parameter"><span class="tsd-kind-icon">Type alias with type parameter</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
 			</ul>
 		</div>
 	</div>
