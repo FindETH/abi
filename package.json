@@ -1,6 +1,6 @@
 {
   "name": "@findeth/abi",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "description": "A tiny Solidity ABI encoder and decoder",
   "author": "Maarten Zuidhoorn <maarten@zuidhoorn.com>",
   "homepage": "https://github.com/FindETH/abi",
