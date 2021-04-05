@@ -16,7 +16,7 @@ export const getBooleanValue = (value: BooleanLike): bigint => {
 };
 
 export const bool: Parser<BooleanLike, boolean> = {
-  isDynamic: true,
+  isDynamic: false,
 
   encode({ buffer, value }: EncodeArgs<BooleanLike>): Uint8Array {
     const booleanValue = getBooleanValue(value);
