@@ -3,6 +3,15 @@ interface IteratorValue {
   value: Uint8Array;
 }
 
+/**
+ * Iterate over a buffer with the specified size. This will yield a part of the buffer starting at an increment of the
+ * specified size, until the end of the buffer is reached.
+ *
+ * Calling the `skip` function will make it skip the specified number of bytes.
+ *
+ * @param buffer The buffer to iterate over.
+ * @param [size] The number of bytes to iterate with.
+ */
 export const iterate = function* (
   buffer: Uint8Array,
   size = 32

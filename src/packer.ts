@@ -3,6 +3,12 @@ import { address, array, bool, bytes, fixedBytes, fn, number, string, tuple } fr
 import { Parser } from './types';
 import { concat, toBuffer, toNumber } from './utils';
 
+/**
+ * Get the parser for the specified type. This will throw if there is no parser for the specified type.
+ *
+ * @param type The type to get a parser for.
+ * @return The parser.
+ */
 export const getParser = (type: string): Parser => {
   const parsers: { [key: string]: Parser } = {
     address,
@@ -28,6 +34,14 @@ export const getParser = (type: string): Parser => {
   throw new Error(`Type "${type}" is not supported`);
 };
 
+/**
+ * Check if the specified parser is dynamic, for the provided types. This is primarily used for parsing tuples, where
+ * a tuple can be dynamic based on the types. For other parsers, it will simply use the set `isDynamic` value.
+ *
+ * @param parser The parser to check.
+ * @param type The type to check the parser with.
+ * @return Whether the parser is dynamic.
+ */
 export const isDynamicParser = (parser: Parser, type: string): boolean => {
   const isDynamic = parser.isDynamic;
   if (typeof isDynamic === 'function') {
@@ -45,6 +59,15 @@ interface PackState {
   functions: UpdateFunction[];
 }
 
+/**
+ * Pack the provided values in a buffer, encoded with the specified types. If a buffer is specified, the resulting value
+ * will be concatenated with the buffer.
+ *
+ * @param types The types to use for encoding.
+ * @param values The values to encode.
+ * @param [buffer] The buffer to concatenate with.
+ * @return The resulting encoded buffer.
+ */
 export const pack = (types: string[], values: unknown[], buffer: Uint8Array = new Uint8Array()): Uint8Array => {
   if (types.length !== values.length) {
     throw new Error('The length of the types and values must be equal');

@@ -3,6 +3,10 @@ import { InputTypeMap, Narrow, Type, TypeMapper } from './types';
 
 /**
  * Encode the data with the provided types.
+ *
+ * @param types The types to encode.
+ * @param values The values to encode. This array must have the same length as the types array.
+ * @return The ABI encoded buffer.
  */
 export const encode = <T extends Array<Type | string>>(
   types: Narrow<T>,
@@ -12,7 +16,7 @@ export const encode = <T extends Array<Type | string>>(
 };
 
 /**
- * Decode the buffer with the specified types.
+ * Decode an ABI encoded buffer with the specified types.
  *
  * @param types The types to decode the buffer with.
  * @param buffer The buffer to decode.
