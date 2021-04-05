@@ -1,7 +1,31 @@
 import { fromHex, toHex } from '../utils';
-import { array } from './array';
+import { array, getArrayType } from './array';
+
+describe('getArrayType', () => {
+  it('returns the type of the array', () => {
+    expect(getArrayType('uint256[]')).toBe('uint256');
+    expect(getArrayType('uint256[][]')).toBe('uint256[]');
+    expect(getArrayType('(uint256)[]')).toBe('(uint256)');
+    expect(getArrayType('(uint256[])[]')).toBe('(uint256[])');
+  });
+
+  it('throws if a type is not an array type', () => {
+    expect(() => getArrayType('uint256')).toThrow();
+    expect(() => getArrayType('(uint256)')).toThrow();
+  });
+});
 
 describe('array', () => {
+  describe('isType', () => {
+    it('checks if a type is a tuple type', () => {
+      expect(array.isType?.('uint256[]')).toBe(true);
+      expect(array.isType?.('uint256[][]')).toBe(true);
+
+      expect(array.isType?.('uint256')).toBe(false);
+      expect(array.isType?.('(uint256)')).toBe(false);
+    });
+  });
+
   describe('encode', () => {
     it('encodes an array', () => {
       expect(toHex(array.encode({ type: 'uint256[]', value: [12n, 34n, 56n, 78n], buffer: new Uint8Array() }))).toBe(

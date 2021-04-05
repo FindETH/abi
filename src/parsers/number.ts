@@ -9,7 +9,7 @@ const NUMBER_REGEX = /^u?int([0-9]*)?$/;
  * @param type The type to check.
  * @return Whether the type is signed.
  */
-const isSigned = (type: string): boolean => {
+export const isSigned = (type: string): boolean => {
   return !type.startsWith('u');
 };
 
@@ -19,7 +19,7 @@ const isSigned = (type: string): boolean => {
  * @param value The number-like value to parse.
  * @return The value parsed as bigint.
  */
-const asNumber = (value: NumberLike): bigint => {
+export const asNumber = (value: NumberLike): bigint => {
   if (typeof value === 'bigint') {
     return value;
   }

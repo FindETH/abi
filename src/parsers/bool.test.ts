@@ -1,5 +1,20 @@
 import { fromHex, toHex } from '../utils';
-import { bool } from './bool';
+import { bool, getBooleanValue } from './bool';
+
+describe('getBooleanValue', () => {
+  it('returns a bigint for a boolean-like value', () => {
+    expect(getBooleanValue(true)).toBe(1n);
+    expect(getBooleanValue('true')).toBe(1n);
+    expect(getBooleanValue('yes')).toBe(1n);
+
+    expect(getBooleanValue(false)).toBe(0n);
+    expect(getBooleanValue('false')).toBe(0n);
+    expect(getBooleanValue('no')).toBe(0n);
+
+    // @ts-expect-error Invalid input
+    expect(getBooleanValue('foo bar')).toBe(0n);
+  });
+});
 
 describe('boolean', () => {
   describe('encode', () => {

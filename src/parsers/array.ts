@@ -6,10 +6,10 @@ import { concat, toBuffer, toNumber } from '../utils';
 const ARRAY_REGEX = /^(.*)\[]$/;
 
 /**
- * Get elements from a tuple type.
+ * Get the type of the array.
  *
- * @param type The tuple type to get the types for.
- * @return The elements of the tuple as string array.
+ * @param type The type to get the array type for.
+ * @return The array type.
  */
 export const getArrayType = (type: string): string => {
   const match = type.match(ARRAY_REGEX);

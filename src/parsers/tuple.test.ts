@@ -1,6 +1,16 @@
 import { DynamicFunction } from '../types';
 import { fromHex, toHex } from '../utils';
-import { tuple } from './tuple';
+import { getTupleElements, tuple } from './tuple';
+
+describe('getTupleElements', () => {
+  it('returns the elements of a tuple', () => {
+    expect(getTupleElements('(foo,bar)')).toStrictEqual(['foo', 'bar']);
+    expect(getTupleElements('(foo,bar[])')).toStrictEqual(['foo', 'bar[]']);
+
+    // TODO: Add support for nested tuples
+    // expect(getTupleElements('(foo,(bar,baz))')).toStrictEqual(['foo', '(bar,baz))']);
+  });
+});
 
 describe('tuple', () => {
   describe('isDynamic', () => {

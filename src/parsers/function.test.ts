@@ -1,5 +1,22 @@
 import { fromHex, toHex } from '../utils';
-import { fn } from './function';
+import { fn, getFunction } from './function';
+
+describe('getFunction', () => {
+  it('returns an encoded function for a function-like input', () => {
+    expect(
+      toHex(
+        getFunction({
+          address: '0x6b175474e89094c44da98b954eedeac495271d0f',
+          selector: '70a08231'
+        })
+      )
+    ).toBe('6b175474e89094c44da98b954eedeac495271d0f70a08231');
+
+    expect(toHex(getFunction('6b175474e89094c44da98b954eedeac495271d0f70a08231'))).toBe(
+      '6b175474e89094c44da98b954eedeac495271d0f70a08231'
+    );
+  });
+});
 
 describe('function', () => {
   describe('encode', () => {

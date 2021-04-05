@@ -7,7 +7,7 @@ import { number } from './number';
  * @param value The value to get a boolean for.
  * @return The parsed boolean value. This is 1n for truthy values, or 0n for falsy values.
  */
-const getBooleanValue = (value: BooleanLike): bigint => {
+export const getBooleanValue = (value: BooleanLike): bigint => {
   if (value === true || (typeof value === 'string' && value === 'true') || value === 'yes') {
     return 1n;
   }

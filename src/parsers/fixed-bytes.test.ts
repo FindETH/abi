@@ -1,7 +1,33 @@
 import { fromHex, toHex } from '../utils';
 import { fixedBytes, getByteLength } from './fixed-bytes';
 
+describe('getByteLength', () => {
+  it('returns the byte length for a type', () => {
+    expect(getByteLength('bytes32')).toBe(32);
+    expect(getByteLength('bytes16')).toBe(16);
+    expect(getByteLength('bytes1')).toBe(1);
+  });
+
+  it('throws an error if the length is invalid', () => {
+    expect(() => getByteLength('bytes64')).toThrow();
+    expect(() => getByteLength('bytes0')).toThrow();
+    expect(() => getByteLength('bytes')).toThrow();
+  });
+});
+
 describe('fixed-bytes', () => {
+  describe('isType', () => {
+    it('checks if a type is a fixed bytes type', () => {
+      expect(fixedBytes.isType?.('bytes32')).toBe(true);
+      expect(fixedBytes.isType?.('bytes16')).toBe(true);
+      expect(fixedBytes.isType?.('bytes1')).toBe(true);
+
+      expect(fixedBytes.isType?.('bytes')).toBe(false);
+      expect(fixedBytes.isType?.('bytes32[]')).toBe(false);
+      expect(fixedBytes.isType?.('(bytes32)')).toBe(false);
+    });
+  });
+
   describe('encode', () => {
     it('encodes fixed bytes', () => {
       expect(
@@ -29,19 +55,5 @@ describe('fixed-bytes', () => {
         'abcdef1234567890000000000000000000000000000000000000000000000000'
       );
     });
-  });
-});
-
-describe('getByteLength', () => {
-  it('returns the byte length for a type', () => {
-    expect(getByteLength('bytes32')).toBe(32);
-    expect(getByteLength('bytes16')).toBe(16);
-    expect(getByteLength('bytes1')).toBe(1);
-  });
-
-  it('throws an error if the length is invalid', () => {
-    expect(() => getByteLength('bytes64')).toThrow();
-    expect(() => getByteLength('bytes0')).toThrow();
-    expect(() => getByteLength('bytes')).toThrow();
   });
 });
