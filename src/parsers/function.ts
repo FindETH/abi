@@ -1,24 +1,33 @@
-import { DecodeFunction, EncodeFunction, BytesInput } from '../types';
-import { decodeFixedBytes, encodeFixedBytes } from './fixed-bytes';
+import { DecodeArgs, EncodeArgs, FunctionLike, Parser, SolidityFunction } from '../types';
+import { concat, fromHex, toHex } from '../utils';
+import { fixedBytes } from './fixed-bytes';
 
 /**
- * Encode a function type to a Buffer. This is equivalent to the `bytes24` type.
+ * Get the encoded function as buffer. It consists of the address (20 bytes) and function selector (4 bytes).
  *
- * @param {Uint8Array} buffer
- * @param {string | Uint8Array} value
- * @return {Uint8Array}
+ * @param input The function-like input.
+ * @return The function as buffer.
  */
-export const encodeFunction: EncodeFunction<BytesInput> = (buffer: Uint8Array, value: BytesInput): Uint8Array => {
-  return encodeFixedBytes(buffer, value, 'bytes24');
+export const getFunction = (input: FunctionLike): Uint8Array => {
+  if (typeof input === 'string') {
+    return fromHex(input);
+  }
+
+  return concat([fromHex(input.address), fromHex(input.selector)]);
 };
 
-/**
- * Decode a function type from a Buffer. This is equivalent to the `bytes24` type.
- *
- * @param {Uint8Array} buffer
- * @param {string | Uint8Array} value
- * @return {Uint8Array}
- */
-export const decodeFunction: DecodeFunction<Uint8Array> = (value: Uint8Array, buffer: Uint8Array): Uint8Array => {
-  return decodeFixedBytes(value, buffer, 'bytes24');
+export const fn: Parser<FunctionLike, SolidityFunction> = {
+  isDynamic: false,
+
+  encode({ buffer, value }: EncodeArgs<FunctionLike>): Uint8Array {
+    const fn = getFunction(value);
+    return fixedBytes.encode({ type: 'bytes24', buffer, value: fn });
+  },
+
+  decode({ value }: DecodeArgs): SolidityFunction {
+    return {
+      address: `0x${toHex(value.slice(0, 20))}`,
+      selector: toHex(value.slice(20, 24))
+    };
+  }
 };

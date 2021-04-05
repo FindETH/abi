@@ -1,34 +1,25 @@
-import { NumberInput, DecodeFunction, EncodeFunction } from '../types';
-import { concat, toBuffer, toNumber, fromTwosComplement, toTwosComplement } from '../utils';
+import { DecodeArgs, NumberLike, Parser } from '../types';
+import { concat, fromTwosComplement, toBuffer, toNumber, toTwosComplement } from '../utils';
 
 const NUMBER_REGEX = /^u?int([0-9]*)?$/;
 
-const isSigned = (type: string): boolean => {
-  return type.startsWith('i');
+/**
+ * Check if a number type is signed.
+ *
+ * @param type The type to check.
+ * @return Whether the type is signed.
+ */
+export const isSigned = (type: string): boolean => {
+  return !type.startsWith('u');
 };
 
-export const isNumber = (type: string): boolean => {
-  return NUMBER_REGEX.test(type);
-};
-
-export const getBitLength = (type: string): number => {
-  const rawBits = type.match(NUMBER_REGEX)?.[1] ?? '256';
-  return Number(rawBits);
-};
-
-export const inRange = (value: bigint, type: string): boolean => {
-  const bits = BigInt(getBitLength(type));
-
-  if (isSigned(type)) {
-    const maxSignedValue = 2n ** (bits - 1n) - 1n;
-    return value >= -maxSignedValue - 1n && value <= maxSignedValue;
-  }
-
-  const maxValue = 2n ** bits - 1n;
-  return value >= 0n && value <= maxValue;
-};
-
-const asNumber = (value: NumberInput): bigint => {
+/**
+ * Get a number-like value as bigint.
+ *
+ * @param value The number-like value to parse.
+ * @return The value parsed as bigint.
+ */
+export const asNumber = (value: NumberLike): bigint => {
   if (typeof value === 'bigint') {
     return value;
   }
@@ -36,28 +27,34 @@ const asNumber = (value: NumberInput): bigint => {
   return BigInt(value);
 };
 
-export const encodeNumber: EncodeFunction<NumberInput> = (
-  buffer: Uint8Array,
-  value: NumberInput,
-  type: string
-): Uint8Array => {
-  const numberValue = asNumber(value);
+export const number: Parser<NumberLike, bigint> = {
+  isDynamic: false,
 
-  if (!inRange(numberValue, type)) {
-    throw new Error(`Cannot encode number: value is out of range for type ${type}`);
+  /**
+   * Check if a type is a number type.
+   *
+   * @return Whether the type is a number type.
+   */
+  isType(type: string): boolean {
+    return NUMBER_REGEX.test(type);
+  },
+
+  encode({ type, buffer, value }): Uint8Array {
+    const number = asNumber(value);
+
+    if (isSigned(type)) {
+      return concat([buffer, toTwosComplement(number, 32)]);
+    }
+
+    return concat([buffer, toBuffer(number)]);
+  },
+
+  decode({ type, value }: DecodeArgs): bigint {
+    const buffer = value.slice(0, 32);
+    if (isSigned(type)) {
+      return fromTwosComplement(buffer);
+    }
+
+    return toNumber(buffer);
   }
-
-  if (isSigned(type)) {
-    return concat([buffer, toTwosComplement(numberValue, 32)]);
-  }
-
-  return concat([buffer, toBuffer(numberValue)]);
-};
-
-export const decodeNumber: DecodeFunction<bigint> = (value: Uint8Array, _, type: string): bigint => {
-  if (isSigned(type)) {
-    return fromTwosComplement(value);
-  }
-
-  return toNumber(value);
 };
