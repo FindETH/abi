@@ -1,7 +1,7 @@
 import { iterate } from './iterator';
 import { address, array, bool, bytes, fixedBytes, fn, number, string, tuple } from './parsers';
-import { Parser } from './types';
-import { concat, toBuffer, toNumber } from './utils';
+import { PackState, Parser } from './types';
+import { concat, set, toBuffer, toNumber } from './utils';
 
 /**
  * Get the parser for the specified type. This will throw if there is no parser for the specified type.
@@ -51,17 +51,6 @@ export const isDynamicParser = (parser: Parser, type: string): boolean => {
   return isDynamic;
 };
 
-interface Pointer {
-  position: number;
-  pointer: number;
-}
-
-interface PackState {
-  staticBuffer: Uint8Array;
-  dynamicBuffer: Uint8Array;
-  pointers: Pointer[];
-}
-
 /**
  * Pack the provided values in a buffer, encoded with the specified types. If a buffer is specified, the resulting value
  * will be concatenated with the buffer.
@@ -89,7 +78,7 @@ export const pack = (types: string[], values: unknown[], buffer: Uint8Array = ne
         };
       }
 
-      const newStaticBuffer = concat([staticBuffer, new Uint8Array(32).fill(0)]);
+      const newStaticBuffer = concat([staticBuffer, new Uint8Array(32)]);
       const newDynamicBuffer = parser.encode({ buffer: dynamicBuffer, value, type });
 
       return {
@@ -102,9 +91,9 @@ export const pack = (types: string[], values: unknown[], buffer: Uint8Array = ne
   );
 
   const dynamicStart = staticBuffer.length;
-  const updatedBuffer = pointers.reduce((acc, pointer) => {
-    const newOffset = toBuffer(dynamicStart + pointer.pointer);
-    return concat([acc.subarray(0, pointer.position), newOffset, acc.subarray(pointer.position + 32)]);
+  const updatedBuffer = pointers.reduce((target, { pointer, position }) => {
+    const offset = toBuffer(dynamicStart + pointer);
+    return set(target, offset, position);
   }, staticBuffer);
 
   return concat([buffer, updatedBuffer, dynamicBuffer]);
