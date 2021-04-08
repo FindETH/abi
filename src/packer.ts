@@ -51,12 +51,16 @@ export const isDynamicParser = (parser: Parser, type: string): boolean => {
   return isDynamic;
 };
 
-type UpdateFunction = (buffer: Uint8Array) => Uint8Array;
+interface Pointer {
+  position: number;
+  pointer: number;
+}
 
 interface PackState {
   staticBuffer: Uint8Array;
   dynamicBuffer: Uint8Array;
-  functions: UpdateFunction[];
+  //functions: UpdateFunction[];
+  pointers: Pointer[];
 }
 
 /**
@@ -73,8 +77,8 @@ export const pack = (types: string[], values: unknown[], buffer: Uint8Array = ne
     throw new Error('The length of the types and values must be equal');
   }
 
-  const { staticBuffer, dynamicBuffer, functions } = types.reduce<PackState>(
-    ({ staticBuffer, dynamicBuffer, functions }, type, index) => {
+  const { staticBuffer, dynamicBuffer, pointers } = types.reduce<PackState>(
+    ({ staticBuffer, dynamicBuffer, pointers }, type, index) => {
       const parser = getParser(type);
       const value = values[index];
 
@@ -82,34 +86,27 @@ export const pack = (types: string[], values: unknown[], buffer: Uint8Array = ne
         return {
           staticBuffer: parser.encode({ buffer: staticBuffer, value, type }),
           dynamicBuffer,
-          functions
+          pointers
         };
       }
-
-      const offset = dynamicBuffer.length;
-      const staticOffset = staticBuffer.length;
 
       const newStaticBuffer = concat([staticBuffer, new Uint8Array(32).fill(0)]);
       const newDynamicBuffer = parser.encode({ buffer: dynamicBuffer, value, type });
 
-      const fn = (oldBuffer: Uint8Array): Uint8Array => {
-        return concat([
-          oldBuffer.subarray(0, staticOffset),
-          toBuffer(oldBuffer.length + offset),
-          oldBuffer.subarray(staticOffset + 32)
-        ]);
-      };
-
       return {
         staticBuffer: newStaticBuffer,
         dynamicBuffer: newDynamicBuffer,
-        functions: [...functions, fn]
+        pointers: [...pointers, { position: staticBuffer.length, pointer: dynamicBuffer.length }]
       };
     },
-    { staticBuffer: new Uint8Array(), dynamicBuffer: new Uint8Array(), functions: [] }
+    { staticBuffer: new Uint8Array(), dynamicBuffer: new Uint8Array(), pointers: [] }
   );
 
-  const updatedBuffer = functions.reduce<Uint8Array>((target, update) => update(target), staticBuffer);
+  const dynamicStart = staticBuffer.length;
+  const updatedBuffer = pointers.reduce((acc, pointer) => {
+    const newOffset = toBuffer(dynamicStart + pointer.pointer);
+    return concat([acc.subarray(0, pointer.position), newOffset, acc.subarray(pointer.position + 32)]);
+  }, staticBuffer);
 
   return concat([buffer, updatedBuffer, dynamicBuffer]);
 };
