@@ -59,7 +59,6 @@ interface Pointer {
 interface PackState {
   staticBuffer: Uint8Array;
   dynamicBuffer: Uint8Array;
-  //functions: UpdateFunction[];
   pointers: Pointer[];
 }
 
