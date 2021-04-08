@@ -6,6 +6,7 @@ import {
   fromUtf8,
   getTextDecoder,
   getTextEncoder,
+  set,
   stripPrefix,
   toBuffer,
   toHex,
@@ -82,6 +83,12 @@ describe('concat', () => {
     expect(toHex(concat([fromHex('1234')]))).toBe('1234');
     expect(toHex(concat([fromHex('1234'), fromHex('5678')]))).toBe('12345678');
     expect(toHex(concat([fromHex('1234'), fromHex('5678'), fromHex('9101')]))).toBe('123456789101');
+  });
+});
+
+describe('set', () => {
+  it('sets a buffer in another buffer at a specific position', () => {
+    expect(toHex(set(fromHex('1234567890'), fromHex('00'), 2))).toBe('1234007890');
   });
 });
 
